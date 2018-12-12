@@ -36,6 +36,10 @@ const mapStateToProps = (state) => {
         notifications: state.firestore.ordered.notifications
     }
 }
+//Compose is used when you want to pass multiple store enhancers to the store.
+//func1(func2(func3(func4))))
+//we could just write
+//compose(func1, func2, func3, func4)
 
 export default compose(
     connect(mapStateToProps),
