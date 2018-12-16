@@ -4,6 +4,8 @@ import {signIn} from '../../store/actions/authActions'
 import {Redirect} from 'react-router-dom'
 import firebase from 'firebase'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
+import {NavLink} from 'react-router-dom';
+
 
 class SignIn extends Component {
 
@@ -40,10 +42,17 @@ class SignIn extends Component {
   render() {
       const {authError, auth} = this.props;
       if(auth.uid) return <Redirect to='/'/>
+      
     return (
-      <div className = 'coontainer #bdbdbd grey lighten-1'>
-        <form onSubmit={this.handleSubmit}  >
-            <h5 className = 'grey-text text-darken-3'>Sign-In</h5>
+    <div className = 'divStyle col s12 m12 l12' >
+      <div  className = ' container logincard'>
+        <div className = 'title'>
+            <h1> DESIGNERSPEN</h1>
+            <p>Everything Creation</p>
+        </div>
+        
+        <form onSubmit={this.handleSubmit} className = 'signinform' >
+            <h5 ><span>Sign-In</span>/ <NavLink to ='/signup'>Sign-Up</NavLink></h5>
             <div className = 'input-field'>
                 <label htmlFor='email'> Email</label> 
                 <input type ='email' id='email' onChange={this.handleChange}/>
@@ -62,6 +71,7 @@ class SignIn extends Component {
         <StyledFirebaseAuth uiConfig = {this.uiConfig}
         firebaseAuth={firebase.auth()}/>
       </div>
+    </div>
     )
   }
 }
@@ -78,5 +88,6 @@ const mapDispatchToProps = (dispatch) => {
         signIn: (creds) => dispatch (signIn(creds))
     }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
