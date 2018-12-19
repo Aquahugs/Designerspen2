@@ -45,7 +45,7 @@ class SignIn extends Component {
       
     return (
     <div className = 'divStyle col s12 m12 l12' >
-      <div  className = ' container logincard'>
+      <div  className = ' container'>
         <div className = 'title'>
             <h1> DESIGNERSPEN</h1>
             <p>Everything Creation</p>
@@ -55,11 +55,11 @@ class SignIn extends Component {
             <h5 ><span>Sign-In</span>/ <NavLink to ='/signup'>Sign-Up</NavLink></h5>
             <div className = 'input-field'>
                 <label htmlFor='email'> Email</label> 
-                <input type ='email' id='email' onChange={this.handleChange}/>
-            </div>
+                <input  type ='email' id='email' onChange={this.handleChange}/>
+            </div>z
             <div className = 'input-field'>
                 <label htmlFor='password'> Password</label>
-                <input type ='password' id='password' onChange={this.handleChange}/>
+                <input type ='password' id='password' onChange={this.handleChange} className = {'blue-text text-darken-2'}/>
             </div>
             <div className = 'input-field'>
                 <button className = 'btn pink lighten-1 z-depth-0'>Login</button>
@@ -71,7 +71,9 @@ class SignIn extends Component {
         <StyledFirebaseAuth uiConfig = {this.uiConfig}
         firebaseAuth={firebase.auth()}/>
       </div>
+     
     </div>
+    
     )
   }
 }

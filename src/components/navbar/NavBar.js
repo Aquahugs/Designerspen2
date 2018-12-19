@@ -7,7 +7,7 @@ import {connect} from 'react-redux'
 
 const Navbar = (props) => { // 2.) brings in all the inspect properties 
     
-    const {auth, profile} = props; // 3.) access the auth properties 
+    const {auth, profile} = props; // 3.) access the auth and profile  properties 
     const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks/> // 4.) is there an auth uid? 
     return (
         <nav className = "navbar">

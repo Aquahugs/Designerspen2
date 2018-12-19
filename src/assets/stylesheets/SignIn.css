@@ -16,9 +16,6 @@
     
 }
 
-.navbar {
-    background: transparent;
-}
 
 .signinform {
     background:rgba(0,0,0,0.5);
@@ -26,9 +23,8 @@
     margin-right:25%;
     padding: 5%;
     padding-top: 2% !important;
-  
-
 }
+
 
 .title {
     text-align: center;
@@ -47,3 +43,21 @@
 .signinform h5 {
     color : white;
 }
+
+.signinform input {
+    color:white;
+}
+
+.contenbox {
+    list-style-type: inline;
+ 
+    margin: 0;
+    padding: 0;
+    background: red;
+  
+}
+
+.contentprojects {
+    display: block;
+}
+
