@@ -1,13 +1,33 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {createProject} from '../../store/actions/projectActions';
-import {Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom';
+import axios from 'axios';
+
 
 class CreateProject extends Component {
     state = {
         title:'',
-        content:''
+        content:'',
+        selectedFile: null
 
+    }
+
+    fileSelectedHandler = event => {
+        console.log( event.target.files[0])
+        this.setState({  
+            selectedFile: event.target.files[0]
+        })
+    }
+
+    fileUploadHandler = () => {
+        const formData = new FormData()
+        formData.append('myFile', this.state.selectedFile, this.state.selectedFile.name )
+        axios.post('https://us-central1-designerspen2.cloudfunctions.net/uploadFile',formData, {
+            onUploadProgress: progressEvent => {
+                console.log(progressEvent.loaded / progressEvent.total)
+           }
+       })
     }
 
     handleChange = (e) => {
@@ -37,6 +57,8 @@ class CreateProject extends Component {
             <div className = 'input-field'>
                 <label htmlFor='content'> Project Content</label>
                 <textarea className ='materialize-textarea'  onChange={this.handleChange} id='content'  ></textarea>
+                <input type = 'file' onChange={this.fileSelectedHandler}/>
+                <button onClick = {this.fileUploadHandler}>Upload</button>
             </div>
             <div className = 'input-field'>
                 <button className = 'btn pink lighten-1 z-depth-0'>Create</button>
@@ -55,7 +77,7 @@ const mapStateToProps = (state)=> {
 
 const mapDispatchToProps = (dispatch)=> {
     return {
-       createProject: (project) => dispatch(createProject(project))
+       createProject: (project) => dispatch((project))
     }
 }
 
