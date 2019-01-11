@@ -22,6 +22,7 @@ class CreateProject extends Component {
 
     fileUploadHandler = () => {
         const formData = new FormData()
+        console.log(this.state.selectedFile)
         formData.append('myFile', this.state.selectedFile, this.state.selectedFile.name )
         axios.post('https://us-central1-designerspen2.cloudfunctions.net/uploadFile',formData, {
             onUploadProgress: progressEvent => {
@@ -34,11 +35,14 @@ class CreateProject extends Component {
         this.setState({
             [e.target.id] : e.target.value
         })
+        console.log(e.target.id)
     }
     handleSubmit = (e) => {
+   
      e.preventDefault();
      //console.log(this.state)
      this.props.createProject(this.state)
+     this.props.fileUploadHandler()
      this.props.history.push('/')
     }
    
@@ -48,7 +52,7 @@ class CreateProject extends Component {
 
     return (
       <div className = 'coontainer'>
-        <form onSubmit={this.handleSubmit}  className = 'white'>
+        <form onSubmit={this.handleSubmit }  className = 'white'>
             <h5 className = 'grey-text text-darken-3'>Create new project</h5>
             <div className = 'input-field'>
                 <label htmlFor='title'> Title</label> 
@@ -57,13 +61,13 @@ class CreateProject extends Component {
             <div className = 'input-field'>
                 <label htmlFor='content'> Project Content</label>
                 <textarea className ='materialize-textarea'  onChange={this.handleChange} id='content'  ></textarea>
-                <input type = 'file' onChange={this.fileSelectedHandler}/>
-                <button onClick = {this.fileUploadHandler}>Upload</button>
             </div>
             <div className = 'input-field'>
-                <button className = 'btn pink lighten-1 z-depth-0'>Create</button>
+            <button className = 'btn pink lighten-1 z-depth-0'>Create</button>
             </div>
         </form>
+        <input type = 'file' onChange={this.fileSelectedHandler}/>
+        <button onClick = {this.fileUploadHandler}>Upload</button>
       </div>
     )
   }
@@ -71,13 +75,14 @@ class CreateProject extends Component {
 
 const mapStateToProps = (state)=> {
     return {
-       auth: state.firebase.auth
+       auth: state.firebase.auth,
+       image: state.selectedFile
     }
 }
 
 const mapDispatchToProps = (dispatch)=> {
     return {
-       createProject: (project) => dispatch((project))
+       createProject: (project) => dispatch(createProject(project))
     }
 }
 

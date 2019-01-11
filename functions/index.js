@@ -78,7 +78,7 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
   //});
 
 
- exports.onFileChange = functions.storage.object().onFinalize (event => {
+ exports.onFileChange = functions.storage.object().onFinalize (event => { //resize cloud function
   console.log(event);
   const bucket = event.bucket;
   const contentType = event.contentType;
@@ -110,7 +110,7 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
     });
 })
 
-exports.onFileDeletion = functions.storage.object().onDelete (event => {
+exports.onFileDeletion = functions.storage.object().onDelete (event => { // file delection cloud function
   console.log(event);
   return;
 });
@@ -163,3 +163,4 @@ exports.uploadFile = functions.https.onRequest((req, res) => {
     
   })
 });
+ 
