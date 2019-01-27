@@ -5,13 +5,17 @@ export const createProject = (project) => {
 
         const profile = getState().firebase.profile; // acces the profile properties this way 
         const authorId = getState().firebase.auth.uid;
-        // ^^ How to get Selected file ?
+        const images = getFirebase().firebase.projects.selectedFile
+    
+        // ^^ How to get Selected file or images from storage  ?
 
         firestore.collection('projects').add({//just passes an object to the .add method then puts it in the projects collection on firebase boi 
             ...project,
             authorFirstName: profile.firstName,
             authorLastName: profile.lastName,
             authorId: authorId,
+            images:images,
+            
              createdAt: new Date()
         }).then(()=> {
             dispatch({type: 'CREATE_PROJECT',project})
