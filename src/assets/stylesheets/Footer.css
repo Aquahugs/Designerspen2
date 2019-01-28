@@ -1,0 +1,41 @@
+.footer{
+    border-top: 1px solid #111111;
+    padding: 2%;
+    margin-top: 30%;
+    border-bottom: 1px solid #111111;
+}
+.bottom{ 
+    border-bottom: 1px solid #111111;
+    padding: 2%;
+    margin-bottom: 10%;
+   
+}
+
+.about{
+    font-size: 12px;
+}
+
+.contactheader {
+    font-size: 14px;
+    font-weight: bold
+}
+.contact{
+    padding-left: 25% !important ;
+}
+
+
+svg{
+    margin-right: 5%;
+    float: right;
+}
+
+
+.about2{
+    font-size: 14px;
+    font-weight: bold ;
+    margin: 0 !important;
+}
+
+.about2 p {
+    margin: 0 !important;
+}

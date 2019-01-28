@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import SignedInLinks, {signedInLinks} from './SignedInLinks';
 import SignedOutLinks, {signedOutLinks} from './SignedOutLinks';
 import {connect} from 'react-redux'
+import  '../../assets/stylesheets/NavBar.css'
 
 
 const Navbar = (props) => { // 2.) brings in all the inspect properties 
@@ -12,7 +13,9 @@ const Navbar = (props) => { // 2.) brings in all the inspect properties
     return (
         <nav className = "navbar">
             <div className = "container">
-                <Link to ='/' className = "brand-logo blue-text">DesignersPen</Link>
+                <Link to ='/' className = "Logo ">
+                <img  style = {{paddingTop:'0.5%'}}src = 'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/logofont.png?alt=media&token=785d9a81-aa1c-4365-a6f1-a1e8259b4e61'/>
+                </Link>
                 {links} 
             </div>
         </nav>

@@ -11,23 +11,20 @@ import Navbar from '../navbar/NavBar';
 
 class Dashboard extends Component {
     render(){
-         console.log(this.state)
-         console.log(this.props)
+        // console.log(this.props)
         const {projects,auth, notifications} = this.props;
         if(!auth.uid) return <Redirect to='/signin'/>
-        console.log(this.state)
         return(
+            
             <div className = 'dashboard container'>
                 <Navbar/>
                 <div className = 'row'>
                     <ProjectList projects ={projects}/>
-                   
                 </div>     
             </div>
         )
     }
 }
-
 
 //<div className = 'col s12 m5 offset-m1'> 
 //<Notifications notifications={notifications}/>
@@ -38,8 +35,7 @@ const mapStateToProps = (state) => {
     return {
         projects: state.firestore.ordered.projects, // Grab from firestore instead of dummy data state.project.projects
         auth:state.firebase.auth,
-        notifications: state.firestore.ordered.notifications,
-        selectedFile: state.firestore.projects.selectedFile
+        notifications: state.firestore.ordered.notifications
     }
 }
 //Compose is used when you want to pass multiple store enhancers to the store.
