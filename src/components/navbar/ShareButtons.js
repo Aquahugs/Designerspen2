@@ -11,31 +11,33 @@ import FaFacebook from 'react-icons/lib/fa/facebook';
 import FaPinterest from 'react-icons/lib/fa/pinterest';
 import FaLinkedin from 'react-icons/lib/fa/linkedin';
 
+ class ShareButtons extends React.Component{
+render() {
 
-const ShareButtons = ()=>{
+    console.log(this.props)
 
+    const  articleurl = window.location.href
+    const shareBlockProps = {
+        url: articleurl,
+        button: ShareButtonRectangle,
+        buttons: [
+        { network: 'Twitter', icon: FaTwitter },
+        { network: 'Facebook', icon: FaFacebook },
+        { network: 'Pinterest', icon: FaPinterest, media: this.props.image },
+        { network: 'Linkedin', icon: FaLinkedin },
+        ],
+        text: this.props.text,
+        longtext: this.props.longtext, 
+    };
+        
+        return (
+            <div>
+                <ShareBlockAside   {...shareBlockProps} />
+                            
+            </div>
+        )
 
-const shareBlockProps = {
-    url: 'https://mywebsite.com/page-to-share/',
-    button: ShareButtonRectangle,
-    buttons: [
-      { network: 'Twitter', icon: FaTwitter },
-      { network: 'Facebook', icon: FaFacebook },
-      { network: 'Pinterest', icon: FaPinterest, media: 'https://mywebsite.com/image-to-share.jpg' },
-      { network: 'Linkedin', icon: FaLinkedin },
-    ],
-    text: `Give it a try - mywebsite.com `,
-    longtext: `Take a look at this super website I have just found.`,
-  };
-     
-    return (
-        <div>
-            <ShareBlockAside   {...shareBlockProps} />
-                        
-        </div>
-    )
-
-
+    }
 }
 
     

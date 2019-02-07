@@ -11,22 +11,22 @@ const ProjectList = ({projects}) => {
             <div className = ' col s12 m4 card z-depth-0 project-summary'>
                 <div className = 'card-content grey-text text-darken-3'>
                     <div className = 'card-image'>
-                    <img src={require('../../assets/images/Cardimage/manny.jpg')}/>
+                    <Link to="/kojimaproductions"><img src={require('../../assets/images/Cardimage/manny.jpg')}/></Link>
                     </div>
-                    <span className = "card-title"><h1>Here is why you need to know this thing</h1></span>
+                    <span className = "card-title"><h1>Kojima Productions company icon and mascot</h1></span>
                     <p>  </p>
-                    <p className = "grey-text"> Date  </p>
+                    <p className = "grey-text">2/8/2019</p>
                 </div>
             </div>
 
             <div className = ' col s12 m4 card z-depth-0 project-summary'>
                 <div className = 'card-content grey-text text-darken-3'>
                     <div className = 'card-image'>
-                        <img src={require('../../assets/images/Cardimage/Ar.jpeg')}/>
+                    <Link to="/ArExp">  <img src={require('../../assets/images/Cardimage/Ar.jpeg')}/></Link>
                     </div>
-                    <span className = "card-title"><h1>I tried Augmented Realility in the moutains it was awesome</h1></span>
+                    <span className = "card-title"><h1>Will AR hit an Inflection Point in 2019?</h1></span>
                     <p> </p>
-                    <p className = "grey-text"> Date  </p>
+                    <p className = "grey-text"> 2/8/2019</p>
                 </div>
             </div>
 
@@ -35,9 +35,9 @@ const ProjectList = ({projects}) => {
                     <div className = 'card-image '>
                     <Link to="/sahmtesla"> <img src={require('../../assets/images/Cardimage/Zero.jpg')}/></Link>
                     </div>
-                    <span className = "card-title"><h1>What if Tesla made a Model Zero? </h1></span>
+                    <span className = "card-title"><h1>What if Tesla made a Model 0? </h1></span>
                     <p> </p>
-                    <p className = "grey-text"> Date  </p>
+                    <p className = "grey-text"> 2/8/2019</p>
                 </div>
             </div>
         </div>

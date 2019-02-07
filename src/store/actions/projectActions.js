@@ -3,19 +3,17 @@ export const createProject = (project) => {
         //make async call to database
         const firestore = getFirestore();
 
-        const profile = getState().firebase.profile; // acces the profile properties this way 
-        const authorId = getState().firebase.auth.uid;
-        const images = getFirebase().firebase.projects.selectedFile
-    
+       // const profile = getState().firebase.profile; // acces the profile properties this way 
+      //  const authorId = getState().firebase.auth.uid;
+       // const userinfo = getState().this.state;
         // ^^ How to get Selected file or images from storage  ?
 
         firestore.collection('projects').add({//just passes an object to the .add method then puts it in the projects collection on firebase boi 
             ...project,
-            authorFirstName: profile.firstName,
-            authorLastName: profile.lastName,
-            authorId: authorId,
-            images:images,
-            
+           // authorFirstName: profile.firstName,
+           // authorLastName: profile.lastName,
+           // authorId: authorId,
+     
              createdAt: new Date()
         }).then(()=> {
             dispatch({type: 'CREATE_PROJECT',project})

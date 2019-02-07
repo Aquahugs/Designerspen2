@@ -1,4 +1,6 @@
-export const signIn = (credentials) => { //Sign in function 
+
+//Sign-in function 
+export const signIn = (credentials) => { 
     return (dispatch,getState, {getFirebase}) => {
         const firebase = getFirebase();
 
@@ -13,7 +15,8 @@ export const signIn = (credentials) => { //Sign in function
     }
 }
 
-export const signOut = () => {
+//Sign-out function 
+export const signOut = () => { 
     return (dispatch,getState, {getFirebase}) => {
         const firebase = getFirebase ();
         firebase.auth().signOut().then(() => {
@@ -22,6 +25,8 @@ export const signOut = () => {
     }
 }
 
+
+//Sign-Up function 
 export const signUp = (newUser) => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
         const firebase = getFirebase();

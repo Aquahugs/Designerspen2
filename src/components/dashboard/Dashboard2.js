@@ -15,8 +15,8 @@ import {Link} from 'react-router-dom'
 class Home extends Component {
     render(){
         // console.log(this.props)
-        const {projects,auth, notifications} = this.props;
-        if(!auth.uid) return <Redirect to='/signin'/>
+        //const {projects,auth, notifications} = this.props;
+        //if(!auth.uid) return <Redirect to='/signin'/>
 
         const styles1 = {
             paddingTop:'3%'
@@ -33,12 +33,12 @@ class Home extends Component {
                                     <div className = 'card-image z-depth-2'>
                                     <Link to="/airpod2"><img src={require('../../assets/images/Banners/airpod.jpg')}/></Link>
                                     </div>
-                                    <span className = "card-title"><h1 style = {{fontSize:'35px'}}>What can we expect from Airpod 2's </h1></span>
+                                    <span className = "card-title"><h1 style = {{fontSize:'35px'}}>Second generation of AirPods</h1></span>
                                     <p></p>
-                                    <p className = "grey-text"> Date  </p>
+                                    <p className = "grey-text"> 2/8/2019  </p>
                                 </div>
                         </div> 
-                        <h2 style = {{fontSize:'12px'}}>Feed</h2>
+                        <h2 style = {{fontSize:'16px', paddingLeft:'5%'}}>Feed</h2>
                         <ProjectList/>
                     </div>
                     <Footer/>

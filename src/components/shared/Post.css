@@ -18,6 +18,10 @@ h2{
 
 .Toptitle { padding-top:10%;}
 
-.Firstletter {
-    font-size: 30px;
+video {
+    max-width: 100%;
+}
+
+.mobile {
+    max-width:100%;
 }

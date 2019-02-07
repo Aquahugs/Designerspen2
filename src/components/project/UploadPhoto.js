@@ -5,11 +5,13 @@ import {Redirect} from 'react-router-dom';
 import axios from 'axios';
 
 
-class CreateProject extends Component {
+class SubmitProject extends Component {
     state = {
-        title:'',
+        name:'',
+        email:'',
+       // location:'',
         content:'',
-        selectedFile: null
+        file: File
 
     }
 
@@ -29,6 +31,7 @@ class CreateProject extends Component {
                 console.log(progressEvent.loaded / progressEvent.total)
            }
        })
+       this.props.history.push('/')
     }
 
     handleChange = (e) => {
@@ -42,7 +45,6 @@ class CreateProject extends Component {
      e.preventDefault();
      //console.log(this.state)
      this.props.createProject(this.state)
-     this.props.fileUploadHandler()
      this.props.history.push('/')
     }
    
@@ -51,23 +53,11 @@ class CreateProject extends Component {
    // if(!auth.uid) return <Redirect to='/signin'/>
 
     return (
-      <div className = 'coontainer'>
-        <form onSubmit={this.handleSubmit }  className = 'white'>
-            <h5 className = 'grey-text text-darken-3'>Create new project</h5>
-            <div className = 'input-field'>
-                <label htmlFor='title'> Title</label> 
-                <input type ='text' id='title' onChange={this.handleChange}/>
-            </div>
-            <div className = 'input-field'>
-                <label htmlFor='content'> Project Content</label>
-                <textarea className ='materialize-textarea'  onChange={this.handleChange} id='content'  ></textarea>
-            </div>
-            <div className = 'input-field'>
-            <button className = 'btn pink lighten-1 z-depth-0'>Create</button>
-            </div>
-        </form>
+      <div className = 'container'>
+       <h1> Upload a Photo</h1>
+       <p> Choose a photo Supported Formats / jpg</p>
         <input type = 'file' onChange={this.fileSelectedHandler}/>
-        <button onClick = {this.fileUploadHandler}>Upload</button>
+        <button onClick = {this.fileUploadHandler}>Upload</button >
       </div>
     )
   }
@@ -76,7 +66,7 @@ class CreateProject extends Component {
 const mapStateToProps = (state)=> {
     return {
        auth: state.firebase.auth,
-       image: state.selectedFile
+       form: state.selectedFile
     }
 }
 
@@ -86,4 +76,4 @@ const mapDispatchToProps = (dispatch)=> {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(CreateProject)
+export default connect(mapStateToProps,mapDispatchToProps)(SubmitProject)
