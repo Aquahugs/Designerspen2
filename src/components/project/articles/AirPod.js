@@ -2,12 +2,12 @@ import React, {Component} from 'react'
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {DiscussionEmbed} from 'disqus-react'
-import { Carousel } from 'react-responsive-carousel';
-
 import Footer from '../../navbar/Footer';
 import ShareButtons from '../../navbar/ShareButtons';
 import ShareButtonsMobile from '../../navbar/ShareButtonsMobile';
 
+import {Helmet} from "react-helmet";
+import DocumentMeta from 'react-document-meta';
 
 import { Desktop, Tablet, Mobile, Phone } from '../../shared';
 import '../../shared/Post.css';
@@ -17,14 +17,14 @@ const disqusShortname = 'designerspen2'
 
 
 
-
 class AirPod extends Component {
     render() {
+        
         var info = { //info for share
-            text:'Tesla Model 0',
-            longtext:'To be able to buy a Tesla for $25,000 to $30,000 sounds unreal. However the Tesla',
+         //   text:'Tesla Model 0',
+          //  longtext:'To be able to buy a Tesla for $25,000 to $30,000 sounds unreal. However the Tesla',
             image:'https://i2.wp.com/sahmjafari.com/wp-content/uploads/2017/11/Zero.jpg?fit=8000%2C4500'
-        };
+        }; 
         const disqusConfig = {
             identifier: identifier,
             title: title,
@@ -32,10 +32,26 @@ class AirPod extends Component {
         }
         const title = (this.props.location.key)
         const identifier = (this.props.location.pathname)
+        const meta = {
+            title: ' Second generation of AirPods',
+            description: 'I am a description, and I can create multiple tags',
+            canonical: 'https://designerspen.com/airpod2',
+            meta: {
+              charset: 'utf-8',
+              name: {
+                keywords: 'Airpods,Technology,Apple,html,tags'
+              }
+            }
+        };
+
         console.log(this.state)
         return ( 
             <div>
+
+            <DocumentMeta {...meta}>
+           
             <div className = 'container'>
+              
             <Desktop> 
                 <div className = 'row Toptitle'>
                     <div className = 'col s12 m12 l12' style = {{textAlign:'center'}}>
@@ -56,7 +72,7 @@ class AirPod extends Component {
                     <div className = 'col s2 m6 l6' style = {{paddingLeft:'15%',fontFamily:'Georgia'}} >
                         <p style = {{ fontSize :'20px'}}>Designerspen</p>
                         <div style = {{paddingRight:'20%'}} >
-                        <ShareButtons/>
+                        <ShareButtons info={info}/>
                         </div>
                     </div>
                     <div className = 'col s4 m6 l6' style = {{paddingRight:'15%'}} >
@@ -256,6 +272,7 @@ class AirPod extends Component {
                 <Footer/>
               </Mobile>
             </div>
+            </DocumentMeta>
             </div>   
         )
     }   

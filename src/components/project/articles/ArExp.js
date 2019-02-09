@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-
+import {compose} from 'redux'
+import {connect} from 'react-redux'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import {DiscussionEmbed} from 'disqus-react'
@@ -18,9 +19,9 @@ const disqusShortname = 'designerspen2'
 class ArExp extends Component {
     render() {
         var info = { //info for share
-            text:'Tesla Model 0',
-            longtext:'To be able to buy a Tesla for $25,000 to $30,000 sounds unreal. However the Tesla',
-            image:'https://i2.wp.com/sahmjafari.com/wp-content/uploads/2017/11/Zero.jpg?fit=8000%2C4500'
+            text:' Will AR hit an Inflection Point in 2019?',
+            longtext:'Imagine walking into an office and there are no desk or chairs but once you put on a pair of lightweight goggles all',
+            image:'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/Articles%2FAugmentedReality%2FIMG_6153smaller.jpg?alt=media&token=01847295-aad2-461c-8084-87c0b5d4743c'
         };
         const disqusConfig = {
             identifier: identifier,
@@ -98,7 +99,7 @@ class ArExp extends Component {
                             </div>
                             <p style = {{fontSize:'22px',lineHeight:'2',fontFamily:'Georgia'}}>        
                             Even though the current gesture control practices used to interact with what we have now in AR is still in its infancy,  after trying it you can start to see how 
-                             it could become commonized. You could almost argue that the idea of a mouse and keyboard being our primary choice was maybe a mistake.But
+                             it could become commonized. You could almost argue that the idea of a mouse and keyboard being our primary choice was maybe a mistake. But
                              who will be the one to lay out the standardized rules for interacting with spatial computing? No longer having to sit in somewhat of a fixed position just 
                               to use a computer might be right around the corner.
                                </p>
@@ -340,5 +341,8 @@ class ArExp extends Component {
 
 
 
+const mapStateToProps = (state) => {
+    console.log(state)
+}
 
-export default ArExp
+export default compose(connect(mapStateToProps)) (ArExp)

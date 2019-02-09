@@ -23,11 +23,13 @@ render() {
         buttons: [
         { network: 'Twitter', icon: FaTwitter },
         { network: 'Facebook', icon: FaFacebook },
-        { network: 'Pinterest', icon: FaPinterest, media: this.props.image },
+        { network: 'Pinterest', icon: FaPinterest,},
         { network: 'Linkedin', icon: FaLinkedin },
         ],
         text: this.props.text,
         longtext: this.props.longtext, 
+       
+
     };
         
         return (

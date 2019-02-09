@@ -35,7 +35,7 @@ const ProjectList = ({projects}) => {
                     <div className = 'card-image '>
                     <Link to="/sahmtesla"> <img src={require('../../assets/images/Cardimage/Zero.jpg')}/></Link>
                     </div>
-                    <span className = "card-title"><h1>What if Tesla made a Model 0? </h1></span>
+                    <span className = "card-title"><h1>What if Tesla made <br/> Model 0? </h1></span>
                     <p> </p>
                     <p className = "grey-text"> 2/8/2019</p>
                 </div>

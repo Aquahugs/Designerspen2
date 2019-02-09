@@ -84,7 +84,7 @@ class SignIn extends Component {
                  <div className = 'row submitbtn'>
                  <NavLink to ='/submitproject'><button  style = {{fontWeight:'bold'}} className = 'btn-large lighten-1 z-depth-0'>Learn More</button> </NavLink>
                  </div> */}
-                    <img  style = {{paddingTop:'10%'}}src = 'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/signinbackground.jpg?alt=media&token=be266fb9-4b98-49c7-b2e1-06e24a4888f2'/>
+                    <img  style = {{paddingTop:'10%'}}src = 'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/signinbackground.jpg?alt=media&token=c3a69110-33f9-41e1-afcc-a60376d53029'/>
                     <p style = {{ color:'#262626'}}>Illustration By / Emmanuel Edeko</p>
                     <a href = 'https://www.instagram.com/manny.oe/?hl=en'><p style = {{fontWeight:'bold', color:'#262626'}}>Instagram</p></a>
                 </div>
@@ -135,7 +135,7 @@ class SignIn extends Component {
                  <div className = 'row submitbtn'>
                  <NavLink to ='/submitproject'><button  style = {{fontWeight:'bold'}} className = 'btn-large lighten-1 z-depth-0'>Learn More</button> </NavLink>
                  </div> */}
-                    <img  style = {{paddingTop:'10%'}}src = 'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/signinbackground.jpg?alt=media&token=be266fb9-4b98-49c7-b2e1-06e24a4888f2'/>
+                    <img  style = {{paddingTop:'10%'}}src = 'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/signinbackground.jpg?alt=media&token=c3a69110-33f9-41e1-afcc-a60376d53029'/>
                     <p style = {{ color:'#262626'}}>Illustration By / Emmanuel Edeko</p>
                     <a href = 'https://www.instagram.com/manny.oe/?hl=en'><p style = {{fontWeight:'bold', color:'#262626'}}>Instagram</p></a>
                 </div>
@@ -154,7 +154,7 @@ class SignIn extends Component {
                         <button  style = {{fontWeight:'bold'}} className = 'btn-large lighten-1 z-depth-0'>Learn More</button> 
                     </div> */}
                     
-                    <p style = {{paddingTop:'55%'}}>Illustration By / Emmanuel Edeko</p>
+                    <p style = {{paddingTop:'55%',color:'#424242',fontWeight:'bold'}}>Illustration By / Emmanuel Edeko</p>
                     <a href = 'https://www.instagram.com/manny.oe/?hl=en'><p style = {{fontWeight:'bold'}}>Instagram</p></a>
                 </div></a>
                 <div className = ' col s12 m12 l12 ' >

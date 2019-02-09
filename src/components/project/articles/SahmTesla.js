@@ -8,8 +8,8 @@ import Footer from '../../navbar/Footer';
 import ShareButtons from '../../navbar/ShareButtons';
 import ShareButtonsMobile from '../../navbar/ShareButtonsMobile';
 
+import {Helmet} from "react-helmet";
 
-import RetroHitCounter from 'react-retro-hit-counter';
 import { Desktop, Tablet, Mobile, Phone } from '../../shared';
 import '../../shared/Post.css';
 
@@ -43,9 +43,21 @@ class SahmTesla extends Component {
         }
         const title = (this.props.location.key)
         const identifier = (this.props.location.pathname)
+
+
+        
         console.log(this.props)
         return ( 
             <div>
+             <Helmet>
+                <meta charSet="utf-8" />
+                <title>Designerspen- Model 0</title>
+                <link rel="canonical" href="https://designerspen.com/sahmtesla" />
+                <meta name="description" content="The electric lifestyle for all.- Sahm Jafari"  />
+                <meta name="keywords" content="Creation,Design,Technology"></meta>
+                <meta name="og:description" content="The electric lifestyle for all.- Sahm Jafari"/>
+                 <meta name="og:image" content="https://i2.wp.com/sahmjafari.com/wp-content/uploads/2017/11/Zero.jpg?fit=8000%2C4500"/>
+            </Helmet>
             <div className = 'container'>
             <Desktop> 
                 <div className = 'row Toptitle'>
@@ -60,7 +72,7 @@ class SahmTesla extends Component {
                 <div className = 'row'>
                     <div className = 'col x12 m12 l12'>
                         <video loop autoPlay muted ref="vidRef" src="https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/Articles%2FSahm%2Fsunny-00001.mp4?alt=media&token=089390df-158c-4fe5-b02c-ff521bda6585" type="video/mp4"></video>
-                        <p style = {{textAlign:'center'}}>The electric lifestyle for all. - Sahm Jafari</p>
+                        <p style = {{textAlign:'center'}}>"The electric lifestyle for all." - Sahm Jafari</p>
                     </div>
                 </div>
 
@@ -68,7 +80,7 @@ class SahmTesla extends Component {
                     <div className = 'col s2 m6 l6' style = {{paddingLeft:'15%',fontFamily:'Georgia'}} >
                         <p style = {{ fontSize :'20px'}}>Designerspen - Automotive Design</p>
                         <div style = {{paddingRight:'20%'}} >
-                        <ShareButtons  onClick={ this.handleClick } info={info}/>
+                        <ShareButtons  info={info}/>
                  
                         </div>
                     </div>
