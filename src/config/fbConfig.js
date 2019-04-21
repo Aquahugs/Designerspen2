@@ -10,7 +10,7 @@
     authDomain: "designerspen2.firebaseapp.com",
     databaseURL: "https://designerspen2.firebaseio.com",
     projectId: "designerspen2",
-    storageBucket: "",
+    storageBucket: "gs://designerspen2.appspot.com/",
     messagingSenderId: "791462166450"
   };
   

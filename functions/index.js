@@ -78,7 +78,7 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
   //});
 
 
- exports.onFileChange = functions.storage.object().onFinalize (event => { //resize cloud function
+ /* exports.onFileChange = functions.storage.object().onFinalize (event => { //resize cloud function
   console.log(event);
   const bucket = event.bucket;
   const contentType = event.contentType;
@@ -108,7 +108,7 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
             metadata: metadata
         })
     });
-})
+}) */
 
 exports.onFileDeletion = functions.storage.object().onDelete (event => { // file delection cloud function
   console.log(event);
@@ -147,7 +147,7 @@ exports.uploadFile = functions.https.onRequest((req, res) => {
           }
         }
       }).then(() => {
-        res.status(200).json ({
+        res.status(400).json ({
           message:'it works '
         });
       })   

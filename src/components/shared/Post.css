@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,800');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+@import url('https://fonts.googleapis.com/css?family=Archivo');
+img {
+    max-width:100%;
+}
+
+h1 { 
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+h2{
+    font-size:28px;
+     font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+
+
+.Toptitle { padding-top:10%;}
+
+video {
+    max-width: 100%;
+}
+
+.mobile {
+    max-width:100%;
+}

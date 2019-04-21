@@ -10,6 +10,8 @@ const ProjectDetails = (props) => {
     if(!auth.uid) return <Redirect to='/signin'/>
     if (project) {
         return (
+
+            //somewhere in here project.selectedFile
     <div className = 'container section project-details'>
         <div className ='card z-depth-0'>
             <div className = "card-content">
