@@ -63,7 +63,7 @@ class SahmTesla extends Component {
                 <div className = 'row Toptitle'>
                     <div className = 'col s12 m12 l12' style = {{textAlign:'center'}}>
                         <h1>
-                            What if Telsa made a <br/>Model 0?
+                            What if Tesla made a <br/>Model 0?
                         </h1>
                         <p style = {{ fontSize :'20px'}}> By / Sahm Jafari</p>
                     </div>
@@ -196,7 +196,7 @@ class SahmTesla extends Component {
                <div className = 'row Toptitle'>
                     <div className = 'col s12 m12 l12' style = {{textAlign:'center'}}>
                         <h1>
-                            What if Telsa made a <br/>Model 0?
+                            What if Tesla made a <br/>Model 0?
                         </h1>
                         <p style = {{ fontSize :'20px'}}> By / Sahm Jafari</p>
                     </div>
