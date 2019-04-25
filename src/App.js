@@ -13,6 +13,7 @@ import ScrollToTop from './components/shared/ScrollToTop'
 
 import SahmTesla from './components/project/articles/SahmTesla';
 import AirPod from './components/project/articles/AirPod';
+import WorkFlows from './components/project/articles/WorkFlows';
 import ArExp from './components/project/articles/ArExp';
 import KojimaProductions from './components/project/articles/KojimaProductions';
 
@@ -35,8 +36,9 @@ class App extends Component {
                 <Route path ='/uploadpohoto' component = {UploadPhoto}/>
                 <Route path ='/sahmtesla' component = {SahmTesla}/>
                 <Route path ='/airpod2' component = {AirPod}/>
+                <Route path ='/airpod2' component = {WorkFlows}/>
                 <Route path ='/arexp' component = {ArExp}/>
-                <Route path ='/kojimaproductions' component = {KojimaProductions}/>
+                <Route path ='/WorkFlows' component = {WorkFlows}/>
             </Switch>
           </div>
           </ScrollToTop>
