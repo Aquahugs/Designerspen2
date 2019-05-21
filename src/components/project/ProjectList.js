@@ -7,8 +7,41 @@ import '../../assets/stylesheets/ProjectList.css'
 const ProjectList = ({projects}) => {
 
     return(
+        
         <div className = 'post'>
-            <div className = ' col s12 m4 card z-depth-0 project-summary'>
+         
+            <div className = ' col s12 m4 l4 card z-depth-0 project-summary'>
+                <div className = 'card-content grey-text text-darken-3'>
+                    <div className = 'card-image'>
+                    <Link to="/HoloLens2"><img src={'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/HoloLens.jpg?alt=media&token=d97e56bf-9447-4f52-8f37-d5b7a541a29c'}/></Link>
+                    </div>
+                    <span className = "card-title"><h1>Microsoft Unveils Hololens 2 for $3500</h1></span>
+                    <p>  </p>
+                    <p className = "grey-text">2/24/2019</p>
+                </div>
+            </div>
+            <div className = ' col s12 m4 l4 card z-depth-0 project-summary'>
+                <div className = 'card-content grey-text text-darken-3'>
+                    <div className = 'card-image'>
+                    <Link to="/HoloLens2"><img src={'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/HoloLens.jpg?alt=media&token=d97e56bf-9447-4f52-8f37-d5b7a541a29c'}/></Link>
+                    </div>
+                    <span className = "card-title"><h1>Microsoft Unveils Hololens 2 for $3500</h1></span>
+                    <p>  </p>
+                    <p className = "grey-text">2/24/2019</p>
+                </div>
+            </div>
+            <div className = ' col s12 m4 l4 card z-depth-0 project-summary'>
+                <div className = 'card-content grey-text text-darken-3'>
+                    <div className = 'card-image'>
+                    <Link to="/Airpods2"><img src={'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/Airpods.jpg?alt=media&token=b85c8184-6d89-41bf-9ca6-d07935ead012'}/></Link>
+                    </div>
+                    <span className = "card-title"><h1>Second Generation Airpods</h1></span>
+                    <p>  </p>
+                    <p className = "grey-text">2/8/2019</p>
+                </div>
+            </div>
+         
+            <div className = ' col s12 m4 l4 card z-depth-0 project-summary'>
                 <div className = 'card-content grey-text text-darken-3'>
                     <div className = 'card-image'>
                     <Link to="/kojimaproductions"><img src={require('../../assets/images/Cardimage/manny.jpg')}/></Link>
@@ -19,7 +52,7 @@ const ProjectList = ({projects}) => {
                 </div>
             </div>
 
-            <div className = ' col s12 m4 card z-depth-0 project-summary'>
+            <div className = ' col s12 m4 l4 card z-depth-0 project-summary'>
                 <div className = 'card-content grey-text text-darken-3'>
                     <div className = 'card-image'>
                     <Link to="/ArExp">  <img src={require('../../assets/images/Cardimage/Ar.jpeg')}/></Link>
@@ -30,7 +63,7 @@ const ProjectList = ({projects}) => {
                 </div>
             </div>
 
-            <div className = ' col s12 m4 card z-depth-0 project-summary'>
+            <div className = ' col s12 m4 l4 card z-depth-0 project-summary'>
                 <div className = 'card-content grey-text text-darken-3'>
                     <div className = 'card-image '>
                     <Link to="/sahmtesla"> <img src={require('../../assets/images/Cardimage/Zero.jpg')}/></Link>
@@ -40,6 +73,7 @@ const ProjectList = ({projects}) => {
                     <p className = "grey-text"> 2/8/2019</p>
                 </div>
             </div>
+           
         </div>
     )
     
