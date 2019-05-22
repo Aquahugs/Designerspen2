@@ -5,17 +5,21 @@ import {Link} from 'react-router-dom'
 import '../../assets/stylesheets/ProjectList.css'
 
 const ProjectList = ({projects}) => {
-
     return(
-        
-        <div className = 'post'>
-         
-            <div className = ' col s12 m4 l4 card z-depth-0 project-summary'>
+        <div className = 'project-list section'>
+            {projects && projects.map(project => {
+                return(
+                    <Link to = {'/project/' + project.id}>
+                        <ProjectSummary project={project} key={project.id}/>
+                    </Link>
+                )
+            })}
+            {/* <div className = ' col s12 m4 l4 card z-depth-0 project-summary'>
                 <div className = 'card-content grey-text text-darken-3'>
                     <div className = 'card-image'>
                     <Link to="/HoloLens2"><img src={'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/HoloLens.jpg?alt=media&token=d97e56bf-9447-4f52-8f37-d5b7a541a29c'}/></Link>
                     </div>
-                    <span className = "card-title"><h1>Microsoft Unveils Hololens 2 for $3500</h1></span>
+                    <span className = "card-title"><h1>{projects.title}</h1></span>
                     <p>  </p>
                     <p className = "grey-text">2/24/2019</p>
                 </div>
@@ -72,7 +76,7 @@ const ProjectList = ({projects}) => {
                     <p> </p>
                     <p className = "grey-text"> 2/8/2019</p>
                 </div>
-            </div>
+            </div> */}
            
         </div>
     )

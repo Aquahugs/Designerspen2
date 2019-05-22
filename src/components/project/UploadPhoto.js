@@ -9,7 +9,7 @@ class SubmitProject extends Component {
     state = {
         name:'',
         email:'',
-       // location:'',
+       location:'',
         content:'',
         file: File
 
@@ -24,7 +24,7 @@ class SubmitProject extends Component {
 
     fileUploadHandler = () => {
         const formData = new FormData()
-        console.log(this.state.selectedFile)
+        console.log(this.state.selectedFile.location)
         formData.append('myFile', this.state.selectedFile, this.state.selectedFile.name )
         axios.post('https://us-central1-designerspen2.cloudfunctions.net/uploadFile',formData, {
             onUploadProgress: progressEvent => {

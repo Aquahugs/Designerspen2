@@ -20,12 +20,15 @@ import KojimaProductions from './components/project/articles/KojimaProductions';
 import './assets/stylesheets/SignIn.css';
 class App extends Component {
   render() {
+    
     return (
+      
         <BrowserRouter>
          <ScrollToTop>
           <div className="App">   
             <div style = {{position:'fixed',width:'100%',zIndex:'1111'}}> <Navbar/></div>
             <Switch>
+                
                 <Route exact path ='/' component = {Home} />
                 <Route path ='/project/:id' component = {ProjectDetails} />
                 <Route path ='/signin' component = {SignIn} />

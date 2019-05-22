@@ -9,9 +9,9 @@ import  '../../assets/stylesheets/NavBar.css'
 
 import { Desktop, Tablet, Mobile, Phone } from '../shared';
 const Navbar = (props) => { // 2.) brings in all the inspect properties 
-    
+    console.log(props)
     const {auth, profile} = props; // 3.) access the auth and profile  properties 
-    const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks/> // 4.) is there an auth uid? 
+    const links = auth.uid ? <SignedInLinks auth={auth} profile={profile} /> : <SignedOutLinks/> // 4.) is there an auth uid? 
     return (
         <div>
         <Desktop>
@@ -32,6 +32,7 @@ const Navbar = (props) => { // 2.) brings in all the inspect properties
                 <img  style = {{paddingTop:'0.5%'}}src = 'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/logofont.png?alt=media&token=785d9a81-aa1c-4365-a6f1-a1e8259b4e61'/>
                 </Link>
                 {links} 
+              
             </div>
         </nav>
     </Tablet>
