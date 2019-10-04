@@ -25,7 +25,6 @@ export const signOut = () => {
     }
 }
 
-
 //Sign-Up function 
 export const signUp = (newUser) => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
@@ -39,6 +38,7 @@ export const signUp = (newUser) => {
             return firestore.collection('users').doc(resp.user.uid).set ({ // logging the parameters into the firebase users collection 
                 firstName: newUser.firstName,
                 lastName: newUser.lastName,
+                uid:resp.user.uid,
                 inititals: newUser.firstName[0] + newUser.lastName[0]
             })
         }).then(() => {
@@ -48,4 +48,3 @@ export const signUp = (newUser) => {
         })
     }
 }
-

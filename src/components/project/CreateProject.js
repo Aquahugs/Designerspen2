@@ -18,12 +18,16 @@ class CreateProject extends Component {
      
     };
 
+
+    //Handles the selected file
     fileSelectedHandler = event => {
         console.log( event.target.files[0])
          this.setState({  
              selectedFile: event.target.files[0]
          })
     }
+
+    //Handles changes in the text box
     handleChange = (e) => {
         this.setState({
             [e.target.id] : e.target.value
@@ -31,6 +35,8 @@ class CreateProject extends Component {
         console.log(e.target.id)
         console.log(this.state)
     }
+
+    //File Upload Function
      fileUploadHandler = () => {
      const image = this.state.selectedFile;
      const uploadTask = storage.ref(`images/${image.name}`).put(image);
@@ -52,6 +58,7 @@ class CreateProject extends Component {
      console.log(this.state);
    };
 
+  //Submit function
   handleSubmit = e => {
     e.preventDefault();
     console.log(this.state);

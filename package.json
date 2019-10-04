@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "@google-cloud/storage": "^2.5.0",
     "axios": "^0.18.1",
     "disqus-react": "^1.0.7",
@@ -12,6 +13,17 @@
     "moment": "^2.24.0",
     "node-sass": "^4.12.0",
     "react": "^16.10.2",
+=======
+    "@google-cloud/storage": "^2.3.4",
+    "axios": "^0.18.1",
+    "disqus-react": "^1.0.5",
+    "emotion": "^10.0.6",
+    "firebase": "^5.5.9",
+    "firebase-functions": "^2.1.0",
+    "moment": "^2.22.2",
+    "node-sass": "^4.11.0",
+    "react": "^16.7.0",
+>>>>>>> 23b10402833cec2eee8702bff41e22d821baf735
     "react-custom-share": "^0.4.8",
     "react-document-meta": "^3.0.0-beta.2",
     "react-dom": "^16.10.2",
@@ -30,7 +42,12 @@
     "redux": "^4.0.4",
     "redux-firestore": "^0.6.4",
     "redux-thunk": "^2.3.0",
+<<<<<<< HEAD
     "save": "^2.4.0"
+=======
+    "save": "^2.3.3",
+    "tumblr.js": "^2.0.2"
+>>>>>>> 23b10402833cec2eee8702bff41e22d821baf735
   },
   "scripts": {
     "start": "react-scripts start",

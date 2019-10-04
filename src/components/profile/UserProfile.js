@@ -4,26 +4,20 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Redirect} from 'react-router-dom'
 import moment from 'moment'
-const ProjectDetails = (props) => {
-    
+import firebase from "firebase";
+
+const UserProfile = (props,state,ownProps) => {
+    console.log(props)
+    console.log(props.auth.uid)
     const {project,auth} = (props);
     if(!auth.uid) return <Redirect to='/signin'/>
-    if (project) {
+    if (auth.uid = props.auth.uid) {
         return (
-
+            
             //somewhere in here project.selectedFile
-        <div className = 'container section project-details'>
-            <div className ='card z-depth-0'>
-                <div className = "card-content">
-                    <span className ='card-title'> {project.title} </span>
-                    <p>{project.content}</p>
-                    <img src = {project.url}/>
-                </div>
-                <div className = 'card-action grey lighten-4 grey-text'>
-                    <div>{project.authorFirstName} {project.authorLastName}</div>
-                    <div> {moment(project.createdAt.toDate()).calendar()} </div>
-                </div>
-            </div>
+        <div className = 'container' style = {{paddingTop:'10%'}}>
+            <img src = {props.auth.photoURL}/>
+            <h1>this is {props.auth.displayName}'s profile</h1>
         </div>
     )
     } else {
@@ -38,10 +32,9 @@ const ProjectDetails = (props) => {
 
 const mapStateToProps = (state,ownProps) => {
     console.log(state)
-    console.log(ownProps.match.params.id)
-    const id = ownProps.match.params.id;
+    const uid = ownProps.match.params.uid;
     const projects = state.firestore.data.projects;
-    const project = projects ? projects[id] : null //projects is just an object with the diffrent properties 
+    const project = projects ? projects[uid] : null //projects is just an object with the diffrent properties 
     return {
         project:project,
         auth: state.firebase.auth
@@ -54,4 +47,4 @@ export default compose(
     firestoreConnect ([
         {collection:'projects'}
          ])
-)(ProjectDetails)
+)(UserProfile)
