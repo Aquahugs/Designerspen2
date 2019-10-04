@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
-import Notifications from './Notifications';
-import Articles from '../project/Articles';
+// import Notifications from './Notifications';
+import ProjectList from './project/ProjectList';
 import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Redirect} from 'react-router-dom'
-import Footer from '../navbar/Footer';
+import Footer from './navbar/Footer';
 import {Link} from 'react-router-dom'
 
 
 
 
 
-class Home extends Component {
+class Wall extends Component {
     render(){
         console.log(this.props.auth.displayName);
         console.log(this.props.auth.uid)
@@ -31,23 +31,16 @@ class Home extends Component {
         return(
                 
             <div className ='bgcolor'>
-                <div className = ' dashboard  container ' style ={styles1}  >
+               <p>coming soon</p>
+                {/* <div className = ' dashboard  container ' style ={styles1}  >
                     <div className = 'row'>
-                        <div className = ' col s12 m12 card z-depth-0 project-summary'>
-                            <div className = 'card-content grey-text text-darken-3'>
-                                <div className = 'card-image z-depth-2'>
-                                <Link to="/AiDesign"><img src={require('../../assets/images/Articles/2019/AiDesign/patternbrain.jpg')}/></Link>
-                                </div>
-                                <span className = "card-title"><h1 style = {{fontSize:'35px'}}>How AI ist starting to change the way we create. </h1></span>
-                                <p></p>
-                                <p className = "grey-text"> 9/8/2019  </p>
-                            </div>
-                        </div> 
-                        <h2 style = {{fontSize:'16px', paddingLeft:'5%'}}>Feed</h2>
-                        <Articles/>
+                        <h2 style = {{fontSize:'16px', paddingLeft:'5%'}}>Wall</h2>
+                        <Link to ='/createproject' ><button className="btn pink lighten-1 z-depth-0">Pin</button></Link>
+                        <ProjectList projects = {projects}/>
                     </div>
                     <Footer/>
-                </div>         
+                </div>      */}
+                
             </div>
         )
     }
@@ -74,6 +67,6 @@ export default compose(
     connect(mapStateToProps),
     firestoreConnect([
         {collection:'projects', orderBy:['createdAt','desc']},
-        {collection: 'notifications', limit:3,orderBy:['time','desc']} // limit the amount of notifications shown 
+        // {collection: 'notifications', limit:3,orderBy:['time','desc']} // limit the amount of notifications shown 
     ])
-)(Home)
+)(Wall)

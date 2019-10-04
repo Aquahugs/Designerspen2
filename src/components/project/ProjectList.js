@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import ProjectSummary from './ProjectSummary'
+import ProjectCard from './ProjectCard'
 import {Link} from 'react-router-dom'
 
 import '../../assets/stylesheets/ProjectList.css'
@@ -10,7 +10,7 @@ const ProjectList = ({projects}) => {
             {projects && projects.map(project => {
                 return(
                     <Link to = {'/project/' + project.id}>
-                        <ProjectSummary project={project} key={project.id}/>
+                        <ProjectCard project={project} key={project.id}/>
                     </Link>
                 )
             })}
@@ -76,8 +76,7 @@ const ProjectList = ({projects}) => {
                     <p> </p>
                     <p className = "grey-text"> 2/8/2019</p>
                 </div>
-            </div> */}
-           
+            </div> */} 
         </div>
     )
     

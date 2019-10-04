@@ -19,11 +19,13 @@ const SignedInLinks = (props) => {
     } 
     return (
         <ul className = 'right'>
-            <li > <NavLink to ='/' style = {styles1}>Feed</NavLink></li>
+            <li > <NavLink to ='/Wall' style = {styles1}>Wall</NavLink></li>
+            <li > <NavLink to ='/' style = {styles1}>News</NavLink></li>
+            <li> <a href = 'https://designerspen.tumblr.com/' style = {{color:'#1C1C1C'}}>Inspiration</a></li>
             <li > <a style = {styles1} onClick ={props.signOut}>Log Out</a></li>
-            <li><a style = {styles2}>{props.auth.displayName}</a></li>
+            <li><NavLink to = '/users/:uid'><a style = {styles2}>{props.auth.displayName}</a></NavLink></li>
             <li> 
-                <NavLink to ='/' className='btn btn-floating pink lighten-1'>
+                <NavLink to ='/users/:uid' className='btn btn-floating pink lighten-1'>
                 {props.profile.inititals}
                 <img src = {props.auth.photoURL}/>
                 </NavLink>
