@@ -38,7 +38,7 @@ class Home extends Component {
                                 <div className = 'card-image z-depth-2'>
                                 <Link to="/AiDesign"><img src={require('../../assets/images/Articles/2019/AiDesign/patternbrain.jpg')}/></Link>
                                 </div>
-                                <span className = "card-title"><h1 style = {{fontSize:'35px'}}>How AI ist starting to change the way we create. </h1></span>
+                                <span className = "card-title"><h1 style = {{fontSize:'35px'}}>How AI is changing the way we create. </h1></span>
                                 <p></p>
                                 <p className = "grey-text"> 9/8/2019  </p>
                             </div>

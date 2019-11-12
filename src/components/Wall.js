@@ -32,14 +32,14 @@ class Wall extends Component {
                 
             <div className ='bgcolor'>
                <p>coming soon</p>
-                {/* <div className = ' dashboard  container ' style ={styles1}  >
+                 <div className = ' dashboard  container ' style ={styles1}  >
                     <div className = 'row'>
                         <h2 style = {{fontSize:'16px', paddingLeft:'5%'}}>Wall</h2>
                         <Link to ='/createproject' ><button className="btn pink lighten-1 z-depth-0">Pin</button></Link>
                         <ProjectList projects = {projects}/>
                     </div>
                     <Footer/>
-                </div>      */}
+                </div>      
                 
             </div>
         )
