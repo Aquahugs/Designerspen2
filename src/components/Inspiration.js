@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import NavBar from './navbar/NavBar';
 
 
 
@@ -6,31 +7,77 @@ import React, {Component} from 'react';
 
 class Inspiration extends Component {
 
-
-    
-
-    componentDidMount() {
-        fetch('http://api.tumblr.com/v2/blog/designerspen.tumblr.com/posts?api_key=TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y&limit=50&format=text')
-            
-            .then(res => res.json())
-            .then(json => {
-                this.setState({
-                    isLoaded:true,
-                    items: json,
-                })
-            })
-    }
     constructor(props){
         super(props);
         this.state= {
             items :[],
             isLoaded: false,
+            loadPost:false
+         
         }
     }
+    
+
+    componentDidMount() {
+       
+            //  fetch('http://api.tumblr.com/v2/blog/designerspen.tumblr.com/posts?api_key=TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y&limit=50&format=text')
+            
+            //  .then(res => res.json())
+            //  .then(json => {
+            //      this.setState({
+            //          isLoaded:true,
+            //          items: json,
+    
+            //      })
+            //  })
+        // window.addEventListener("scroll", this.onScroll);
+        // window.onscroll = function() {
+        //     if(window.pageYOffset >= 1000) {
+        //         fetch('http://api.tumblr.com/v2/blog/designerspen.tumblr.com/posts?api_key=TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y&limit=50&offset=51&format=text')
+        //         .then(res => res.json())
+        //          .then(json => {
+        //          this.setState({
+        //              isLoaded:true,
+        //              items2: json,
+        //          })
+        //         })
+        //         window.onscroll = null;
+        //     }
+        //   };
+         window.addEventListener("scroll", this.onScroll);
+         window.onscroll = function() {
+             if(window.pageYOffset >= 1000) {
+                  this.setState({
+                    loadPost:true,
+                  })
+                 }
+                 window.onscroll = null;
+                 
+             }
+         Promise.all([
+             fetch('http://api.tumblr.com/v2/blog/designerspen.tumblr.com/posts?api_key=TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y&limit=50&format=text'),
+             fetch('http://api.tumblr.com/v2/blog/designerspen.tumblr.com/posts?api_key=TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y&limit=50&offset=52&format=text')
+         ])
+         .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
+         .then(([data1, data2]) => this.setState({
+             isLoaded:true,
+             items:data1,
+             items2:data2
+         }));
+    }
+
+    
+
+    
+    
 
     render(){
         var { isLoaded,items} = this.state;
         const {items} = this.state
+        const loadPost = this.state
+       
+        
+
 
         // Authenticate via OAuth
         // var tumblr = require('tumblr.js');
@@ -56,19 +103,37 @@ class Inspiration extends Component {
 
         else{
             console.log(items.response.posts)
+
+            const headerStyle = {
+                margin: '0',
+                paddingTop:'10px'
+              }
+              const linerStyle = {
+                  margin:'0',
+                  fontSize: '0.8vw'
+              }
+
+            
         return(   
             
             <div style = {{padding:"5%"}}>
-                <h1 style = {{paddingTop:'140px'}}>Get Inspired</h1>
+                <h1 style = {headerStyle}>Get Inspired</h1>
+                <p style = {linerStyle}>A visual stream of Inspiration</p>
                 <a href = "https://chrome.google.com/webstore/detail/imagus/immpkjjlgappgfkkfieppnmlhakdmaab?hl=en"><p>For the best viewing experience on desktop</p></a>
                 <div>
                     {
                         this.state.items.response.posts.map((blogImages,i) => 
-                        
-                            <img style = {{maxWidth:'350px',paddingLeft:"2%",height:'auto'}}src = {blogImages.photos[0].original_size.url}/>
-                       
+                        <img style = {{maxWidth:'350px',paddingLeft:"2%",height:'auto'}}src = {blogImages.photos[0].original_size.url}/>
                         )
                     }
+                </div>
+                <div>
+                {loadPost ? <div>{
+                    this.state.items2.response.posts.map((blogImages,i) => 
+                    <img style = {{maxWidth:'350px',paddingLeft:"2%",height:'auto'}}src = {blogImages.photos[0].original_size.url}/>
+                    )
+                }</div> : 'not'}
+                
                 </div>
 
             </div>
