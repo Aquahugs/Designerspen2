@@ -20,43 +20,20 @@ class Inspiration extends Component {
 
     componentDidMount() {
        
-            //  fetch('http://api.tumblr.com/v2/blog/designerspen.tumblr.com/posts?api_key=TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y&limit=50&format=text')
-            
-            //  .then(res => res.json())
-            //  .then(json => {
-            //      this.setState({
-            //          isLoaded:true,
-            //          items: json,
-    
-            //      })
-            //  })
-        // window.addEventListener("scroll", this.onScroll);
-        // window.onscroll = function() {
-        //     if(window.pageYOffset >= 1000) {
-        //         fetch('http://api.tumblr.com/v2/blog/designerspen.tumblr.com/posts?api_key=TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y&limit=50&offset=51&format=text')
-        //         .then(res => res.json())
-        //          .then(json => {
-        //          this.setState({
-        //              isLoaded:true,
-        //              items2: json,
-        //          })
-        //         })
-        //         window.onscroll = null;
-        //     }
-        //   };
-         window.addEventListener("scroll", this.onScroll);
-         window.onscroll = function() {
-             if(window.pageYOffset >= 1000) {
-                  this.setState({
-                    loadPost:true,
-                  })
-                 }
-                 window.onscroll = null;
+        window.addEventListener('scroll', this.handleScroll)
+        //  window.onscroll = function() {
+        //      if(window.pageYOffset >= 1000) {
+        //           console.log("poopty scoop")
+        //           this.setState({
+        //             loadPost:true,
+        //           })
+        //          }
+        //          window.onscroll = null;
                  
-             }
+        //      }
          Promise.all([
-             fetch('http://api.tumblr.com/v2/blog/designerspen.tumblr.com/posts?api_key=TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y&limit=50&format=text'),
-             fetch('http://api.tumblr.com/v2/blog/designerspen.tumblr.com/posts?api_key=TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y&limit=50&offset=52&format=text')
+             fetch('https://api.tumblr.com/v2/blog/designerspen.tumblr.com/posts?api_key=TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y&limit=50&format=text'),
+             fetch('https://api.tumblr.com/v2/blog/designerspen.tumblr.com/posts?api_key=TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y&limit=50&offset=52&format=text')
          ])
          .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
          .then(([data1, data2]) => this.setState({
@@ -65,12 +42,16 @@ class Inspiration extends Component {
              items2:data2
          }));
     }
+    
+    handleScroll(event) {
+        if(window.pageYOffset <= 1000) {
+            console.log ("correct")
+            
+        }
+        
+      }
 
     
-
-    
-    
-
     render(){
         var { isLoaded,items} = this.state;
         const {items} = this.state
@@ -97,6 +78,7 @@ class Inspiration extends Component {
         //     });
         //   });
           console.log(items)  
+          console.log(loadPost)
         if (!isLoaded) {
             return <div>Loading...</div>
         }
