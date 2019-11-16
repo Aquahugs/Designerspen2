@@ -33,8 +33,7 @@ class App extends Component {
           <div className="App">   
             <div style = {{position:'fixed',width:'100%',zIndex:'1111'}}> <Navbar/></div>
             <Switch>
-                
-                <Route exact path ='/' component = {Home} />
+                <Route exact path ='/' component = {Inspiration} />
                 <Route path ='/project/:id' component = {ProjectDetails} />
                 <Route path ='/users/:uid' component = {UserProfile} />
                 <Route path ='/signin' component = {SignIn} />
@@ -52,6 +51,7 @@ class App extends Component {
                 <Route path ='/AiDesign' component = {AiDesign}/>
                 <Route path ='/Wall' component = {Wall}/>
                 <Route path ='/Inspiration' component = {Inspiration}/>
+                <Route path ='/News' component = {Home}/>
             </Switch>
           </div>
           </ScrollToTop>

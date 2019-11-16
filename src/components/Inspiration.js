@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import NavBar from './navbar/NavBar';
-
+import  './Inspiration.scss'
 
 
 
@@ -88,33 +88,38 @@ class Inspiration extends Component {
 
             const headerStyle = {
                 margin: '0',
-                paddingTop:'10px'
+                paddingTop:'50px'
               }
               const linerStyle = {
                   margin:'0',
-                  fontSize: '0.8vw'
+                  fontSize: '12px'
               }
 
+              const hoverImages = {
+                maxWidth:'350px',
+                paddingLeft:"2%",
+                height:'auto',
+              }
+
+              
             
         return(   
-            
             <div style = {{padding:"5%"}}>
                 <h1 style = {headerStyle}>Get Inspired</h1>
                 <p style = {linerStyle}>A visual stream of Inspiration</p>
-                <a href = "https://chrome.google.com/webstore/detail/imagus/immpkjjlgappgfkkfieppnmlhakdmaab?hl=en"><p>For the best viewing experience on desktop</p></a>
                 <div>
                     {
                         this.state.items.response.posts.map((blogImages,i) => 
-                        <img style = {{maxWidth:'350px',paddingLeft:"2%",height:'auto'}}src = {blogImages.photos[0].original_size.url}/>
+                        <img  className = "images" style = {hoverImages} src = {blogImages.photos[0].original_size.url}/>
                         )
                     }
                 </div>
                 <div>
-                {loadPost ? <div>{
+                <div>{
                     this.state.items2.response.posts.map((blogImages,i) => 
-                    <img style = {{maxWidth:'350px',paddingLeft:"2%",height:'auto'}}src = {blogImages.photos[0].original_size.url}/>
+                    <img  className = "images" style = {hoverImages} src = {blogImages.photos[0].original_size.url}/>
                     )
-                }</div> : 'not'}
+                }</div> 
                 
                 </div>
 
