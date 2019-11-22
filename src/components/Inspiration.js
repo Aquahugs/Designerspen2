@@ -11,15 +11,20 @@ class Inspiration extends Component {
         super(props);
         this.state= {
             items :[],
+            users:[],
             isLoaded: false,
-            loadPost:false
-         
+            loadPost:false,
+            product: {
+                username:'',
+                email:'',
+                password:''
+            }
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     
 
     componentDidMount() {
-       
         window.addEventListener('scroll', this.handleScroll)
         //  window.onscroll = function() {
         //      if(window.pageYOffset >= 1000) {
@@ -32,13 +37,13 @@ class Inspiration extends Component {
                  
         //      }
          Promise.all([
-             fetch('https://api.tumblr.com/v2/blog/designerspen.tumblr.com/posts?api_key=TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y&limit=50&format=text'),
+             fetch('http://localhost:4000/users'),
              fetch('https://api.tumblr.com/v2/blog/designerspen.tumblr.com/posts?api_key=TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y&limit=50&offset=52&format=text')
          ])
          .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
          .then(([data1, data2]) => this.setState({
              isLoaded:true,
-             items:data1,
+             users:data1,
              items2:data2
          }));
     }
@@ -48,14 +53,35 @@ class Inspiration extends Component {
             console.log ("correct")
             
         }
-        
       }
 
-    
+      handleSubmit(event){ 
+        event.preventDefault();
+        fetch('http://localhost:4000/users/add', {
+         method: 'post',
+         headers: {'Content-Type':'application/json'},
+         body: JSON.stringify({
+            "username": this.username.value,
+            "email":this.email.value,
+            "password":this.password.value
+       })
+        });
+       };
+
+       addProduct = _ => {
+            const {product} = this.state;
+            fetch(`http://localhost:4000/users/add?username=${product.name}&email=${product.email}&password=${product.password}`)
+            .then(console.log("this worked stuff submitted"))
+            .catch (err => console.err(err))
+       }
+
+
     render(){
         var { isLoaded,items} = this.state;
         const {items} = this.state
         const loadPost = this.state
+        const {users,product} = this.state 
+
        
         
 
@@ -77,14 +103,15 @@ class Inspiration extends Component {
               
         //     });
         //   });
-          console.log(items)  
+          console.log(users)  
           console.log(loadPost)
+          console.log( this.state.users.data)
         if (!isLoaded) {
             return <div>Loading...</div>
         }
 
+        
         else{
-            console.log(items.response.posts)
 
             const headerStyle = {
                 margin: '0',
@@ -104,23 +131,39 @@ class Inspiration extends Component {
               
             
         return(   
+
             <div style = {{padding:"5%"}}>
                 <h1 style = {headerStyle}>Get Inspired</h1>
                 <p style = {linerStyle}>A visual stream of Inspiration</p>
-                <div>
-                    {
-                        this.state.items.response.posts.map((blogImages,i) => 
-                        <img  className = "images" style = {hoverImages} src = {blogImages.photos[0].original_size.url}/>
-                        )
-                    }
+                <div> {
+                 this.state.users.data.map((names,i) =>
+                 <h1>{names.username}</h1>  
+                    )
+                }
                 </div>
                 <div>
-                <div>{
+                {/* <div>{
                     this.state.items2.response.posts.map((blogImages,i) => 
                     <img  className = "images" style = {hoverImages} src = {blogImages.photos[0].original_size.url}/>
                     )
-                }</div> 
+                }</div>  */}
                 
+                </div>
+                <div id="signup">
+                {/* <form onSubmit={this.handleSubmit}>
+                    <input ref={(ref) => {this.username = ref}} placeholder="First Name" type="text" name="username"/><br />
+                    <input ref={(ref) => {this.email = ref}} placeholder="Email" type="text" name="email"/><br />
+                    <input ref={(ref) => {this.pa = ref}} placeholder="Email" type="text" name="password"/><br />
+
+                <button type="Submit">Start</button>
+                </form> */}
+                <input value = {product.name}
+                       onChange={e => this.setState({product: {...product, name: e.target.value}})}/>
+                <input value = {product.email} 
+                       onChange={e => this.setState({product: {...product, email: e.target.value}})}/>
+                <input value = {product.password} 
+                       onChange={e => this.setState({product: {...product, password: e.target.value}})}/>
+                <button onClick = {this.addProduct}>Submit this stuff</button>
                 </div>
 
             </div>
