@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import NavBar from './navbar/NavBar';
 import  './Inspiration.scss'
+import axios from 'axios';
 
 
 
@@ -24,6 +25,32 @@ class Inspiration extends Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    onChange = (e) => {
+        // event to update state when form inputs change
+        switch (e.target.name) {
+            case 'selectedFile':
+              this.setState({ selectedFile: e.target.files[0] });
+              break;
+            default:
+              this.setState({ [e.target.name]: e.target.value });
+          }
+      }
+
+      onSubmit = (e) => {
+        // event to submit the data to the server
+        e.preventDefault();
+        const { description, selectedFile } = this.state;
+        let formData = new FormData();
+
+        formData.append('description', description);
+        formData.append('selectedFile', selectedFile);
+
+        axios.post('//localhost:4000/userimages', formData)
+            .then((result) => {
+            // access results...
+            });
+      }
     
 
     componentDidMount() {
@@ -109,6 +136,8 @@ class Inspiration extends Component {
           console.log(users)  
           console.log(loadPost)
           console.log( this.state.users.data)
+          console.log(this.state.selectedFile)
+          console.log(this.state.description)
         if (!isLoaded) {
             return <div>Loading...</div>
         }
