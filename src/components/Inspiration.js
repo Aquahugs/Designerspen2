@@ -12,6 +12,8 @@ class Inspiration extends Component {
         this.state= {
             items :[],
             users:[],
+            description: '',
+            selectedFile: '',
             isLoaded: false,
             loadPost:false,
             product: {
@@ -81,6 +83,7 @@ class Inspiration extends Component {
         const {items} = this.state
         const loadPost = this.state
         const {users,product} = this.state 
+        const { description, selectedFile } = this.state;
 
        
         
@@ -165,6 +168,20 @@ class Inspiration extends Component {
                        onChange={e => this.setState({product: {...product, password: e.target.value}})}/>
                 <button onClick = {this.addProduct}>Submit this stuff</button>
                 </div>
+                <form onSubmit={this.onSubmit}>
+                    <input
+                    type="text"
+                    name="description"
+                    value={description}
+                    onChange={this.onChange}
+                    />
+                    <input
+                    type="file"
+                    name="selectedFile"
+                    onChange={this.onChange}
+                    />
+                    <button type="submit">Submit</button>
+                 </form>
 
             </div>
         )

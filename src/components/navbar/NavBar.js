@@ -31,9 +31,9 @@ const Navbar = (props) => { // 2.) brings in all the inspect properties
 
                     {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
                     {isAuthenticated && (
-                    <span style = {{color:"red"}}>
+                    <span >
                         <Link to="/">Home</Link>&nbsp;
-                        <Link to="/profile">Profile</Link>
+                        <Link style = {{color:"red"}} to="/profile">Profile</Link>
                     </span>
                     )}
                     
