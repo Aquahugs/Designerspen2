@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import NavBar from './navbar/NavBar';
 import  './Inspiration.scss'
 import axios from 'axios';
+import DefaultUpload from './DefaultUpload';
 
 
 
@@ -14,6 +15,7 @@ class Inspiration extends Component {
             items :[],
             users:[],
             description: '',
+            uuid:'',
             selectedFile: '',
             isLoaded: false,
             loadPost:false,
@@ -40,17 +42,24 @@ class Inspiration extends Component {
       onSubmit = (e) => {
         // event to submit the data to the server
         e.preventDefault();
-        const { description, selectedFile } = this.state;
+        const { selectedFile,description} = this.state;
+        
         let formData = new FormData();
 
         formData.append('description', description);
-        formData.append('selectedFile', selectedFile);
+        formData.append('file', selectedFile);
 
-        axios.post('//localhost:4000/userimages', formData)
+        axios.post('http://localhost:3001/uploadHandler', formData)
+        
             .then((result) => {
             // access results...
+            console.log(result)
             });
+            
       }
+      
+
+      
     
 
     componentDidMount() {
@@ -66,7 +75,7 @@ class Inspiration extends Component {
                  
         //      }
          Promise.all([
-             fetch('http://localhost:4000/users'),
+             fetch('http://localhost:3001/users'),
              fetch('https://api.tumblr.com/v2/blog/designerspen.tumblr.com/posts?api_key=TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y&limit=50&offset=52&format=text')
          ])
          .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
@@ -86,7 +95,7 @@ class Inspiration extends Component {
 
       handleSubmit(event){ 
         event.preventDefault();
-        fetch('http://localhost:4000/users/add', {
+        fetch('http://localhost:3001/users/add', {
          method: 'post',
          headers: {'Content-Type':'application/json'},
          body: JSON.stringify({
@@ -99,7 +108,7 @@ class Inspiration extends Component {
 
        addProduct = _ => {
             const {product} = this.state;
-            fetch(`http://localhost:4000/users/add?username=${product.name}&email=${product.email}&password=${product.password}`)
+            fetch(`http://localhost:3001/users/add?username=${product.name}&email=${product.email}&password=${product.password}`)
             .then(console.log("this worked stuff submitted"))
             .catch (err => console.err(err))
        }
@@ -116,23 +125,7 @@ class Inspiration extends Component {
         
 
 
-        // Authenticate via OAuth
-        // var tumblr = require('tumblr.js');
-        // var client = tumblr.createClient({
-        // consumer_key: 'TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y',
-        // consumer_secret: 'WEhOmhBDd3RmRivsYTjUXlnwFeDKrO3DNZC30BnwIr2K8i89MA',
-        // token: '6fKeGciBfovmWd8sYm71573fLOa1tox6DRtTFezhIMQ9Dbi9Zv',
-        // token_secret: 'lZy70AZwHJiVVKZFrT2RCK6ifG3o1W7t1PFOlmSUt6klvbsi6u'
-        // });
-        // client.userInfo(function(err, data) {
-        //     data.user.blogs.forEach(function(blog) {
-                
-        //     //   console.log(blog.name);
-        //     //   console.log(blog);
-        //     //   console.log(isLoaded)
-              
-        //     });
-        //   });
+
           console.log(users)  
           console.log(loadPost)
           console.log( this.state.users.data)
@@ -163,32 +156,18 @@ class Inspiration extends Component {
               
             
         return(   
-
+            
             <div style = {{padding:"5%"}}>
                 <h1 style = {headerStyle}>Get Inspired</h1>
                 <p style = {linerStyle}>A visual stream of Inspiration</p>
-                <div> {
+                <div> { //mapping through all the usernames in the new_tabel tabel
                  this.state.users.data.map((names,i) =>
                  <h1>{names.username}</h1>  
                     )
                 }
                 </div>
-                <div>
-                {/* <div>{
-                    this.state.items2.response.posts.map((blogImages,i) => 
-                    <img  className = "images" style = {hoverImages} src = {blogImages.photos[0].original_size.url}/>
-                    )
-                }</div>  */}
-                
-                </div>
-                <div id="signup">
-                {/* <form onSubmit={this.handleSubmit}>
-                    <input ref={(ref) => {this.username = ref}} placeholder="First Name" type="text" name="username"/><br />
-                    <input ref={(ref) => {this.email = ref}} placeholder="Email" type="text" name="email"/><br />
-                    <input ref={(ref) => {this.pa = ref}} placeholder="Email" type="text" name="password"/><br />
 
-                <button type="Submit">Start</button>
-                </form> */}
+                <div id="signup">
                 <input value = {product.name}
                        onChange={e => this.setState({product: {...product, name: e.target.value}})}/>
                 <input value = {product.email} 
@@ -197,7 +176,7 @@ class Inspiration extends Component {
                        onChange={e => this.setState({product: {...product, password: e.target.value}})}/>
                 <button onClick = {this.addProduct}>Submit this stuff</button>
                 </div>
-                <form onSubmit={this.onSubmit}>
+                 <form onSubmit={this.onSubmit}>
                     <input
                     type="text"
                     name="description"
@@ -210,8 +189,9 @@ class Inspiration extends Component {
                     onChange={this.onChange}
                     />
                     <button type="submit">Submit</button>
-                 </form>
-
+                 </form> 
+                 <DefaultUpload />
+                 
             </div>
         )
         }
