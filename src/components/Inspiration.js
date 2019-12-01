@@ -3,19 +3,21 @@ import NavBar from './navbar/NavBar';
 import  './Inspiration.scss'
 import axios from 'axios';
 import DefaultUpload from './DefaultUpload';
+import { useAuth0 } from "../react-auth0-spa";
+import {connect} from 'react-redux'
 
 
 
 
 class Inspiration extends Component {
-
+    
     constructor(props){
         super(props);
         this.state= {
             items :[],
             users:[],
             description: '',
-            uuid:'',
+            uuid:this.props.auth.uid,
             selectedFile: '',
             isLoaded: false,
             loadPost:false,
@@ -23,7 +25,8 @@ class Inspiration extends Component {
                 username:'',
                 email:'',
                 password:''
-            }
+            },
+            
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -42,12 +45,14 @@ class Inspiration extends Component {
       onSubmit = (e) => {
         // event to submit the data to the server
         e.preventDefault();
-        const { selectedFile,description} = this.state;
+        const { selectedFile,description,uuid} = this.state;
         
         let formData = new FormData();
 
         formData.append('description', description);
         formData.append('file', selectedFile);
+        formData.append('userid', uuid);
+        
 
         axios.post('http://localhost:3001/uploadHandler', formData)
         
@@ -120,17 +125,20 @@ class Inspiration extends Component {
         const loadPost = this.state
         const {users,product} = this.state 
         const { description, selectedFile } = this.state;
-
+        const {uuid} = this.state
+        
+       
        
         
 
 
 
-          console.log(users)  
+          console.log(users) 
           console.log(loadPost)
           console.log( this.state.users.data)
           console.log(this.state.selectedFile)
           console.log(this.state.description)
+          console.log(uuid)
         if (!isLoaded) {
             return <div>Loading...</div>
         }
@@ -184,6 +192,11 @@ class Inspiration extends Component {
                     onChange={this.onChange}
                     />
                     <input
+                    type="text"
+                    name="userid"
+                    value={uuid}
+                    />
+                    <input
                     type="file"
                     name="selectedFile"
                     onChange={this.onChange}
@@ -198,5 +211,11 @@ class Inspiration extends Component {
     }
 }
 
+const mapStateToProps = (state) => { // 1.) Gives acces to the authentication state 
+    return {
+        auth: state.firebase.auth,
+        profile: state.firebase.profile
+    }
+}
 
-export default Inspiration;
+export default   connect(mapStateToProps) (Inspiration);
