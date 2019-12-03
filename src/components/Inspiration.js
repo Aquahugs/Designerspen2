@@ -17,6 +17,8 @@ class Inspiration extends Component {
             items :[],
             users:[],
             description: '',
+            displayName: props.auth.displayName,
+            userPhotoUrl: props.auth.photoURL,
             uuid:this.props.auth.uid,
             selectedFile: '',
             isLoaded: false,
@@ -45,13 +47,16 @@ class Inspiration extends Component {
       onSubmit = (e) => {
         // event to submit the data to the server
         e.preventDefault();
-        const { selectedFile,description,uuid} = this.state;
+        const { selectedFile,description,uuid,displayName,userPhotoUrl} = this.state;
         
         let formData = new FormData();
 
         formData.append('description', description);
         formData.append('file', selectedFile);
         formData.append('userid', uuid);
+        formData.append('displayName', displayName);
+        formData.append('userPhotoUrl', userPhotoUrl);
+
         
 
         axios.post('http://localhost:3001/uploadHandler', formData)
@@ -60,7 +65,6 @@ class Inspiration extends Component {
             // access results...
             console.log(result)
             });
-            
       }
       
 
@@ -80,13 +84,13 @@ class Inspiration extends Component {
                  
         //      }
          Promise.all([
-             fetch('http://localhost:3001/users'),
+             fetch('http://localhost:3001/userphotos'),
              fetch('https://api.tumblr.com/v2/blog/designerspen.tumblr.com/posts?api_key=TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y&limit=50&offset=52&format=text')
          ])
          .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
          .then(([data1, data2]) => this.setState({
              isLoaded:true,
-             users:data1,
+             userphotos:data1,
              items2:data2
          }));
     }
@@ -125,7 +129,7 @@ class Inspiration extends Component {
         const loadPost = this.state
         const {users,product} = this.state 
         const { description, selectedFile } = this.state;
-        const {uuid} = this.state
+        const {uuid,displayName,userPhotoUrl} = this.state
         
        
        
@@ -137,7 +141,7 @@ class Inspiration extends Component {
           console.log(loadPost)
           console.log( this.state.users.data)
           console.log(this.state.selectedFile)
-          console.log(this.state.description)
+          console.log(this.state)
           console.log(uuid)
         if (!isLoaded) {
             return <div>Loading...</div>
@@ -168,11 +172,18 @@ class Inspiration extends Component {
             <div style = {{padding:"5%"}}>
                 <h1 style = {headerStyle}>Get Inspired</h1>
                 <p style = {linerStyle}>A visual stream of Inspiration</p>
-                <div> { //mapping through all the usernames in the new_tabel tabel
-                 this.state.users.data.map((names,i) =>
-                 <h1>{names.username}</h1>  
-                    )
-                }
+
+                {/* //mapping through all the usernames in the new_tabel tabel */}
+                <div  className = 'row'>  
+                    {this.state.userphotos.data.map(function (n) { 
+                    return (
+                        <div  className = 'col s3 m3 l3'  key={n}>
+                        <img style = {{maxWidth:"100%"}}src = {n.imageUrl}/> 
+                        <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> <p>{n.displayname}</p>
+                        <p>{n.description}</p>  
+                        </div>
+                    );
+                    })}
                 </div>
 
                 <div id="signup">
@@ -195,6 +206,19 @@ class Inspiration extends Component {
                     type="text"
                     name="userid"
                     value={uuid}
+                    readOnly
+                    />
+                    <input
+                    type="text"
+                    name="displayName"
+                    value={displayName}
+                    readOnly
+                    />
+                    <input
+                    type="text"
+                    name="userPhotoUrl"
+                    value={userPhotoUrl}
+                    readOnly
                     />
                     <input
                     type="file"
