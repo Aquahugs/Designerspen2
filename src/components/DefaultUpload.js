@@ -5,6 +5,7 @@ import DropzoneComponent from 'react-dropzone-component';
 export default class DefaultUpload extends React.Component {
     constructor(props) {
         super(props);
+        
 
         this.djsConfig = {
             addRemoveLinks: true,
@@ -14,7 +15,7 @@ export default class DefaultUpload extends React.Component {
         this.componentConfig = {
             iconFiletypes: ['.jpg', '.png', '.gif'],
             showFiletypeIcon: true,
-            postUrl: 'http://localhost:3001/uploadHandler'
+            postUrl: 'http://localhost:3001/'
         };
 
         // If you want to attach multiple callbacks, simply
@@ -31,6 +32,7 @@ export default class DefaultUpload extends React.Component {
         this.removedfile = file => console.log('removing...', file);
 
         this.dropzone = null;
+        console.log(props)
     }
 
     render() {
@@ -47,6 +49,8 @@ export default class DefaultUpload extends React.Component {
             uploadprogress: this.progress
         }
 
-        return <DropzoneComponent config={config} eventHandlers={eventHandlers} djsConfig={djsConfig} />
+        return (
+            <DropzoneComponent  eventHandlers={this.props.onChange} config={config} eventHandlers={eventHandlers} djsConfig={djsConfig} />
+        )
     }
 }

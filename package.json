@@ -17,6 +17,7 @@
     "react-custom-share": "^0.4.8",
     "react-document-meta": "^3.0.0-beta.2",
     "react-dom": "^16.10.2",
+    "react-dropzone": "^10.2.1",
     "react-dropzone-component": "^3.2.0",
     "react-firebase-file-uploader": "^2.4.2",
     "react-firebaseui": "^3.1.2",

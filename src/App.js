@@ -6,7 +6,7 @@ import Wall from './components/Wall';
 import Inspiration from './components/Inspiration';
 import About from './components/dashboard/About';
 import ProjectDetails from './components/project/ProjectDetails';
-import UserProfile from './components/profile/UserProfile';
+import MyProfile from './components/profile/MyProfile';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import CreateProject from './components/project/CreateProject';
@@ -36,7 +36,7 @@ class App extends Component {
             <Switch>
                 <Route exact path ='/' component = {Inspiration} />
                 <Route path ='/project/:id' component = {ProjectDetails} />
-                <Route path ='/users/:uid' component = {UserProfile} />
+                <Route path ='/profile/:uuid' component = {MyProfile} />
                 <Route path ='/signin' component = {SignIn} />
                 <Route path ='/signup' component = {SignUp} />
                 <Route path ='/about' component = {About} />

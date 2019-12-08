@@ -7,7 +7,7 @@ import { auth } from 'firebase';
 
 const SignedInLinks = (props) => {
  
-    console.log(props.auth.photoURL)
+    console.log(props)
 
     const styles1 = {
         color:'#212121' 
@@ -20,14 +20,15 @@ const SignedInLinks = (props) => {
     return (
         <ul className = 'right'>
             <li > <NavLink to ='/News' style = {styles1}>News</NavLink></li>
-            <li> <a href = 'https://designerspen.tumblr.com/' style = {{color:'#1C1C1C'}}>Inspiration</a></li>
+            <li> <NavLink to ='/' style = {styles1}>Inspiration</NavLink></li>
             <li > <a style = {styles1} onClick ={props.signOut}>Log Out</a></li>
-            <li><NavLink to = '/users/:uid'><a style = {styles2}>{props.auth.displayName}</a></NavLink></li>
+            <li><a href={"http://localhost:3000/profile/" + props.auth.uid} style = {styles2}>{props.auth.displayName}</a></li>
             <li> 
-                <NavLink to ='/users/:uid' className='btn btn-floating pink lighten-1'>
+                
+                <a href={"http://localhost:3000/profile/" + props.auth.uid} className='btn btn-floating pink lighten-1'>
                 {props.profile.inititals}
                 <img src = {props.auth.photoURL}/>
-                </NavLink>
+                </a>
             </li>
            
            

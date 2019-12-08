@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import NavBar from './navbar/NavBar';
 import  './Inspiration.scss'
 import axios from 'axios';
-import DefaultUpload from './DefaultUpload';
-import { useAuth0 } from "../react-auth0-spa";
+
 import {connect} from 'react-redux'
+import Dropzone from 'react-dropzone'
+
 
 
 
@@ -19,7 +20,9 @@ class Inspiration extends Component {
             description: '',
             displayName: props.auth.displayName,
             userPhotoUrl: props.auth.photoURL,
+            userphotos:[],
             uuid:this.props.auth.uid,
+            photoUuid:props.auth.uid,
             selectedFile: '',
             isLoaded: false,
             loadPost:false,
@@ -131,25 +134,13 @@ class Inspiration extends Component {
         const { description, selectedFile } = this.state;
         const {uuid,displayName,userPhotoUrl} = this.state
         
-       
-       
-        
-
-
-
-          console.log(users) 
-          console.log(loadPost)
-          console.log( this.state.users.data)
-          console.log(this.state.selectedFile)
+ 
           console.log(this.state)
-          console.log(uuid)
+          
         if (!isLoaded) {
             return <div>Loading...</div>
         }
-
-        
         else{
-
             const headerStyle = {
                 margin: '0',
                 paddingTop:'50px'
@@ -163,30 +154,68 @@ class Inspiration extends Component {
                 maxWidth:'350px',
                 paddingLeft:"2%",
                 height:'auto',
-              }
-
-              
-            
+              } 
         return(   
             
             <div style = {{padding:"5%"}}>
                 <h1 style = {headerStyle}>Get Inspired</h1>
                 <p style = {linerStyle}>A visual stream of Inspiration</p>
+                <form onSubmit={this.onSubmit}>
+                    <h2>create post</h2>
+                    <p>upload photo</p>
+                    <input
+                    type="file"
+                    name="selectedFile"
+                    onChange={this.onChange}
+                    />
+                    <p>description</p>
+                    <input
+                    type="text"
+                    name="description"
+                    value={description}
+                    placeholder="Talk about it"
+                    onChange={this.onChange}
+                    />
+                    
+                    <button type="submit">Submit</button>
+                    <Dropzone accept='image/*'  onDrop={acceptedFiles => console.log(acceptedFiles)}>
+                        {({getRootProps, getInputProps}) => (
+                            <section>
+                            <div {...getRootProps({ onChange: e =>  this.setState({ selectedFile: e.target.files[0] })})}>
+                                <input  {...getInputProps()} />
+                                <p>Drag 'n' drop some files here, or click to select files</p>
+                            </div>
+                            </section>
+                        )}
+                    </Dropzone>
+                    <div style = {{display:"25px", opacity:"0",maxWidth:"1px"}}>
 
+                    <input type="text" name="userid" value={uuid} readOnly />
+                    <input type="text" name="displayName" value={displayName} readOnly />
+                    <input type="text" name="userPhotoUrl" value={userPhotoUrl} readOnly />
+                    </div>
+                 </form> 
+               
+               
                 {/* //mapping through all the usernames in the new_tabel tabel */}
                 <div  className = 'row'>  
                     {this.state.userphotos.data.map(function (n) { 
                     return (
                         <div  className = 'col s3 m3 l3'  key={n}>
-                        <img style = {{maxWidth:"100%"}}src = {n.imageUrl}/> 
-                        <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> <p>{n.displayname}</p>
+                        <img style = {{maxWidth:"100%"}}src = {n.imageUrl}/>
+                            <div className = "row"> 
+                                <div className = "col s12 m12 l12">
+                                    <div style = {{float:'left'}}><img  style = {{maxWidth:"25px"}} src = {n.userphotourl}/></div> 
+                                    <div style = {{float:'left'}}><a  href={"http://localhost:3000/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
+                                </div>
+                            </div>
                         <p>{n.description}</p>  
                         </div>
                     );
                     })}
                 </div>
 
-                <div id="signup">
+                {/* <div id="signup">
                 <input value = {product.name}
                        onChange={e => this.setState({product: {...product, name: e.target.value}})}/>
                 <input value = {product.email} 
@@ -194,40 +223,9 @@ class Inspiration extends Component {
                 <input value = {product.password} 
                        onChange={e => this.setState({product: {...product, password: e.target.value}})}/>
                 <button onClick = {this.addProduct}>Submit this stuff</button>
-                </div>
-                 <form onSubmit={this.onSubmit}>
-                    <input
-                    type="text"
-                    name="description"
-                    value={description}
-                    onChange={this.onChange}
-                    />
-                    <input
-                    type="text"
-                    name="userid"
-                    value={uuid}
-                    readOnly
-                    />
-                    <input
-                    type="text"
-                    name="displayName"
-                    value={displayName}
-                    readOnly
-                    />
-                    <input
-                    type="text"
-                    name="userPhotoUrl"
-                    value={userPhotoUrl}
-                    readOnly
-                    />
-                    <input
-                    type="file"
-                    name="selectedFile"
-                    onChange={this.onChange}
-                    />
-                    <button type="submit">Submit</button>
-                 </form> 
-                 <DefaultUpload />
+                </div> */}
+                 
+                 
                  
             </div>
         )
@@ -239,6 +237,7 @@ const mapStateToProps = (state) => { // 1.) Gives acces to the authentication st
     return {
         auth: state.firebase.auth,
         profile: state.firebase.profile
+
     }
 }
 
