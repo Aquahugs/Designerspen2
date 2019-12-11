@@ -198,7 +198,11 @@ class Inspiration extends Component {
                
                
                 {/* //mapping through all the usernames in the new_tabel tabel */}
-                <div  className = 'row'>  
+                <div  className = 'row'> 
+                <div className = 'col s3 m3 l3'  >
+                    <img src = "https://via.placeholder.com/350x550"/>
+                </div> 
+                        
                     {this.state.userphotos.data.map(function (n) { 
                     return (
                         <div  className = 'col s3 m3 l3'  key={n}>
