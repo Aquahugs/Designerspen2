@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import NavBar from './navbar/NavBar';
 import  './Inspiration.scss'
 import axios from 'axios';
-
+import DefaultUpload from './DefaultUpload'
+import SubNav from './shared/SubNav'
 import {connect} from 'react-redux'
 import Dropzone from 'react-dropzone'
+import {useDropzone} from 'react-dropzone'
 
 
 
@@ -125,7 +127,9 @@ class Inspiration extends Component {
             .catch (err => console.err(err))
        }
 
-
+       onDrop = (acceptedFiles) => {
+        console.log(acceptedFiles);
+      }
     render(){
         var { isLoaded,items} = this.state;
         const {items} = this.state
@@ -133,6 +137,7 @@ class Inspiration extends Component {
         const {users,product} = this.state 
         const { description, selectedFile } = this.state;
         const {uuid,displayName,userPhotoUrl} = this.state
+        
         
  
           console.log(this.state)
@@ -145,6 +150,21 @@ class Inspiration extends Component {
                 margin: '0',
                 paddingTop:'50px'
               }
+              const dropzoneStyle = {
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                padding: '20px',
+                borderWidth: 2,
+                borderRadius: 2,
+                borderColor: '#eeeeee',
+                borderStyle: 'dashed',
+                backgroundColor: '#fafafa',
+                color: '#bdbdbd',
+                outline: 'none',
+                transition: 'border .24s ease-in-out'
+              };
               const linerStyle = {
                   margin:'0',
                   fontSize: '12px'
@@ -158,16 +178,39 @@ class Inspiration extends Component {
         return(   
             
             <div style = {{padding:"5%"}}>
-                <h1 style = {headerStyle}>Get Inspired</h1>
-                <p style = {linerStyle}>A visual stream of Inspiration</p>
+                <SubNav/>     
+                <p>Tags</p>          
+                
+                
+                
+                {/* Upload Zone */}
+                <div  className = 'row'> 
+                <div className = 'col s3 m3 l3'  >
+                <h1 style = {headerStyle}>upload photo</h1>
                 <form onSubmit={this.onSubmit}>
-                    <h2>create post</h2>
-                    <p>upload photo</p>
-                    <input
-                    type="file"
-                    name="selectedFile"
-                    onChange={this.onChange}
-                    />
+                {/* <div {...getRootProps({ onChange: e =>  this.setState({ selectedFile: e.target.files[0] })})}>
+                    <input {...getInputProps()} />
+                    <p>Drag 'n' drop some files here, or click to select files</p>
+                </div> */}
+                     <Dropzone 
+                     styles={dropzoneStyle}
+                      maxFiles={1}
+                      multiple={false}
+                      canCancel={true}
+                     accept="image/png, image/gif,image/jpeg, image/jpg"
+                     onDrop={this.onDrop} accept='image/*'  onDrop={acceptedFiles => console.log(acceptedFiles)}>
+                        {({getRootProps, getInputProps,isDragActive,isDragReject}) => (
+                            <section>
+                            <div {...getRootProps({ onChange: e =>  this.setState({ selectedFile: e.target.files[0] })})}>
+                                <input  {...getInputProps()} />
+                                {!isDragActive && 'Click here or Drag and Drop files'}
+                                {isDragActive && !isDragReject && "Upload"}
+                                {isDragReject && "Welp...that file type is not accepted, sorry "}
+                            </div>
+                            </section>
+                        )}
+                    </Dropzone> 
+                    {/* <DefaultUpload doWhatever={this.onChange.bind(this,file)}></DefaultUpload> */}
                     <p>description</p>
                     <input
                     type="text"
@@ -176,33 +219,18 @@ class Inspiration extends Component {
                     placeholder="Talk about it"
                     onChange={this.onChange}
                     />
-                    
+                        
                     <button type="submit">Submit</button>
-                    <Dropzone accept='image/*'  onDrop={acceptedFiles => console.log(acceptedFiles)}>
-                        {({getRootProps, getInputProps}) => (
-                            <section>
-                            <div {...getRootProps({ onChange: e =>  this.setState({ selectedFile: e.target.files[0] })})}>
-                                <input  {...getInputProps()} />
-                                <p>Drag 'n' drop some files here, or click to select files</p>
-                            </div>
-                            </section>
-                        )}
-                    </Dropzone>
+                    
                     <div style = {{display:"25px", opacity:"0",maxWidth:"1px"}}>
 
                     <input type="text" name="userid" value={uuid} readOnly />
                     <input type="text" name="displayName" value={displayName} readOnly />
                     <input type="text" name="userPhotoUrl" value={userPhotoUrl} readOnly />
                     </div>
-                 </form> 
-               
-               
-                {/* //mapping through all the usernames in the new_tabel tabel */}
-                <div  className = 'row'> 
-                <div className = 'col s3 m3 l3'  >
-                    <img src = "https://via.placeholder.com/350x550"/>
+                 </form>
                 </div> 
-                        
+                    {/* //mapping through all the usernames in the new_tabel tabel */}
                     {this.state.userphotos.data.map(function (n) { 
                     return (
                         <div  className = 'col s3 m3 l3'  key={n}>
@@ -228,9 +256,6 @@ class Inspiration extends Component {
                        onChange={e => this.setState({product: {...product, password: e.target.value}})}/>
                 <button onClick = {this.addProduct}>Submit this stuff</button>
                 </div> */}
-                 
-                 
-                 
             </div>
         )
         }

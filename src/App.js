@@ -3,10 +3,12 @@ import {Router, Switch, Route} from 'react-router-dom';
 import Navbar from './components/navbar/NavBar';
 import Home from './components/dashboard/Dashboard2';
 import Wall from './components/Wall';
-import Inspiration from './components/Inspiration';
+import Feed from './components/Feed';
+import Discover from './components/Discover';
 import About from './components/dashboard/About';
 import ProjectDetails from './components/project/ProjectDetails';
 import MyProfile from './components/profile/MyProfile';
+import TaggedPost from './components/discover/TaggedPost';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import CreateProject from './components/project/CreateProject';
@@ -17,7 +19,6 @@ import SahmTesla from './components/project/articles/SahmTesla';
 import AirPod from './components/project/articles/AirPod';
 import WorkFlows from './components/project/articles/WorkFlows';
 import AiDesign from './components/project/articles/AiDesign';
-import Profile from './components/Profile';
 import ArExp from './components/project/articles/ArExp';
 import KojimaProductions from './components/project/articles/KojimaProductions';
 import history from "./utils/history";
@@ -34,9 +35,10 @@ class App extends Component {
           <div className="App">   
             <div style = {{position:'fixed',width:'100%',zIndex:'1111'}}> <Navbar/></div>
             <Switch>
-                <Route exact path ='/' component = {Inspiration} />
+                <Route exact path ='/' component = {Feed} />
                 <Route path ='/project/:id' component = {ProjectDetails} />
                 <Route path ='/profile/:uuid' component = {MyProfile} />
+                <Route path ='/Discover/:posttag' component = {TaggedPost} />
                 <Route path ='/signin' component = {SignIn} />
                 <Route path ='/signup' component = {SignUp} />
                 <Route path ='/about' component = {About} />
@@ -51,7 +53,8 @@ class App extends Component {
                 <Route path ='/WorkFlows' component = {WorkFlows}/>
                 <Route path ='/AiDesign' component = {AiDesign}/>
                 <Route path ='/Wall' component = {Wall}/>
-                <Route path ='/Inspiration' component = {Inspiration}/>
+                <Route path ='/Feed' component = {Feed}/>
+                <Route path ='/Discover' component = {Discover}/>
                 <Route path ='/News' component = {Home}/>
             </Switch>
           </div>

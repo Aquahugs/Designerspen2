@@ -33,6 +33,7 @@ export default class DefaultUpload extends React.Component {
 
         this.dropzone = null;
         console.log(props)
+        console.log(this.props)
     }
 
     render() {
