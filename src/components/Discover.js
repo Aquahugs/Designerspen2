@@ -25,6 +25,7 @@ class Discover extends Component {
             displayName: props.auth.displayName,
             userPhotoUrl: props.auth.photoURL,
             userphotos:[],
+            tags:[],
             uuid:this.props.auth.uid,
             photoUuid:props.auth.uid,
             selectedFile: '',
@@ -55,6 +56,7 @@ class Discover extends Component {
         // event to submit the data to the server
         e.preventDefault();
         const { selectedFile,description,uuid,displayName,userPhotoUrl,postTag} = this.state;
+      
         
         let formData = new FormData();
 
@@ -64,19 +66,26 @@ class Discover extends Component {
         formData.append('displayName', displayName);
         formData.append('userPhotoUrl', userPhotoUrl);
         formData.append('postTag', postTag);
-
-
-        
-
+       
+        fetch(`http://localhost:3001/addtags?posttag=${postTag}`)
         axios.post('http://localhost:3001/uploadHandler', formData)
+        
         
             .then((result) => {
             // access results...
+           
             console.log(result)
             });
     }
       
-
+    // addtags = (e) => {
+    //     e.preventDefault();
+    //     const {postTag} = this.state;
+    //     fetch(`http://localhost:3001/addtags?posttag=${postTag}`)
+    //     .then(console.log("this worked stuff submitted"))
+    //     .catch (err => console.err(err))
+    // }
+   
       
     
 
@@ -97,13 +106,14 @@ class Discover extends Component {
          Promise.all([
             // fetch(`http://localhost:3001/Discover/:posttag?posttag=${(posttag)}`),
              fetch('http://localhost:3001/Discover'),
-             fetch('https://api.tumblr.com/v2/blog/designerspen.tumblr.com/posts?api_key=TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y&limit=50&offset=52&format=text')
+             fetch('http://localhost:3001/tags')
+
          ])
          .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
          .then(([data1, data2]) => this.setState({
              isLoaded:true,
              userphotos:data1,
-             items2:data2
+             tags:data2
          }));
     }
 
@@ -189,19 +199,19 @@ class Discover extends Component {
             
             <div style = {{padding:"5%"}}>
                 <SubNav/>     
-                {this.state.userphotos.data.map(function (n) { 
-                    return (
+                {this.state.tags.data.map(function (n) { 
+                    return ( //post tags 
                         <div  key={n}>
-                            <div className = "row"> 
-                                <div className = "col s12 m12 l12">
-                                <a  href={"http://localhost:3000/Discover/" + n.posttag} > <div style = {{float:'left'}}><p >{n.posttag}</p> </div></a>
-                                </div>
-                            </div>
-                        </div>
+                            <a  href={"http://localhost:3000/Discover/" + n.posttag} > 
+                                <ul style = {{display:'inline'}}>
+                                    <li style = {{display:'inline',float:'left',padding:'1%'}} >{n.posttag}</li>
+                                </ul>
+                            </a>
+                        </div>  
                     );
                     })}    
                 {/* Upload Zone */}
-                <div  className = 'row'> 
+                <div  className = 'row' style = {{float:'left'}}> 
                 <div className = 'col s3 m3 l3'  >
                 <h1 style = {headerStyle}>upload photo</h1>
                 <form onSubmit={this.onSubmit}>
