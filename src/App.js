@@ -5,6 +5,7 @@ import Home from './components/dashboard/Dashboard2';
 import Wall from './components/Wall';
 import Feed from './components/Feed';
 import Discover from './components/Discover';
+import PostDetail from './components/PostDetail';
 import About from './components/dashboard/About';
 import ProjectDetails from './components/project/ProjectDetails';
 import MyProfile from './components/profile/MyProfile';
@@ -36,8 +37,9 @@ class App extends Component {
             <div style = {{position:'fixed',width:'100%',zIndex:'1111'}}> <Navbar/></div>
             <Switch>
                 <Route exact path ='/' component = {Feed} />
-                <Route path ='/project/:id' component = {ProjectDetails} />
+                {/* <Route path ='/project/:id' component = {ProjectDetails} /> */}
                 <Route path ='/profile/:uuid' component = {MyProfile} />
+                <Route path ='/postdetail/:Id' component = {PostDetail} />
                 <Route path ='/Discover/:posttag' component = {TaggedPost} />
                 <Route path ='/signin' component = {SignIn} />
                 <Route path ='/signup' component = {SignUp} />

@@ -4,6 +4,7 @@ import  './Inspiration.scss'
 import axios from 'axios';
 import DefaultUpload from './DefaultUpload'
 import SubNav from './shared/SubNav'
+import Popup from "reactjs-popup";
 
 import {connect} from 'react-redux'
 import Dropzone from 'react-dropzone'
@@ -22,6 +23,10 @@ class Discover extends Component {
             users:[],
             description: '',
             postTag: '',
+            collectedimage:'',
+            collect:false,
+            disabledButton:[],
+            open:false,
             displayName: props.auth.displayName,
             userPhotoUrl: props.auth.photoURL,
             userphotos:[],
@@ -39,6 +44,8 @@ class Discover extends Component {
             
         }
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
     onChange = (e) => {
@@ -78,13 +85,7 @@ class Discover extends Component {
             });
     }
       
-    // addtags = (e) => {
-    //     e.preventDefault();
-    //     const {postTag} = this.state;
-    //     fetch(`http://localhost:3001/addtags?posttag=${postTag}`)
-    //     .then(console.log("this worked stuff submitted"))
-    //     .catch (err => console.err(err))
-    // }
+ 
    
       
     
@@ -119,14 +120,14 @@ class Discover extends Component {
 
    
     
-    handleScroll(event) {
+    handleScroll(event) { // IGNORE
         if(window.pageYOffset <= 1000) {
             console.log ("correct")
             
         }
       }
 
-      handleSubmit(event){ 
+      handleSubmit(event){ //IGNORE
         event.preventDefault();
         fetch('http://localhost:3001/users/add', {
          method: 'post',
@@ -139,12 +140,33 @@ class Discover extends Component {
         });
        };
 
-       addProduct = _ => {
+       addProduct = _ => { //IGNORE 
             const {product} = this.state;
             fetch(`http://localhost:3001/users/add?username=${product.name}&email=${product.email}&password=${product.password}`)
             .then(console.log("this worked stuff submitted"))
             .catch (err => console.err(err))
        }
+       onCollect = _ => {  
+        const {uuid,collectedimage} = this.state;
+        fetch(`http://localhost:3001/collectpost?uuid=${uuid}&post_id=${collectedimage}`)
+        .then(console.log("this worked stuff submitted"))
+        .catch (err => console.err(err))
+    }
+
+    onRemoveCollect = _ => {  
+        const {uuid,collectedimage} = this.state;
+        fetch(`http://localhost:3001/removecollectpost?uuid=${uuid}&post_id=${collectedimage}`)
+        .then(console.log("this worked stuff REMOVED"))
+        .catch (err => console.err(err))
+    }
+    openModal() {
+    this.setState({ open: true });
+  }
+  closeModal() {
+    this.setState({ open: false });
+  }
+
+       
 
        onDrop = (acceptedFiles) => {
         console.log(acceptedFiles);
@@ -160,6 +182,9 @@ class Discover extends Component {
         
  
           console.log(this.state)
+
+          console.log(this.state.userphotos)
+
           
         if (!isLoaded) {
             return <div>Loading...</div>
@@ -259,23 +284,48 @@ class Discover extends Component {
                     <div style = {{display:"25px", opacity:"0",maxWidth:"1px"}}>
 
                     <input type="text" name="userid" value={uuid} readOnly />
-                    <input type="text" name="displayName" value={displayName} readOnly />
+                    <input type="text" name="displayName" value={   displayName} readOnly />
                     <input type="text" name="userPhotoUrl" value={userPhotoUrl} readOnly />
                     </div>
                  </form>
                 </div> 
                     {/* //mapping through all the usernames in the new_tabel tabel */}
-                    {this.state.userphotos.data.map(function (n) { 
+                    
+                    {this.state.userphotos.data.map((n,index) => { 
+                        
                     return (
                         <div  className = 'col s3 m3 l3'  key={n}>
-                        <img style = {{maxWidth:"100%"}}src = {n.imageUrl}/>
+                            <Popup modal trigger={<img  style = {{maxWidth:"100%"}}src = {n.imageUrl}/>} style = {{width:"100%"}}>
+                                <div className = 'col s8 m8 l8'>
+                                    <img style = {{maxWidth:"100%",maxHeight:"800px"}}src = {n.imageUrl}/> 
+                                </div>
+                                <div className = 'col s4 m4 l4'>
+                                <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
+                                    <a href={"http://localhost:3000/users/" + n.uuid} > <p>{n.displayname}</p> </a>
+                                    <p>{n.description}</p>  
+                                </div>
+                            </Popup>
+                        
                             <div className = "row"> 
                                 <div className = "col s12 m12 l12">
                                     <div style = {{float:'left'}}><img  style = {{maxWidth:"25px"}} src = {n.userphotourl}/></div> 
                                     <div style = {{float:'left'}}><a  href={"http://localhost:3000/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
+                                    <button 
+                                    //  style={{
+                                    //     display: this.state.collect ? "none": "",
+                                    //   }}   
+                                    disabled={this.state.disabledButton === index}
+                                    onClick={e => this.setState({collectedimage: n.imageUrl,collect:true,disabledButton:index},this.onCollect)}  type="button" class="btn btn-primary btn-sm">Collect</button>
+                                    <button  
+                                    // style={{
+                                    //     display: this.state.collect ? "": "none",
+                                    //   }}                                       
+                                      onClick={e => this.setState({collectedimage: n.imageUrl,collect:false},this.onRemoveCollect)} 
+                                    type="button" class="btn btn-primary" > Uncollect</button>
                                 </div>
                             </div>
-                        <p>{n.description}</p>  
+                        <p>{n.description}</p> 
+                   
                         </div>
                     );
                     })}
