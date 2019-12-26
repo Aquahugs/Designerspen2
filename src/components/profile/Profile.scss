@@ -1,0 +1,39 @@
+.profile-info {
+    text-align: center;
+}
+
+.iframeStyle{
+    width: 75%;
+    height: 500px;
+    border: 0;
+    border-radius: 4px;
+    
+    overflow: hidden;
+    margin-bottom: 3%;
+}
+
+.spacingLeft{
+    padding-left: 3%;
+}
+
+@media (max-width: 992px){
+    .iframeStyle{
+        width: 100%;
+    }
+    .spacingLeft{
+        padding-left: 0%;
+    }
+}
+
+.tabs {
+    margin-bottom:5%;
+}
+
+.tabs .tab a{
+    color: gray !important;
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+    outline: none;
+  }
+

@@ -33,7 +33,7 @@ class Discover extends Component {
             tags:[],
             uuid:this.props.auth.uid,
             photoUuid:props.auth.uid,
-            selectedFile: '',
+            selectedFile: [],
             isLoaded: false,
             loadPost:false,
             // product: {
@@ -247,9 +247,9 @@ class Discover extends Component {
                      <Dropzone 
                      styles={dropzoneStyle}
                       maxFiles={1}
-                      multiple={false}
+                      multiple={true}
                       canCancel={true}
-                     accept="image/png, image/gif,image/jpeg, image/jpg"
+                     accept="image/png, image/gif,image/jpeg, image/jpg, image/png"
                      onDrop={this.onDrop} accept='image/*'  onDrop={acceptedFiles => console.log(acceptedFiles)}>
                         {({getRootProps, getInputProps,isDragActive,isDragReject}) => (
                             <section>
@@ -284,7 +284,7 @@ class Discover extends Component {
                     <div style = {{display:"25px", opacity:"0",maxWidth:"1px"}}>
 
                     <input type="text" name="userid" value={uuid} readOnly />
-                    <input type="text" name="displayName" value={   displayName} readOnly />
+                    <input type="text" name="displayName" value={displayName} readOnly />
                     <input type="text" name="userPhotoUrl" value={userPhotoUrl} readOnly />
                     </div>
                  </form>

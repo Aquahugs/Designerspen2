@@ -176,6 +176,8 @@ class Inspiration extends Component {
                 height:'auto',
               } 
         return(   
+
+
             
             <div style = {{padding:"5%"}}>
                 <SubNav/>     

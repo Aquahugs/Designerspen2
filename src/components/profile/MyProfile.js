@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
-import {Redirect} from 'react-router-dom'
-import moment from 'moment'
-import firebase from "firebase";
-import Axios from 'axios'
+import "materialize-css/dist/css/materialize.min.css";
+import axios from 'axios'
+import './Profile.scss'
+import Tabs from './Tabs'
 
 class MyProfile extends Component {
     constructor(props){
@@ -19,42 +18,61 @@ class MyProfile extends Component {
             isLoggedIn: props.auth.uid,
             isMe:false,
             info:[],
-            userCollection:[]
+            userCollection:[],
+            bio:[]
         }
     }
     
     
    
     componentDidMount() {
-        
+        // M.Tabs.init(this.Tabs);
         const {uuid} = this.state
         Promise.all([
-        fetch(`http://localhost:3001/profile/:uuid?uuid=${(uuid)}`, {
-        method: "GET",
-        headers: {'Content-Type':'application/json'}  
-        }),
-        fetch(`http://localhost:3001/collection/:uuid?uuid=${(uuid)}`, {
+            fetch(`http://localhost:3001/profile/:uuid?uuid=${(uuid)}`, {
             method: "GET",
             headers: {'Content-Type':'application/json'}  
+            }),
+            fetch(`http://localhost:3001/collection/:uuid?uuid=${(uuid)}`, {
+                method: "GET",
+                headers: {'Content-Type':'application/json'}  
+            }),
+            fetch(`http://localhost:3001/bio/:uuid?uuid=${(uuid)}`, {
+                method: "GET",
+                headers: {'Content-Type':'application/json'}  
             })
         ])
         
-        .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
-        .then(([data1,data2]) => this.setState({
+        .then(([res1, res2,res3]) => Promise.all([res1.json(), res2.json(),res3.json()]))
+        .then(([data1,data2,data3]) => this.setState({
             info:data1,
             userCollection:data2,
+            bio:data3,
             isLoaded:true
         }))
     
         console.log(this.props)
     
     }
-    
 
-    
+    onSubmit = (e) => {
+        // event to submit the data to the server
+        e.preventDefault();
+        const {bio} = this.state.bio.data[0].bio;
+        let formData = new FormData();        
+        formData.append('bio', bio);
+        axios.post('http://localhost:3001/editbio', formData)       
+            .then((result) => {
+            // access results...
+            console.log(result)
+        });
+    }
+      
    
-    
+
     render () {
+
+        const {bio } = this.state
          if (this.state.isLoaded === false) return null; 
         
   
@@ -77,67 +95,26 @@ class MyProfile extends Component {
         //somewhere in here project.selectedFile
         //MYPROFILE
     <div className = 'container' style = {{paddingTop:'10%'}}>
-        <h1>{this.state.displayName}'s stuff</h1>
-        <div  className = 'row'>  
-            {this.state.info.data.map(function (n) { 
-                function handleClick() {
-                   const imagelink = n.imageUrl
-                   fetch('http://localhost:3001/profile/delete', {
-                    method: 'DELETE',
-                    headers: {
-                      'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({imagelink})
-                    })
-                    .then((result) => {
-                        // access results...
-                        console.log(result)
-                    });
-                  }
-            return (
-                <div  className = 'col s3 m3 l3'  key={n}>
-                    <img style = {{maxWidth:"100%"}}src = {n.imageUrl}/> 
-                    <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
-                    <a href={"http://localhost:3000/users/" + n.uuid} > <p>{n.displayname}</p> </a>
-                    <p>{n.description}</p>  
-                    <button onClick={handleClick}>Delete</button>  
-                    {button}
-                </div>
-            );
-            })}
-        </div>
-
-    <h1>collection</h1>
-        <div  className = 'row'>  
-            {this.state.userCollection.data.map(function (n) { 
-                
-                function handleClick() {
-                   const imagelink = n.imageUrl
-                   fetch('http://localhost:3001/profile/delete', {
-                    method: 'DELETE',
-                    headers: {
-                      'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({imagelink})
-                    })
-                    .then((result) => {
-                        // access results...
-                        console.log(result)
-                    });
-                  }
-            return (
-                <div  className = 'col s3 m3 l3'  key={n}>
-                    <img style = {{maxWidth:"100%"}}src = {n.post_id}/> 
-                    <p>THIS IS COLLECTED</p>
-                    {/* <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
-                    <a href={"http://localhost:3000/users/" + n.uuid} > <p>{n.displayname}</p> </a>
-                    <p>{n.description}</p>   */}
-                    <button onClick={handleClick}>Delete</button>  
-                    {button}
-                </div>
-            );
-            })}
-        </div>
+        <div className = "row ">
+            <div className = 'col s12 m12 l12 profile-info'>
+                <img src = {this.state.photoURL}/>
+                <h2>{this.state.displayName}</h2>
+                <p>{this.state.bio.data[0].bio}</p> 
+            </div>
+            {/* edit your bio input form  */}
+            {/* <form onSubmit={this.onSubmit}> 
+            <input
+                type="text"
+                name="bio"
+                value={bio}
+                placeholder="Tell em about yourself champ"
+                />
+                <button type="submit">Submit</button>
+            </form> */}
+            <Tabs 
+            uuid = {this.state}
+            />
+        </div>   
         
     </div>
     )   
@@ -145,73 +122,12 @@ else{
   return ( 
       //somewhere in here project.selectedFile
       //OTHER USERS PROFILE
-      <div className = 'container' style = {{paddingTop:'10%'}}>
-        
-        
-      <h1>{this.state.info.data[0].displayname}'s stuff</h1>
-      <div  className = 'row'>  
-      
-          {this.state.info.data.map(function (n) { 
-              function handleClick() {
-                 const imagelink = n.imageUrl
-                 fetch('http://localhost:3001/profile/delete', {
-                  method: 'DELETE',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify({imagelink})
-                  })
-                  .then((result) => {
-                      // access results...
-                      console.log(result)
-                  });
-                }
-                
-          return (
-              <div className = 'col s3 m3 l3'  key={n}>
-              <img style = {{maxWidth:"100%"}}src = {n.imageUrl}/> 
-              <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
-              <a href={"http://localhost:3000/users/" + n.uuid} > <p>{n.displayname}</p> </a>
-              <p>{n.description}</p>
-              {button} 
-              </div>
-            );
-          })}
-      </div>
-      <h1>collection</h1>
-        <div  className = 'row'>  
-            {this.state.userCollection.data.map(function (n) { 
-                
-                function handleClick() {
-                   const imagelink = n.imageUrl
-                   fetch('http://localhost:3001/profile/delete', {
-                    method: 'DELETE',
-                    headers: {
-                      'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({imagelink})
-                    })
-                    .then((result) => {
-                        // access results...
-                        console.log(result)
-                    });
-                  }
-            return (
-                <div  className = 'col s3 m3 l3'  key={n}>
-                    <img style = {{maxWidth:"100%"}}src = {n.post_id}/> 
-                    <p>THIS IS COLLECTED</p>
-                    {/* <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
-                    <a href={"http://localhost:3000/users/" + n.uuid} > <p>{n.displayname}</p> </a>
-                    <p>{n.description}</p>   */}
-                    <button onClick={handleClick}>Delete</button>  
-                    {button}
-                </div>
-            );
-            })}
-        </div>
-
-      
-  </div>) 
+      <div className = 'container  ' style = {{paddingTop:'10%'}}>
+          <img style = {{maxWidth:"55px"}} src = {this.state.info.data[0].userphotourl}/>
+          <h1>{this.state.info.data[0].displayname}'s</h1> 
+        <Tabs uuid = {this.state}/>
+     </div>
+     ) 
 }
 
 }
