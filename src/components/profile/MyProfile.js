@@ -17,9 +17,11 @@ class MyProfile extends Component {
             isLoaded:false,
             isLoggedIn: props.auth.uid,
             isMe:false,
+            isEdit:false,
             info:[],
             userCollection:[],
-            bio:[]
+            bio:[],
+            newbio:''
         }
     }
     
@@ -29,7 +31,7 @@ class MyProfile extends Component {
         // M.Tabs.init(this.Tabs);
         const {uuid} = this.state
         Promise.all([
-            fetch(`http://localhost:3001/profile/:uuid?uuid=${(uuid)}`, {
+            fetch(`http://localhost:3001/profileimages/:uuid?uuid=${(uuid)}`, {
             method: "GET",
             headers: {'Content-Type':'application/json'}  
             }),
@@ -47,7 +49,7 @@ class MyProfile extends Component {
         .then(([data1,data2,data3]) => this.setState({
             info:data1,
             userCollection:data2,
-            bio:data3,
+            bio: data3,
             isLoaded:true
         }))
     
@@ -58,27 +60,46 @@ class MyProfile extends Component {
     onSubmit = (e) => {
         // event to submit the data to the server
         e.preventDefault();
-        const {bio} = this.state.bio.data[0].bio;
+        const {newbio} = this.state;
+        const {uuid} = this.props.match.params.uuid
+        
         let formData = new FormData();        
-        formData.append('bio', bio);
-        axios.post('http://localhost:3001/editbio', formData)       
+        formData.append('newbio', newbio);
+        
+        fetch(`http://localhost:3001/editbio?bio=${newbio}&uuid=${this.props.match.params.uuid}`)
             .then((result) => {
             // access results...
             console.log(result)
         });
     }
+
+    onChange = (e) => {
+        // event to update state when form inputs change
+        switch (e.target.name) {
+            case 'selectedFile':
+              this.setState({ selectedFile: e.target.files[0] });
+              break;
+            default:
+              this.setState({ [e.target.name]: e.target.value });
+          }
+          console.log(this.state)
+    }
       
-   
+    onEdit = () => {
+        this.setState({isEdit:true});
+    }
 
     render () {
 
         const {bio } = this.state
          if (this.state.isLoaded === false) return null; 
         
-  
+
     console.log(this.state)
     console.log(this.props.auth.uid)
     console.log(this.props.match)
+    console.log(this.props)
+
 
     
     const isLoggedIn = this.state.isLoggedIn;
@@ -97,20 +118,26 @@ class MyProfile extends Component {
     <div className = 'container' style = {{paddingTop:'10%'}}>
         <div className = "row ">
             <div className = 'col s12 m12 l12 profile-info'>
-                <img src = {this.state.photoURL}/>
-                <h2>{this.state.displayName}</h2>
-                <p>{this.state.bio.data[0].bio}</p> 
+            <button type="button"  onClick={e => this.setState({isEdit:true},console.log(this.state))} >Edit Profile</button>
+                <img src = {this.props.auth.photoURL}/>
+                <h2>{this.props.auth.displayName}</h2>
+                <p>{this.state.bio.data[0].bio}</p>
+                <p>{this.state.newbio}</p>
+
+                 {/* <p>{this.state.uuid}</p>  */}
+                 {/* edit your bio input form  */}
+            <form onSubmit={this.onSubmit}> 
+                <input
+                   style={{ visibility: this.state.isEdit ? 'visible': 'hidden'}}
+                    type="text"
+                    name="newbio"
+                    onChange={this.onChange}
+                    placeholder="Tell em about yourself champ"
+                     />
+                <button type="submit" onClick={e => this.setState({isEdit:false},console.log(this.state))}>Submit</button>
+            </form> 
             </div>
-            {/* edit your bio input form  */}
-            {/* <form onSubmit={this.onSubmit}> 
-            <input
-                type="text"
-                name="bio"
-                value={bio}
-                placeholder="Tell em about yourself champ"
-                />
-                <button type="submit">Submit</button>
-            </form> */}
+           
             <Tabs 
             uuid = {this.state}
             />

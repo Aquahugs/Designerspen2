@@ -22,15 +22,13 @@ const SignedInLinks = (props) => {
             <li > <NavLink to ='/News' style = {styles1}>News</NavLink></li>
             <li> <NavLink to ='/' style = {styles1}>Inspiration</NavLink></li>
             <li > <a style = {styles1} onClick ={props.signOut}>Log Out</a></li>
-            <li><a href={"http://localhost:3000/profile/" + props.auth.uid} style = {styles2}>{props.auth.displayName}</a></li>
             <li> 
-                
                 <a href={"http://localhost:3000/profile/" + props.auth.uid} className='btn btn-floating pink lighten-1'>
-                {props.profile.inititals}
                 <img src = {props.auth.photoURL}/>
                 </a>
             </li>
-           
+            <li><a href={"http://localhost:3000/profile/" + props.auth.uid} style = {styles2}>{props.auth.displayName} {props.profile.displayName}</a></li>
+
            
         </ul>
     )

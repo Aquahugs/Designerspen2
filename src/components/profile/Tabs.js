@@ -31,7 +31,7 @@ class Tabs extends Component {
           className="tabs"
         >
           <li className="tab col s3">
-            <a href="#test-swipe-1">Post</a>
+            <a href="#test-swipe-1">Images</a>
           </li>
           <li className="tab col s3">
             <a href="#test-swipe-2">Collection</a>

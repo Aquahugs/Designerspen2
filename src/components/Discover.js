@@ -281,7 +281,7 @@ class Discover extends Component {
                         
                     <button type="submit">Submit</button>
                     
-                    <div style = {{display:"25px", opacity:"0",maxWidth:"1px"}}>
+                    <div style = {{display:"25px", opacity:"",maxWidth:"1px"}}>
 
                     <input type="text" name="userid" value={uuid} readOnly />
                     <input type="text" name="displayName" value={displayName} readOnly />

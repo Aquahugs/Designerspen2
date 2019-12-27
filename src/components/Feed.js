@@ -28,11 +28,7 @@ class Inspiration extends Component {
             selectedFile: '',
             isLoaded: false,
             loadPost:false,
-            product: {
-                username:'',
-                email:'',
-                password:''
-            },
+           
             
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -88,9 +84,12 @@ class Inspiration extends Component {
         //          window.onscroll = null;
                  
         //      }
+        
          Promise.all([
              fetch('http://localhost:3001/userphotos'),
-             fetch('https://api.tumblr.com/v2/blog/designerspen.tumblr.com/posts?api_key=TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y&limit=50&offset=52&format=text')
+             fetch('https://api.tumblr.com/v2/blog/designerspen.tumblr.com/posts?api_key=TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y&limit=50&offset=52&format=text'),
+             fetch(`http://localhost:3001/adduser?uuid=${this.props.auth.uid}&username=${this.props.auth.displayName}&photourl='${this.props.auth.photoURL}'&bio=''&email=''`)
+
          ])
          .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
          .then(([data1, data2]) => this.setState({
@@ -138,9 +137,10 @@ class Inspiration extends Component {
         const { description, selectedFile } = this.state;
         const {uuid,displayName,userPhotoUrl} = this.state
         
-        
+
  
-          console.log(this.state)
+        console.log(this.state)
+        console.log(this.props.auth.displayName)
           
         if (!isLoaded) {
             return <div>Loading...</div>

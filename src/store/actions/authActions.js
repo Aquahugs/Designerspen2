@@ -30,21 +30,37 @@ export const signUp = (newUser) => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
         const firebase = getFirebase();
         const firestore = getFirestore ();
+        console.log(firebase)
+        console.log(firestore)
+        console.log(signUp)
+
 
         firebase.auth().createUserWithEmailAndPassword(
             newUser.email,
             newUser.password
-        ).then ((resp) => {
+            
+        )
+        
+       
+        .then ((resp) => {
+           console.log(resp)
+           fetch(`http://localhost:3001/adduser?uuid=${resp.user.uid}&username=${resp.user.displayName}&photourl=''&bio=''&email=${resp.user.email}`)
             return firestore.collection('users').doc(resp.user.uid).set ({ // logging the parameters into the firebase users collection 
-                firstName: newUser.firstName,
-                lastName: newUser.lastName,
+                displayName: newUser.displayName,
+                email: newUser.email,
                 uid:resp.user.uid,
-                inititals: newUser.firstName[0] + newUser.lastName[0]
-            })
-        }).then(() => {
+            }) 
+
+        })
+
+        
+       
+        
+        .then(() => {
             dispatch({type:'SIGNUP_SUCCESS'})
         }).catch (err => {
             dispatch ({type:'SIGNUP_ERROR', err})
         })
+        
     }
 }
