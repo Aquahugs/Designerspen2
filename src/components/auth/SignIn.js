@@ -16,6 +16,12 @@ class SignIn extends Component {
           firebase.auth.GoogleAuthProvider.PROVIDER_ID,
           firebase.auth.FacebookAuthProvider.PROVIDER_ID,
         ],
+        callbacks: {
+            signInSuccessWithAuthResult: (e) => {
+                console.log(e)
+                fetch(`http://localhost:3001/adduser?uuid=${e.user.uid}&username=${e.user.displayName}&photourl=''&bio=''&email=${e.user.email}`)
+            }
+        },
         signInSuccessUrl: '/Feed'
       }
    

@@ -27,10 +27,13 @@ class Discover extends Component {
             collect:false,
             disabledButton:[],
             open:false,
+            uuid: props.match.params.uuid,
             displayName: props.auth.displayName,
             userPhotoUrl: props.auth.photoURL,
             userphotos:[],
             tags:[],
+            bio:[],
+            id:[],
             uuid:this.props.auth.uid,
             photoUuid:props.auth.uid,
             selectedFile: [],
@@ -62,8 +65,10 @@ class Discover extends Component {
     onSubmit = (e) => {
         // event to submit the data to the server
         e.preventDefault();
+        console.log(e)
         const { selectedFile,description,uuid,displayName,userPhotoUrl,postTag} = this.state;
-      
+        const id = this.state.bio.data[0].id
+    
         
         let formData = new FormData();
 
@@ -73,6 +78,8 @@ class Discover extends Component {
         formData.append('displayName', displayName);
         formData.append('userPhotoUrl', userPhotoUrl);
         formData.append('postTag', postTag);
+        formData.append('id', id);
+        
        
         fetch(`http://localhost:3001/addtags?posttag=${postTag}`)
         axios.post('http://localhost:3001/uploadHandler', formData)
@@ -103,18 +110,25 @@ class Discover extends Component {
                  
         //      }
         const {posttag} = this.state
+        const {uuid} = this.state
+
 
          Promise.all([
             // fetch(`http://localhost:3001/Discover/:posttag?posttag=${(posttag)}`),
              fetch('http://localhost:3001/Discover'),
-             fetch('http://localhost:3001/tags')
+             fetch('http://localhost:3001/tags'),
+             fetch(`http://localhost:3001/bio/:uuid?uuid=${(uuid)}`, {
+                method: "GET",
+                headers: {'Content-Type':'application/json'}  
+            })
 
          ])
-         .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
-         .then(([data1, data2]) => this.setState({
+         .then(([res1, res2,res3]) => Promise.all([res1.json(), res2.json(),res3.json()]))
+         .then(([data1,data2,data3]) => this.setState({
              isLoaded:true,
              userphotos:data1,
-             tags:data2
+             tags:data2,
+             bio:data3
          }));
     }
 
@@ -176,8 +190,9 @@ class Discover extends Component {
         const {items} = this.state
         const loadPost = this.state
         const {users,product} = this.state 
-        const { description, selectedFile,postTag } = this.state;
+        const { description, selectedFile,postTag,id } = this.state;
         const {uuid,displayName,userPhotoUrl} = this.state
+        
         
         
  
@@ -264,6 +279,7 @@ class Discover extends Component {
                     </Dropzone> 
                     {/* <DefaultUpload doWhatever={this.onChange.bind(this,file)}></DefaultUpload> */}
                     <p>description</p>
+                    <p>{this.state.bio.data[0].id}</p>
                     <input
                     type="text"
                     name="description"
@@ -281,11 +297,11 @@ class Discover extends Component {
                         
                     <button type="submit">Submit</button>
                     
-                    <div style = {{display:"25px", opacity:"",maxWidth:"1px"}}>
+                    <div >
 
                     <input type="text" name="userid" value={uuid} readOnly />
-                    <input type="text" name="displayName" value={displayName} readOnly />
-                    <input type="text" name="userPhotoUrl" value={userPhotoUrl} readOnly />
+                    <input type="text" name="displayName" value={this.state.bio.data[0].username} readOnly />
+                    <input type="text" name="userPhotoUrl" value={this.state.bio.data[0].photourl} readOnly />
                     </div>
                  </form>
                 </div> 

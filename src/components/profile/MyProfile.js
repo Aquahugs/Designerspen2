@@ -121,6 +121,7 @@ class MyProfile extends Component {
             <button type="button"  onClick={e => this.setState({isEdit:true},console.log(this.state))} >Edit Profile</button>
                 <img src = {this.props.auth.photoURL}/>
                 <h2>{this.props.auth.displayName}</h2>
+                <p>{this.state.bio.data[0].id}</p>
                 <p>{this.state.bio.data[0].bio}</p>
                 <p>{this.state.newbio}</p>
 
@@ -150,8 +151,8 @@ else{
       //somewhere in here project.selectedFile
       //OTHER USERS PROFILE
       <div className = 'container  ' style = {{paddingTop:'10%'}}>
-          <img style = {{maxWidth:"55px"}} src = {this.state.info.data[0].userphotourl}/>
-          <h1>{this.state.info.data[0].displayname}'s</h1> 
+          <img style = {{maxWidth:"55px"}} src = {this.state.bio.data[0].photourl}/>
+          <h1>{this.state.bio.data[0].username}</h1>   
         <Tabs uuid = {this.state}/>
      </div>
      ) 

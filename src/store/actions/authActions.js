@@ -1,6 +1,7 @@
 
 //Sign-in function 
 export const signIn = (credentials) => { 
+    console.log(credentials)
     return (dispatch,getState, {getFirebase}) => {
         const firebase = getFirebase();
 
