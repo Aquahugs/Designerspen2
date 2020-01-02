@@ -1,5 +1,5 @@
 .Logo{
-    color:#212121;
+    color:white;
     font-size: 22px;
     font-weight: bold;
     font-family: 'Archivo', sans-serif;
@@ -9,9 +9,9 @@
     padding-right: 2%;
 }
 .navbar {
-    background-color: white; /* rgba(0,0,0,0); */
+    background-color: transparent; /* rgba(0,0,0,0); */
     box-shadow: none;
-    border-bottom: 0.25px solid #d8d8d8;
+   
    
 }
 

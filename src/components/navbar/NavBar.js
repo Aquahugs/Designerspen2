@@ -18,7 +18,7 @@ const Navbar = (props) => { // 2.) brings in all the inspect properties
         <nav className = "navbar">
             <div className = "container">
                 <Link to ='/' className = "Logo ">
-                <img  style = {{paddingTop:'0.5%'}}src = 'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/logofont.png?alt=media&token=785d9a81-aa1c-4365-a6f1-a1e8259b4e61'/>
+                <img  style = {{paddingTop:'0.5%'}}src = 'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/white%20logofont.png?alt=media&token=1b17c09e-f2f2-4ee6-a232-1d3e68eba33b'/>
                 </Link>
                 {links} 
             </div>

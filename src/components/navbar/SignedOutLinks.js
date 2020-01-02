@@ -18,9 +18,8 @@ const SignedOutLinks = () => {
       
             {/* <li > <NavLink to ='/Wall' style = {styles1}>Wall</NavLink></li> */}
             <li > <NavLink to ='/News' style = {styles1}>News</NavLink></li>
-            <li> <a href = '/inspiration' style = {{color:'#1C1C1C'}}>Get Inspired</a></li>
-            <li> <NavLink style = {{color:'#1C1C1C'}} to ='/signup'>Signup</NavLink></li>
-            <li> <NavLink  style = {{color:'#1C1C1C'}} to ='/signin'>Login</NavLink></li>
+            <li> <NavLink style = {{color:'white'}} to ='/signup'>Signup</NavLink></li>
+            <li> <NavLink  style = {{color:'white'}} to ='/signin'>Login</NavLink></li>
         </ul>
     )
 }

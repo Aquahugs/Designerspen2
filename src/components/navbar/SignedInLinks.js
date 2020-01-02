@@ -24,7 +24,7 @@ const SignedInLinks = (props) => {
             <li > <a style = {styles1} onClick ={props.signOut}>Log Out</a></li>
             <li> 
                 <a href={"http://localhost:3000/profile/" + props.auth.uid} className='btn btn-floating pink lighten-1'>
-                <img src = {props.auth.photoURL}/>
+                <img src = {props.auth.photoURL} style = {{maxWidth:'40px'}}/>
                 </a>
             </li>
             <li><a href={"http://localhost:3000/profile/" + props.auth.uid} style = {styles2}>{props.auth.displayName} {props.profile.displayName}</a></li>

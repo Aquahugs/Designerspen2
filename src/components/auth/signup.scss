@@ -1,0 +1,78 @@
+.backgroundimage {
+    background-image:url(https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/BACKGROUND1.jpg?alt=media&token=75131f41-06c8-4648-9538-2e4670b464c0);
+  
+}
+.image2 {
+    background-image:url(https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/image.jpg?alt=media&token=9f6f3f94-7411-4018-b2b1-093f497f22eb);
+    height:1000px;
+    width: 90%;
+  
+}
+.btn {
+    width:100%;
+}
+
+.signinform {
+    background-color: white;
+    margin-bottom:30%;
+}
+
+.input-field input[type=email], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+.input-field input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .input-field input[type=password], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .footer {
+      background-color: black;
+      margin:0 ;
+      h5,p{
+          color:white;
+      }
+  }
+
+  .firebaseui-card-content {
+      padding: 0 !important
+  }
+
+  .firebaseui-container{
+      width: 100% !important
+  }
+
+  .mdl-button {
+      width: 100% !important;
+      max-width: 100% !important;
+  }
+  .firebaseui-idp-button {
+    text-align: center !important;
+}
+
+.firebaseui-idp-text { 
+    text-align: center !important;
+}
+ 
