@@ -18,10 +18,12 @@ class MyProfile extends Component {
             isLoggedIn: props.auth.uid,
             isMe:false,
             isEdit:false,
+            isEditBio:false,
             info:[],
+            selectedFile: [],
             userCollection:[],
-            bio:[],
-            newbio:''
+            bio:null,
+            newbio:null
         }
     }
     
@@ -50,14 +52,16 @@ class MyProfile extends Component {
             info:data1,
             userCollection:data2,
             bio: data3,
-            isLoaded:true
+            isLoaded:true,
+            
         }))
     
         console.log(this.props)
+        
     
     }
 
-    onSubmit = (e) => {
+    onSubmitBio = (e) => {
         // event to submit the data to the server
         e.preventDefault();
         const {newbio} = this.state;
@@ -84,13 +88,48 @@ class MyProfile extends Component {
           }
           console.log(this.state)
     }
+
+   
+    onSubmit = (e) => {
+        // event to submit the data to the server
+        e.preventDefault();
+        console.log(e)
+        const { selectedFile,uuid} = this.state;
+       
+        let formData = new FormData();
+        formData.append('userid', uuid);
+        formData.append('file', selectedFile);
+
+        axios.post('http://localhost:3001/uploadProfilePhoto', formData)
+        
+        
+            .then((result) => {
+            // access results...
+           
+            console.log(result)
+            });
+    }
+
+
       
+    handleInputChange = (event) => {
+     event.preventDefault()
+     console.log(event)
+     console.log(event.target.name)   
+     console.log(event.target.value)
+     
+     this.setState ({
+         [event.target.name]:event.target.value
+     })
+
+    }
+
     onEdit = () => {
         this.setState({isEdit:true});
     }
 
     render () {
-
+        const uuid = this.state;
         const {bio } = this.state
          if (this.state.isLoaded === false) return null; 
         
@@ -100,7 +139,9 @@ class MyProfile extends Component {
     console.log(this.props.match)
     console.log(this.props)
 
-
+    const visibleStyle = {
+         visibility: this.state.isEdit ? 'visible': 'hidden'
+    }
     
     const isLoggedIn = this.state.isLoggedIn;
     let button;
@@ -110,6 +151,8 @@ class MyProfile extends Component {
         button = <p>this is not my profile</p>;
       }
     if (this.props.match.params.uuid === this.props.auth.uid)
+
+   
     return (
 
 
@@ -118,25 +161,51 @@ class MyProfile extends Component {
     <div className = 'container' style = {{paddingTop:'10%'}}>
         <div className = "row ">
             <div className = 'col s12 m12 l12 profile-info'>
-            <button type="button"  onClick={e => this.setState({isEdit:true},console.log(this.state))} >Edit Profile</button>
-                <img src = {this.props.auth.photoURL}/>
-                <h2>{this.props.auth.displayName}</h2>
-                <p>{this.state.bio.data[0].id}</p>
-                <p>{this.state.bio.data[0].bio}</p>
-                <p>{this.state.newbio}</p>
+                <img className = "profilepicture" src = {this.state.bio.data[0].photourl} style={{ opacity: this.state.isEdit ? '0.5': '1'}}/>
+                  <p  style={visibleStyle}>Change Photo</p>
+                  <form onSubmit={this.onSubmit}>
+                    <input 
+                     style={visibleStyle}
+                    type="file" name="selectedFile" onChange={this.onChange}/> 
+                    
+                    <button style={visibleStyle} type="submit">Submit</button>
+                  </form>
 
+                
+                <h2>{this.props.auth.displayName}</h2>
+                <p>{this.state.bio.data[0].bio}</p>
+                <button 
+                 type="button"
+                 style={{ visibility: this.state.isEdit ? 'visible': 'hidden'}}
+                 onClick={e => this.setState({isEditBio:true},console.log(this.state))} >Edit Bio </button>
+                <p>{this.state.newbio}</p>
+                <button 
+                 type="button"
+                 style={{ visibility: this.state.isEdit ? 'hidden': 'visible'}}
+                 onClick={e => this.setState({isEdit:true},console.log(this.state))}>Edit Profile</button>
+
+                 <form onSubmit={this.onSubmitBio}> 
+                    <input
+                    style={{ visibility: this.state.isEditBio ? 'visible': 'hidden'}}
+                        type="text"
+                        name="newbio"
+                        value = {this.state.newbio}
+                        onChange={this.handleInputChange}
+                        placeholder="Tell em about yourself champ"
+                        />
+                    <button 
+                    type="submit" 
+                    style={{ visibility: this.state.isEditBio ? 'visible': 'hidden'}}
+                    onClick={e => this.setState({isEdit:false},console.log(this.state))}>Save</button>
+                </form>
+
+                 <button 
+                 type="button"
+                 style={{ visibility: this.state.isEdit ? 'visible': 'hidden'}}
+                 onClick={e => this.setState({isEdit:false},console.log(this.state))}>Done</button>
                  {/* <p>{this.state.uuid}</p>  */}
                  {/* edit your bio input form  */}
-            <form onSubmit={this.onSubmit}> 
-                <input
-                   style={{ visibility: this.state.isEdit ? 'visible': 'hidden'}}
-                    type="text"
-                    name="newbio"
-                    onChange={this.onChange}
-                    placeholder="Tell em about yourself champ"
-                     />
-                <button type="submit" onClick={e => this.setState({isEdit:false},console.log(this.state))}>Submit</button>
-            </form> 
+             
             </div>
            
             <Tabs 
