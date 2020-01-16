@@ -166,7 +166,7 @@ class SignUp extends Component {
     </div>
         <div className = "row">
             <div className = 'col s4 m4 l4 motto'>
-                <h5>Share and collect visually-pleasing, inspiring images from around the web.</h5>
+                <h5>Share and collect visually inspiring images from around the web.</h5>
             </div>
             <div className = 'col s8 m8 l8 image2'>
             </div>

@@ -35,7 +35,7 @@ class App extends Component {
       <Router history={history}>
          <ScrollToTop>
           <div className="App">   
-            <div style = {{position:'fixed',width:'100%',zIndex:'1111'}}> <Navbar/></div>
+            <div  style = {{position:'fixed',width:'100%',zIndex:'1111'}}> <Navbar/></div>
             <Switch>
                 <Route exact path ='/' component = {Feed} />
                 {/* <Route path ='/project/:id' component = {ProjectDetails} /> */}

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+    import React, {Component} from 'react';
 import NavBar from './navbar/NavBar';
 import  './Inspiration.scss'
 import axios from 'axios';
@@ -24,6 +24,7 @@ class Discover extends Component {
             description: '',
             postTag: '',
             collectedimage:'',
+            collection:[],
             collect:false,
             disabledButton:[],
             open:false,
@@ -114,21 +115,26 @@ class Discover extends Component {
 
 
          Promise.all([
-            // fetch(`http://localhost:3001/Discover/:posttag?posttag=${(posttag)}`),
+           
              fetch('http://localhost:3001/Discover'),
              fetch('http://localhost:3001/tags'),
-             fetch(`http://localhost:3001/bio/:uuid?uuid=${(uuid)}`, {
+             fetch(`http://localhost:3001/bio/:uuid?uuid=${(uuid)}`,
+             
+              {
                 method: "GET",
                 headers: {'Content-Type':'application/json'}  
-            })
+            }),
+            fetch(`http://localhost:3001/collection/:uuid?uuid=${(uuid)}`)
+            
 
          ])
-         .then(([res1, res2,res3]) => Promise.all([res1.json(), res2.json(),res3.json()]))
-         .then(([data1,data2,data3]) => this.setState({
+         .then(([res1, res2,res3,res4]) => Promise.all([res1.json(), res2.json(),res3.json(),res4.json()]))
+         .then(([data1,data2,data3,data4]) => this.setState({
              isLoaded:true,
              userphotos:data1,
              tags:data2,
-             bio:data3
+             bio:data3,
+             collection:data4
          }));
     }
 
@@ -199,6 +205,8 @@ class Discover extends Component {
           console.log(this.state)
 
           console.log(this.state.userphotos)
+          console.log(this.state.collection)
+
 
           
         if (!isLoaded) {
@@ -234,6 +242,15 @@ class Discover extends Component {
                 paddingLeft:"2%",
                 height:'auto',
               } 
+
+              const collectButton = {
+                backgroundColor:'#FF5065',
+                border:'none',
+                borderRadius: '50%',
+                width:'35px',
+                height:'35px',
+                display: this.state.collect ? "none": "inline-block"
+              }
 
         return(   
             
@@ -279,7 +296,6 @@ class Discover extends Component {
                     </Dropzone> 
                     {/* <DefaultUpload doWhatever={this.onChange.bind(this,file)}></DefaultUpload> */}
                     <p>description</p>
-                    <p>{this.state.bio.data[0].id}</p>
                     <input
                     type="text"
                     name="description"
@@ -297,13 +313,14 @@ class Discover extends Component {
                         
                     <button type="submit">Submit</button>
                     
-                    <div >
+                    <div style = {{display:"25px", opacity:"0",maxWidth:"1px"}} >
 
                     <input type="text" name="userid" value={uuid} readOnly />
                     <input type="text" name="displayName" value={this.state.bio.data[0].username} readOnly />
                     <input type="text" name="userPhotoUrl" value={this.state.bio.data[0].photourl} readOnly />
                     </div>
                  </form>
+                 
                 </div> 
                     {/* //mapping through all the usernames in the new_tabel tabel */}
                     
@@ -323,25 +340,32 @@ class Discover extends Component {
                             </Popup>
                         
                             <div className = "row"> 
-                                <div className = "col s12 m12 l12">
+                                <div className = "col s6 m6 l6">
                                     <div style = {{float:'left'}}><img  style = {{maxWidth:"25px"}} src = {n.userphotourl}/></div> 
                                     <div style = {{float:'left'}}><a  href={"http://localhost:3000/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
+                                </div>
+                                <div className = "col s6 m6 l6">
                                     <button 
-                                    //  style={{
-                                    //     display: this.state.collect ? "none": "",
-                                    //   }}   
-                                    disabled={this.state.disabledButton === index}
-                                    onClick={e => this.setState({collectedimage: n.imageUrl,collect:true,disabledButton:index},this.onCollect)}  type="button" class="btn btn-primary btn-sm">Collect</button>
+                                        className = 'collectButton'  
+                                        disabled={this.state.disabledButton === index}
+                                        onClick={e => this.setState({collectedimage: n.imageUrl,collect:true,disabledButton:index},this.onCollect)}  type="button">
+                                    </button>
                                     <button  
-                                    // style={{
-                                    //     display: this.state.collect ? "": "none",
-                                    //   }}                                       
-                                      onClick={e => this.setState({collectedimage: n.imageUrl,collect:false},this.onRemoveCollect)} 
-                                    type="button" class="btn btn-primary" > Uncollect</button>
+                                        style={{
+                                        display: this.state.collect ? "": "none",
+                                        }}                                       
+                                        onClick={e => this.setState({collectedimage: n.imageUrl,collect:false},this.onRemoveCollect)} 
+                                        type="button" class="btn btn-primary">Uncollect
+                                    </button>
                                 </div>
                             </div>
-                        <p>{n.description}</p> 
-                   
+                        <div className = "row">
+                            <div className = "col s6 m6 l6">
+                                <p>{n.description}</p>
+                            </div>
+                           
+                        </div>
+                         
                         </div>
                     );
                     })}

@@ -11,3 +11,21 @@ p{
     margin:0;
     padding:1em;
 }
+
+
+.collectButton {
+    border-radius: 50%;
+    width:35px;
+    height:35px;
+    border: 1px solid #FF5065;
+    background-color: white;
+
+    &:hover{
+        background-color:rgb(248, 168, 177);
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+
+    }
+    
+}

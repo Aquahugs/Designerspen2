@@ -5,6 +5,8 @@ import "materialize-css/dist/css/materialize.min.css";
 import axios from 'axios'
 import './Profile.scss'
 import Tabs from './Tabs'
+import { Button } from 'react-bootstrap';
+
 
 class MyProfile extends Component {
     constructor(props){
@@ -140,7 +142,8 @@ class MyProfile extends Component {
     console.log(this.props)
 
     const visibleStyle = {
-         visibility: this.state.isEdit ? 'visible': 'hidden'
+         visibility: this.state.isEdit ? 'visible': 'hidden',
+         display:this.state.isEdit ? 'inline-block': 'none'
     }
     
     const isLoggedIn = this.state.isLoggedIn;
@@ -161,48 +164,65 @@ class MyProfile extends Component {
     <div className = 'container' style = {{paddingTop:'10%'}}>
         <div className = "row ">
             <div className = 'col s12 m12 l12 profile-info'>
+               
                 <img className = "profilepicture" src = {this.state.bio.data[0].photourl} style={{ opacity: this.state.isEdit ? '0.5': '1'}}/>
                   <p  style={visibleStyle}>Change Photo</p>
                   <form onSubmit={this.onSubmit}>
                     <input 
                      style={visibleStyle}
                     type="file" name="selectedFile" onChange={this.onChange}/> 
-                    
                     <button style={visibleStyle} type="submit">Submit</button>
                   </form>
 
-                
-                <h2>{this.props.auth.displayName}</h2>
-                <p>{this.state.bio.data[0].bio}</p>
-                <button 
-                 type="button"
-                 style={{ visibility: this.state.isEdit ? 'visible': 'hidden'}}
-                 onClick={e => this.setState({isEditBio:true},console.log(this.state))} >Edit Bio </button>
-                <p>{this.state.newbio}</p>
-                <button 
-                 type="button"
-                 style={{ visibility: this.state.isEdit ? 'hidden': 'visible'}}
-                 onClick={e => this.setState({isEdit:true},console.log(this.state))}>Edit Profile</button>
+                {/* User Display name */}
+                <h2 style = {{fontSize:'16px'}}>{this.props.auth.displayName}</h2>
+                <p style={{ visibility: this.state.isEdit ? 'hidden': 'visible',display:this.state.isEdit ? 'none': 'inline-block'}}>{this.state.bio.data[0].bio}</p>
+                {/* <p>{this.state.newbio}</p> */}
 
-                 <form onSubmit={this.onSubmitBio}> 
-                    <input
-                    style={{ visibility: this.state.isEditBio ? 'visible': 'hidden'}}
+                {/* Bio update inputform */}
+                <h5  style={visibleStyle}>Bio</h5>
+                <form onSubmit={this.onSubmitBio}> 
+                    <textarea
+                        style={visibleStyle}
                         type="text"
                         name="newbio"
                         value = {this.state.newbio}
                         onChange={this.handleInputChange}
-                        placeholder="Tell em about yourself champ"
+                        className="textbox"
+                        placeholder={this.state.bio.data[0].bio}
                         />
-                    <button 
+                    {/* <button 
                     type="submit" 
-                    style={{ visibility: this.state.isEditBio ? 'visible': 'hidden'}}
-                    onClick={e => this.setState({isEdit:false},console.log(this.state))}>Save</button>
+                    style={visibleStyle}
+                    className = 'editBioButton'
+                    onClick={e => this.setState({isEditBio:false},console.log(this.state))}>Save</button> */}
                 </form>
 
-                 <button 
+
+                {/* <Button 
+                variant="outline-secondary" 
+                 type="button" 
+                 className = 'editBioButton'
+                 style={visibleStyle}
+                 onClick={e => this.setState({isEditBio:true},console.log(this.state))} >Edit Bio </Button> */}
+                
+                <Button 
                  type="button"
+                 variant="outline-primary"
+                 className = 'editProfile'
+                 style={{ visibility: this.state.isEdit ? 'hidden': 'visible',width:'15%'}}
+                 onClick={e => this.setState({isEdit:true},console.log(this.state))}>Edit Profile</Button>
+                   
+
+
+                 
+
+                 <Button 
+                 type="button"
+                 variant="outline-primary"
                  style={{ visibility: this.state.isEdit ? 'visible': 'hidden'}}
-                 onClick={e => this.setState({isEdit:false},console.log(this.state))}>Done</button>
+                 className = 'donebutton'
+                 onClick={e => this.setState({isEdit:false,isEditBio:false},console.log(this.state))}>Done</Button>
                  {/* <p>{this.state.uuid}</p>  */}
                  {/* edit your bio input form  */}
              

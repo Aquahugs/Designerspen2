@@ -12,10 +12,14 @@ const Navbar = (props) => { // 2.) brings in all the inspect properties
     console.log(props)
     const {auth, profile} = props; // 3.) access the auth and profile  properties 
     const links = auth.uid ? <SignedInLinks auth={auth} profile={profile} /> : <SignedOutLinks/> // 4.) is there an auth uid? 
+
+    const styles1 = {
+        backgroundColor: auth.uid ? "white" : "transparent"
+    } 
     return (
     <div>
         <Desktop>
-        <nav className = "navbar">
+        <nav className = 'navbar' style={styles1}>
             <div className = "container">
                 <Link to ='/' className = "Logo ">
                 <img  style = {{paddingTop:'0.5%'}}src = 'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/white%20logofont.png?alt=media&token=1b17c09e-f2f2-4ee6-a232-1d3e68eba33b'/>
