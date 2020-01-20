@@ -5,6 +5,7 @@ import axios from 'axios';
 import DefaultUpload from './DefaultUpload'
 import SubNav from './shared/SubNav'
 import Popup from "reactjs-popup";
+import { Button } from 'react-bootstrap';
 
 import {connect} from 'react-redux'
 import Dropzone from 'react-dropzone'
@@ -38,8 +39,10 @@ class Discover extends Component {
             uuid:this.props.auth.uid,
             photoUuid:props.auth.uid,
             selectedFile: [],
+            previewImage:[],
             isLoaded: false,
             loadPost:false,
+            isUploading:false
             // product: {
             //     username:'',
             //     email:'',
@@ -188,9 +191,20 @@ class Discover extends Component {
 
        
 
-       onDrop = (acceptedFiles) => {
-        console.log(acceptedFiles);
+       onDrop = (e) => {
+         this.setState({ selectedFile: e[0],previewImage: URL.createObjectURL(e[0]),isUploading:true})
+        console.log(e.file)
+        console.log(e.target)
+        console.log(e[0])
+        console.log(this.state)
       }
+
+
+      onCancel = (e) => {
+        this.setState({ selectedFile:[],previewImage:[],isUploading:false})
+    
+       console.log(this.state)
+     }
     render(){
         var { isLoaded,items} = this.state;
         const {items} = this.state
@@ -215,13 +229,15 @@ class Discover extends Component {
         else{
             const headerStyle = {
                 margin: '0',
-                paddingTop:'50px'
+                paddingTop:'50px',
+                fontSize:'16px'
               }
               const dropzoneStyle = {
                 flex: 1,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
+                textAlign:'center',
                 padding: '20px',
                 borderWidth: 2,
                 borderRadius: 2,
@@ -230,7 +246,11 @@ class Discover extends Component {
                 backgroundColor: '#fafafa',
                 color: '#bdbdbd',
                 outline: 'none',
-                transition: 'border .24s ease-in-out'
+                transition: 'border .24s ease-in-out',
+                width:'350px',
+                height:'500px',
+                display: this.state.isUploading ? "none": "inline-block", 
+                paddingTop:'35%'
               };
               const linerStyle = {
                   margin:'0',
@@ -252,6 +272,54 @@ class Discover extends Component {
                 display: this.state.collect ? "none": "inline-block"
               }
 
+              const myuserPhoto = {
+                float:'left',
+                width:'25px',
+                display: this.state.isUploading ? "inline-block": "none"
+              }
+
+              const myDisplayname = {
+                  float:'left',
+                  fontSize:'12px',
+                  display: this.state.isUploading ? "inline-block": "none"
+              }
+
+              const uploadInputs  = {
+                display: this.state.isUploading ? "inline-block": "none"
+                  
+              }
+
+              const categoryHeader = {
+                fontSize:'14px',
+                marginBottom:'0',
+                fontWeight:'bold',
+                display: this.state.isUploading ? "inline-block": "none"
+              }
+
+              const uploadButtons = {
+                  width:'100px',
+                  float:'right',
+                  marginTop:'4%',
+                  marginBottom:'4%',
+                  backgroundColor:'#12c0df',
+                  display: this.state.isUploading ? "inline-block": "none"
+              }
+              const cancelButtons = {
+                  width:'100px',
+                  float:'left',
+                  marginTop:'4%',
+                  marginBottom:'4%',
+                  backgroundColor:'#cdcdcd',
+                  display: this.state.isUploading ? "inline-block": "none"
+              }
+
+              const uploadBoxshadow = {
+                height:'100%',
+                boxShadow: this.state.isUploading ? "-2px 4px 16px 0px rgba(0,0,0,0.19)": "none"
+            }
+
+
+
         return(   
             
             <div style = {{padding:"5%"}}>
@@ -269,59 +337,86 @@ class Discover extends Component {
                     })}    
                 {/* Upload Zone */}
                 <div  className = 'row' style = {{float:'left'}}> 
-                <div className = 'col s3 m3 l3'  >
-                <h1 style = {headerStyle}>upload photo</h1>
-                <form onSubmit={this.onSubmit}>
-                {/* <div {...getRootProps({ onChange: e =>  this.setState({ selectedFile: e.target.files[0] })})}>
-                    <input {...getInputProps()} />
-                    <p>Drag 'n' drop some files here, or click to select files</p>
-                </div> */}
-                     <Dropzone 
-                     styles={dropzoneStyle}
-                      maxFiles={1}
-                      multiple={true}
-                      canCancel={true}
-                     accept="image/png, image/gif,image/jpeg, image/jpg, image/png"
-                     onDrop={this.onDrop} accept='image/*'  onDrop={acceptedFiles => console.log(acceptedFiles)}>
-                        {({getRootProps, getInputProps,isDragActive,isDragReject}) => (
-                            <section>
-                            <div {...getRootProps({ onChange: e =>  this.setState({ selectedFile: e.target.files[0] })})}>
-                                <input  {...getInputProps()} />
-                                {!isDragActive && 'Click here or Drag and Drop files'}
-                                {isDragActive && !isDragReject && "Upload"}
-                                {isDragReject && "Welp...that file type is not accepted, sorry "}
+                    <div className = 'col s3 m3 l3 ' style = {uploadBoxshadow}  >
+                        <h1 style = {{fontSize:'14px',margin:'0',paddingTop:'2%',paddingBottom:'2%'}}>What inspires you?</h1>
+                        <form onSubmit={this.onSubmit}>
+                        <img src={this.state.previewImage}/>
+                        <div  className = 'row'>
+                            <div className = 'col s12 m12 l12'  >
+                                <img  style = {myuserPhoto} src = {this.state.userPhotoUrl}/>
+                                <p  style={myDisplayname}>{this.state.displayName}</p>
                             </div>
-                            </section>
-                        )}
-                    </Dropzone> 
-                    {/* <DefaultUpload doWhatever={this.onChange.bind(this,file)}></DefaultUpload> */}
-                    <p>description</p>
-                    <input
-                    type="text"
-                    name="description"
-                    value={description}
-                    placeholder="ADd a description,if you'd like"
-                    onChange={this.onChange}
-                    />
-                    <input
-                    type="text"
-                    name="postTag"
-                    value={postTag}
-                    placeholder="category"
-                    onChange={this.onChange}
-                    />
-                        
-                    <button type="submit">Submit</button>
-                    
-                    <div style = {{display:"25px", opacity:"0",maxWidth:"1px"}} >
+                        </div>
+                        <input
+                        style = {uploadInputs}
+                        type="text"
+                        name="description"
+                        value={description}
+                        placeholder="Add a description,if you'd like"
+                        onChange={this.onChange}
+                        />
+                        <h3 style = {categoryHeader}>category</h3>
+                        <input
+                        style = {uploadInputs}
+                        type="text"
+                        name="postTag"
+                        value={postTag}
+                        placeholder="Art,Photography,Car design,Memes etc."
+                        onChange={this.onChange}
+                        />
+                            <Dropzone 
 
-                    <input type="text" name="userid" value={uuid} readOnly />
-                    <input type="text" name="displayName" value={this.state.bio.data[0].username} readOnly />
-                    <input type="text" name="userPhotoUrl" value={this.state.bio.data[0].photourl} readOnly />
-                    </div>
-                 </form>
-                 
-                </div> 
+                            maxFiles={3}
+                            multiple={true}
+                            canCancel={true}
+                            accept="image/png, image/gif,image/jpeg, image/jpg, image/png"
+                            onDrop={this.onDrop} accept='image/*' >
+                                {({getRootProps, getInputProps,isDragActive,isDragReject}) => (
+                                    <section>
+                                    <div style={dropzoneStyle} {...getRootProps({ onChange: e =>  this.setState({ selectedFile: e.target.files[0],previewImage: URL.createObjectURL(e.target.files[0])}) })}>
+                                        <input  {...getInputProps()} />
+                                        <div className = 'row'>
+                                            <img style ={{display: isDragActive && !isDragReject  ? "inline-block": "none",width:'70px'}}src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/Asset%201.png?alt=media&token=855ff9bd-be14-433c-a7aa-97f70c8b6f1d"/>
+                                            <img style ={{display: isDragActive ? "none": "inline-block",width:'100px'}}src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/Add%20Image_929899.png?alt=media&token=a928b5aa-b0ee-4ba8-a59c-6bf5697dcd1a"/>
+                                            <img style ={{display: isDragReject ? "inline-block": "none",width:'70px'}}src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/Stop.png?alt=media&token=c8d96781-e668-4976-89ea-4a3213d405cb"/>
+                                        </div>
+                                        {!isDragActive && 'Click here or Drag and Drop files'}
+                                        {isDragActive && !isDragReject && "Upload"}
+                                        {isDragActive && !isDragReject && ":)"}
+                                        {isDragReject && "Welp...that file type is not accepted, sorry "}
+                                    </div>
+                                    </section>
+                                )}
+                            </Dropzone> 
+                            
+
+                            {/* <DefaultUpload doWhatever={this.onChange.bind(this,file)}></DefaultUpload> */}
+                        
+                            
+                            
+                                
+                            <Button 
+                                style = {uploadButtons}
+                                variant="outline-primary"
+                                type="submit">Submit
+                            </Button>
+                            <Button 
+                                onClick={this.onCancel}
+                                style = {cancelButtons}
+                                variant="outline-primary"
+                                type="button">
+                                Cancel
+                            </Button>
+                            
+                            <div style = {{display:"none", opacity:"0",maxWidth:"1px"}} >
+
+                            <input type="text" name="userid" value={uuid} readOnly />
+                            <input type="text" name="displayName" value={this.state.bio.data[0].username} readOnly />
+                            <input type="text" name="userPhotoUrl" value={this.state.bio.data[0].photourl} readOnly />
+                            </div>
+                        </form>
+                        
+                    </div> 
                     {/* //mapping through all the usernames in the new_tabel tabel */}
                     
                     {this.state.userphotos.data.map((n,index) => { 
@@ -339,7 +434,7 @@ class Discover extends Component {
                                 </div>
                             </Popup>
                         
-                            <div className = "row"> 
+                            <div className = "row dis"> 
                                 <div className = "col s6 m6 l6">
                                     <div style = {{float:'left'}}><img  style = {{maxWidth:"25px"}} src = {n.userphotourl}/></div> 
                                     <div style = {{float:'left'}}><a  href={"http://localhost:3000/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
@@ -350,6 +445,7 @@ class Discover extends Component {
                                         disabled={this.state.disabledButton === index}
                                         onClick={e => this.setState({collectedimage: n.imageUrl,collect:true,disabledButton:index},this.onCollect)}  type="button">
                                     </button>
+                                    <p className = 'collect'>collect</p>
                                     <button  
                                         style={{
                                         display: this.state.collect ? "": "none",
