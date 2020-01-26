@@ -15,12 +15,12 @@ class Tabs extends Component {
     }
    render() {
     // let button;
-    // if (this.state.props.match.params.uuid === this.state.props.auth.uid) {
+    // if (this.state.props.uuid === this.state.props.isLoggedIn) {
     //     button = <p>this is my profile</p>;
     //   } else {
     //     button = <p>this is not my profile</p>;
     //   }
-    // if (this.state.props.match.params.uuid === this.state.props.auth.uid)
+    // if (this.state.props.uuid  != this.state.props.isLoggedIn)
     return (
       <>
         <ul
@@ -58,17 +58,22 @@ class Tabs extends Component {
                     }
                     
             return (
-                <div className = 'col s3 m3 l3'  key={n}>
-                <img style = {{maxWidth:"100%"}}src = {n.imageUrl}/> 
+              // Images
+              <div className = 'col s3 m3 l3'  key={n}  style ={{padding:'0.75%'}}>
+              <img style = {{maxWidth:"100%"}}src = {n.imageUrl}/>
+              <div  style = {{backgroundColor:'white',paddingTop:'2%'}}> 
                 <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
                 <a href={"http://localhost:3000/users/" + n.uuid} > <p>{n.displayname}</p> </a>
                 <p>{n.description}</p>
-                {/* {button}   */}
-                </div>
+              </div>
+               {/* {button}    */}
+              </div>
                 );
             })}
         </div>
         </div>
+
+        {/* Collection */}
         <div id="test-swipe-2" className="col s12 ">
         <div className = "row">
         {this.state.props.uuid.userCollection.data.map(function (n) { 

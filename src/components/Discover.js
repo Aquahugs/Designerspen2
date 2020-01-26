@@ -4,18 +4,50 @@ import  './Inspiration.scss'
 import axios from 'axios';
 import DefaultUpload from './DefaultUpload'
 import SubNav from './shared/SubNav'
+import PopNotification from './shared/PopNotification'
+
 import Popup from "reactjs-popup";
 import { Button } from 'react-bootstrap';
 
 import {connect} from 'react-redux'
 import Dropzone from 'react-dropzone'
 import {useDropzone} from 'react-dropzone'
+import 'react-notifications/lib/notifications.css';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+
 
 
 
 
 
 class Discover extends Component {
+    createNotification = (type) => {
+        return () => {
+            const {uuid,collectedimage} = this.state;
+          switch (type) {
+            case 'info':
+              NotificationManager.info('Info message');
+              break;
+            case 'success':
+              NotificationManager.success('Success ', 'Image was added to your collection');
+              fetch(`http://localhost:3001/collectpost?uuid=${uuid}&post_id=${collectedimage}`)
+              .then(console.log("this worked stuff submitted"))
+              .catch (err => console.err(err))
+              break;
+            case 'warning':
+              NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+              break;
+              case 'error':
+                NotificationManager.error('error ', 'Image was removed from your collection');
+                
+
+                fetch(`http://localhost:3001/removecollectpost?uuid=${uuid}&post_id=${collectedimage}`)
+                .then(console.log("this worked stuff REMOVED"))
+                .catch (err => console.err(err))
+                break;
+          }
+        };
+      };
     
     constructor(props){
         super(props);
@@ -42,7 +74,9 @@ class Discover extends Component {
             previewImage:[],
             isLoaded: false,
             loadPost:false,
-            isUploading:false
+            isUploading:false,
+            red: true
+
             // product: {
             //     username:'',
             //     email:'',
@@ -65,6 +99,11 @@ class Discover extends Component {
               this.setState({ [e.target.name]: e.target.value });
           }
     }
+
+    changeColor(e){
+        e.target.style.color = 'black'
+        console.log(e.target);
+     }
 
     onSubmit = (e) => {
         // event to submit the data to the server
@@ -134,10 +173,10 @@ class Discover extends Component {
          .then(([res1, res2,res3,res4]) => Promise.all([res1.json(), res2.json(),res3.json(),res4.json()]))
          .then(([data1,data2,data3,data4]) => this.setState({
              isLoaded:true,
+             collection:data4,
              userphotos:data1,
              tags:data2,
-             bio:data3,
-             collection:data4
+             bio:data3
          }));
     }
 
@@ -191,20 +230,23 @@ class Discover extends Component {
 
        
 
-       onDrop = (e) => {
-         this.setState({ selectedFile: e[0],previewImage: URL.createObjectURL(e[0]),isUploading:true})
-        console.log(e.file)
-        console.log(e.target)
-        console.log(e[0])
-        console.log(this.state)
-      }
+    onDrop = (e) => {
+        this.setState({ selectedFile: e[0],previewImage: URL.createObjectURL(e[0]),isUploading:true})
+    console.log(e.file)
+    console.log(e.target)
+    console.log(e[0])
+    console.log(this.state)
+    }
 
 
-      onCancel = (e) => {
-        this.setState({ selectedFile:[],previewImage:[],isUploading:false})
+    onCancel = (e) => {
+    this.setState({ selectedFile:[],previewImage:[],isUploading:false})
+
+    console.log(this.state)
+    }
     
-       console.log(this.state)
-     }
+
+
     render(){
         var { isLoaded,items} = this.state;
         const {items} = this.state
@@ -219,7 +261,7 @@ class Discover extends Component {
           console.log(this.state)
 
           console.log(this.state.userphotos)
-          console.log(this.state.collection)
+          console.log(this.state.collection.data)
 
 
           
@@ -227,11 +269,7 @@ class Discover extends Component {
             return <div>Loading...</div>
         }
         else{
-            const headerStyle = {
-                margin: '0',
-                paddingTop:'50px',
-                fontSize:'16px'
-              }
+          
               const dropzoneStyle = {
                 flex: 1,
                 display: 'flex',
@@ -252,25 +290,7 @@ class Discover extends Component {
                 display: this.state.isUploading ? "none": "inline-block", 
                 paddingTop:'35%'
               };
-              const linerStyle = {
-                  margin:'0',
-                  fontSize: '12px'
-              }
-
-              const hoverImages = {
-                maxWidth:'350px',
-                paddingLeft:"2%",
-                height:'auto',
-              } 
-
-              const collectButton = {
-                backgroundColor:'#FF5065',
-                border:'none',
-                borderRadius: '50%',
-                width:'35px',
-                height:'35px',
-                display: this.state.collect ? "none": "inline-block"
-              }
+              
 
               const myuserPhoto = {
                 float:'left',
@@ -301,7 +321,7 @@ class Discover extends Component {
                   float:'right',
                   marginTop:'4%',
                   marginBottom:'4%',
-                  backgroundColor:'#12c0df',
+                  backgroundColor:'# ',
                   display: this.state.isUploading ? "inline-block": "none"
               }
               const cancelButtons = {
@@ -323,7 +343,10 @@ class Discover extends Component {
         return(   
             
             <div style = {{padding:"5%"}}>
+                 <NotificationContainer/>
+
                 <SubNav/>     
+                
                 {this.state.tags.data.map(function (n) { 
                     return ( //post tags 
                         <div  key={n}>
@@ -338,13 +361,14 @@ class Discover extends Component {
                 {/* Upload Zone */}
                 <div  className = 'row' style = {{float:'left'}}> 
                     <div className = 'col s3 m3 l3 ' style = {uploadBoxshadow}  >
-                        <h1 style = {{fontSize:'14px',margin:'0',paddingTop:'2%',paddingBottom:'2%'}}>What inspires you?</h1>
                         <form onSubmit={this.onSubmit}>
-                        <img src={this.state.previewImage}/>
-                        <div  className = 'row'>
-                            <div className = 'col s12 m12 l12'  >
-                                <img  style = {myuserPhoto} src = {this.state.userPhotoUrl}/>
-                                <p  style={myDisplayname}>{this.state.displayName}</p>
+                        <div style = {uploadInputs}>
+                            <img src={this.state.previewImage}/>
+                            <div  className = 'row'>
+                                <div className = 'col s12 m12 l12'  >
+                                    <img  style = {myuserPhoto} src = {this.state.userPhotoUrl}/>
+                                    <p  style={myDisplayname}>{this.state.displayName}</p>
+                                </div>
                             </div>
                         </div>
                         <input
@@ -373,14 +397,14 @@ class Discover extends Component {
                             onDrop={this.onDrop} accept='image/*' >
                                 {({getRootProps, getInputProps,isDragActive,isDragReject}) => (
                                     <section>
-                                    <div style={dropzoneStyle} {...getRootProps({ onChange: e =>  this.setState({ selectedFile: e.target.files[0],previewImage: URL.createObjectURL(e.target.files[0])}) })}>
+                                    <div className = 'dropzone' style={dropzoneStyle} {...getRootProps({ onChange: e =>  this.setState({ selectedFile: e.target.files[0],previewImage: URL.createObjectURL(e.target.files[0])}) })}>
                                         <input  {...getInputProps()} />
                                         <div className = 'row'>
                                             <img style ={{display: isDragActive && !isDragReject  ? "inline-block": "none",width:'70px'}}src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/Asset%201.png?alt=media&token=855ff9bd-be14-433c-a7aa-97f70c8b6f1d"/>
                                             <img style ={{display: isDragActive ? "none": "inline-block",width:'100px'}}src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/Add%20Image_929899.png?alt=media&token=a928b5aa-b0ee-4ba8-a59c-6bf5697dcd1a"/>
                                             <img style ={{display: isDragReject ? "inline-block": "none",width:'70px'}}src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/Stop.png?alt=media&token=c8d96781-e668-4976-89ea-4a3213d405cb"/>
                                         </div>
-                                        {!isDragActive && 'Click here or Drag and Drop files'}
+                                        {!isDragActive && 'Click here or Drag and Drop images'}
                                         {isDragActive && !isDragReject && "Upload"}
                                         {isDragActive && !isDragReject && ":)"}
                                         {isDragReject && "Welp...that file type is not accepted, sorry "}
@@ -420,9 +444,10 @@ class Discover extends Component {
                     {/* //mapping through all the usernames in the new_tabel tabel */}
                     
                     {this.state.userphotos.data.map((n,index) => { 
-                        
+                     
+                    
                     return (
-                        <div  className = 'col s3 m3 l3'  key={n}>
+                        <div style ={{padding:'0.75%'}} className = 'col s3 m3 l3'  key={n}>
                             <Popup modal trigger={<img  style = {{maxWidth:"100%"}}src = {n.imageUrl}/>} style = {{width:"100%"}}>
                                 <div className = 'col s8 m8 l8'>
                                     <img style = {{maxWidth:"100%",maxHeight:"800px"}}src = {n.imageUrl}/> 
@@ -434,35 +459,55 @@ class Discover extends Component {
                                 </div>
                             </Popup>
                         
-                            <div className = "row dis"> 
+                            <div   style = {{backgroundColor:'white',paddingTop:'2%'}} className = "row dis"> 
                                 <div className = "col s6 m6 l6">
                                     <div style = {{float:'left'}}><img  style = {{maxWidth:"25px"}} src = {n.userphotourl}/></div> 
                                     <div style = {{float:'left'}}><a  href={"http://localhost:3000/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
                                 </div>
                                 <div className = "col s6 m6 l6">
+
+                                    {/* REMOVE BUTTON */}
+                                {this.state.collection.data.map((j,index) => { 
+                                    return(
+                                        <div key={j}>
+                                         <button   className = 'uncollectButton  btn-danger'   style = {{display : n.imageUrl === j.post_id ? "inline-block": "none"}}
+                                         onClick={e => this.setState({collectedimage: n.imageUrl},this.createNotification('error'),this.onRemoveCollect)}  type="button"
+                                        >   </button>
+                                         <p className = 'remove'>Remove</p>
+                                        </div>
+                                    )
+                                })}
+                                    {/* COLLECT BUTTON */}
+                                    {/* <button className='btn btn-success'
+                                    onClick={this.createNotification('success')}>Success
+                                    </button> */}
                                     <button 
-                                        className = 'collectButton'  
-                                        disabled={this.state.disabledButton === index}
-                                        onClick={e => this.setState({collectedimage: n.imageUrl,collect:true,disabledButton:index},this.onCollect)}  type="button">
+                                        className = 'collectButton  btn-success' 
+                                        onClick={e => this.setState({collectedimage: n.imageUrl},this.createNotification('success'),this.onCollect)}  type="button">
                                     </button>
-                                    <p className = 'collect'>collect</p>
-                                    <button  
+                                    
+                                    <p className = 'collect'>Collect</p>
+
+                                     {/* <button  
                                         style={{
-                                        display: this.state.collect ? "": "none",
+                                        display: this.state.red ? "none": "inline-block",
                                         }}                                       
                                         onClick={e => this.setState({collectedimage: n.imageUrl,collect:false},this.onRemoveCollect)} 
                                         type="button" class="btn btn-primary">Uncollect
-                                    </button>
+                                    </button>  */}
                                 </div>
-                            </div>
+                            
+
                         <div className = "row">
                             <div className = "col s6 m6 l6">
                                 <p>{n.description}</p>
                             </div>
                            
                         </div>
+                        </div>
                          
                         </div>
+                        
                     );
                     })}
                 </div>
@@ -476,6 +521,8 @@ class Discover extends Component {
                        onChange={e => this.setState({product: {...product, password: e.target.value}})}/>
                 <button onClick = {this.addProduct}>Submit this stuff</button>
                 </div> */}
+                       
+
             </div>
         )
         }

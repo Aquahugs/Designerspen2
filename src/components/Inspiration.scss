@@ -12,13 +12,33 @@ p{
     padding:1em;
 }
 
+.uncollectButton{
+    border-radius: 50%;
+    width:30px;
+    height:30px;
+    background-color:#FF5065;
+
+    border: 1px solid #FF5065;
+
+    float:right;
+
+    &:hover{
+        background-color:#12c0df;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+
+    }
+}
+
 
 .collectButton {
     border-radius: 50%;
-    width:35px;
-    height:35px;
+    width:30px;
+    height:30px;
     border: 1px solid #FF5065;
     background-color: white;
+    color:red;
     float:right;
 
     &:hover{
@@ -30,10 +50,19 @@ p{
     }
     
 }
-.collect { 
-    opacity:0;
+
+.uncollectButton:hover + .remove {
     display: inline-block;
-    float:right;
+    opacity: 1;
+    transition:opacity 0.2s ease;
+    color: grey;
+    font-size: 0.7vw;
+}
+
+.remove { 
+    opacity:0;
+    display: none;
+    float:left;
 
 }
 .collectButton:hover + .collect {
@@ -43,8 +72,24 @@ p{
     color: grey;
     font-size: 0.7vw;
 }
+.collect { 
+    opacity:0;
+    display: inline-block;
+    float:right;
+
+}
+
+
 
 .dis { 
     margin:0 !important;
 }
 
+.dropzone:hover {
+    cursor: pointer;
+    transform: scale(0.98);
+}
+
+body { 
+    background-color: #f4f7f6;
+}
