@@ -6,7 +6,7 @@ import { auth } from 'firebase';
 
 
 const SignedInLinks = (props) => {
- 
+  
     console.log(props)
 
     const styles1 = {

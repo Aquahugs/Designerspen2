@@ -12,7 +12,7 @@ import {useDropzone} from 'react-dropzone'
 
 
 
-class Discover extends Component {
+class Taggedpost extends Component {
     
     constructor(props){
         super(props);
@@ -202,58 +202,11 @@ class Discover extends Component {
                     })}   
                 {/* Upload Zone */}
                 <div  className = 'row' style = {{float:'left'}}> 
-                <div className = 'col s3 m3 l3'  >
-                <h1 style = {headerStyle}>upload photo</h1>
-                <form onSubmit={this.onSubmit}>
-               
-                     <Dropzone 
-                     styles={dropzoneStyle}
-                      maxFiles={1}
-                      multiple={false}
-                      canCancel={true}
-                     accept="image/png, image/gif,image/jpeg, image/jpg"
-                     onDrop={this.onDrop} accept='image/*'  onDrop={acceptedFiles => console.log(acceptedFiles)}>
-                        {({getRootProps, getInputProps,isDragActive,isDragReject}) => (
-                            <section>
-                            <div {...getRootProps({ onChange: e =>  this.setState({ selectedFile: e.target.files[0] })})}>
-                                <input  {...getInputProps()} />
-                                {!isDragActive && 'Click here or Drag and Drop files'}
-                                {isDragActive && !isDragReject && "Upload"}
-                                {isDragReject && "Welp...that file type is not accepted, sorry "}
-                            </div>
-                            </section>
-                        )}
-                    </Dropzone> 
-                    <p>description</p>
-                    <input
-                    type="text"
-                    name="description"
-                    value={description}
-                    placeholder="ADd a description,if you'd like"
-                    onChange={this.onChange}
-                    />
-                    <input
-                    type="text"
-                    name="postTag"
-                    value={postTag}
-                    placeholder="category"
-                    onChange={this.onChange}
-                    />
-                        
-                    <button type="submit">Submit</button>
-                    
-                    <div style = {{display:"25px", opacity:"0",maxWidth:"1px"}}>
-
-                    <input type="text" name="userid" value={uuid} readOnly />
-                    <input type="text" name="displayName" value={displayName} readOnly />
-                    <input type="text" name="userPhotoUrl" value={userPhotoUrl} readOnly />
-                    </div>
-                 </form>
-                </div> 
+                 
                     {/* //mapping through all the usernames in the new_tabel tabel */}
                     {this.state.userphotos.data.map(function (n) { 
                     return (
-                        <div  className = 'col s3 m3 l3'  key={n}>
+                        <div  className = 'col s34 m3 l3'  key={n}>
                         <img style = {{maxWidth:"100%"}}src = {n.imageUrl}/>
                             <div className = "row"> 
                                 <div className = "col s12 m12 l12">
@@ -262,6 +215,7 @@ class Discover extends Component {
                                 </div>
                             </div>
                         <p>{n.description}</p>  
+                        
                         </div>
                     );
                     })}
@@ -280,4 +234,4 @@ const mapStateToProps = (state) => { // 1.) Gives acces to the authentication st
     }
 }
 
-export default   connect(mapStateToProps) (Discover);
+export default   connect(mapStateToProps) (Taggedpost);

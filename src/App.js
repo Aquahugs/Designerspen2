@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter,Router, Switch, Route,Redirect} from 'react-router-dom';
 import Navbar from './components/navbar/NavBar';
 import Home from './components/dashboard/Dashboard2';
 import Wall from './components/Wall';
@@ -23,27 +23,45 @@ import AiDesign from './components/project/articles/AiDesign';
 import ArExp from './components/project/articles/ArExp';
 import KojimaProductions from './components/project/articles/KojimaProductions';
 import history from "./utils/history";
+import {connect} from 'react-redux'
+
 import Loading from "./components/Loading";
 import './assets/stylesheets/SignIn.css';
 
 
-class App extends Component {
-  render() {
-      
+
+
+
+const App = (props) => {
+  
+
+  const {auth, profile} = props; 
+    console.log(props)
+
+    // if (!auth.uid)   return <Redirect exact to="/signup"  /> 
+
+    if(!auth.uid){
+      return (
+          <Switch>
+                <Route path ='/signup' component = {SignUp} />
+                 <Redirect to={'/signup'} />
+          </Switch>
+      );
+    }
+
+  
     return (
       
-      <Router history={history}>
+      <BrowserRouter history={history}>
          <ScrollToTop>
           <div className="App">   
             <div  style = {{position:'fixed',width:'100%',zIndex:'1111'}}> <Navbar/></div>
             <Switch>
-                <Route exact path ='/' component = {Feed} />
                 {/* <Route path ='/project/:id' component = {ProjectDetails} /> */}
                 <Route path ='/profile/:uuid' component = {MyProfile} />
                 <Route path ='/postdetail/:Id' component = {PostDetail} />
                 <Route path ='/Discover/:posttag' component = {TaggedPost} />
                 <Route path ='/signin' component = {SignIn} />
-                <Route path ='/signup' component = {SignUp} />
                 <Route path ='/about' component = {About} />
                 <Route path ='/createproject' component = {CreateProject}/>
                 <Route path ='/submitproject' component = {SubmitProject}/>
@@ -57,14 +75,17 @@ class App extends Component {
                 <Route path ='/AiDesign' component = {AiDesign}/>
                 <Route path ='/Wall' component = {Wall}/>
                 <Route path ='/Feed' component = {Feed}/>
-                <Route path ='/Discover' component = {Discover}/>
+                <Route  path ='/Discover' component = {Discover}/>
                 <Route path ='/News' component = {Home}/>
+                <Route exact path ='/'  component = {Discover} />
+                <Route path ='/signup' component = {SignUp} />
+
             </Switch>
           </div>
           </ScrollToTop>
-        </Router>    
+        </BrowserRouter>    
     );
-  }
+    
 }
 
 // class App extends Component {
@@ -113,4 +134,13 @@ class App extends Component {
 //   }
 // }
 
-export default App;
+const mapStateToProps = (state) => { // 1.) Gives acces to the authentication state 
+  return {
+      auth: state.firebase.auth,
+      profile: state.firebase.profile
+  }
+}
+
+
+
+export default connect(mapStateToProps)(App)

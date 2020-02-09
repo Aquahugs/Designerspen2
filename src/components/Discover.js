@@ -5,7 +5,7 @@ import axios from 'axios';
 import DefaultUpload from './DefaultUpload'
 import SubNav from './shared/SubNav'
 import PopNotification from './shared/PopNotification'
-
+import {Redirect} from 'react-router-dom'
 import Popup from "reactjs-popup";
 import { Button } from 'react-bootstrap';
 
@@ -15,6 +15,8 @@ import {useDropzone} from 'react-dropzone'
 import 'react-notifications/lib/notifications.css';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 
+import Logo from '../assets/images/Asset 1.svg'
+import Ownershipimage from '../assets/images/ownershipimage.png'
 
 
 
@@ -50,6 +52,7 @@ class Discover extends Component {
       };
     
     constructor(props){
+        
         super(props);
         this.state= {
             items :[],
@@ -75,7 +78,8 @@ class Discover extends Component {
             isLoaded: false,
             loadPost:false,
             isUploading:false,
-            red: true
+            red: true,
+            checked: '' 
 
             // product: {
             //     username:'',
@@ -84,6 +88,7 @@ class Discover extends Component {
             // },
             
         }
+        this.handleCheck = this.handleCheck.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
@@ -107,9 +112,9 @@ class Discover extends Component {
 
     onSubmit = (e) => {
         // event to submit the data to the server
-        e.preventDefault();
+        // e.preventDefault();
         console.log(e)
-        const { selectedFile,description,uuid,displayName,userPhotoUrl,postTag} = this.state;
+        const { selectedFile,description,uuid,displayName,userPhotoUrl,postTag,checked} = this.state;
         const id = this.state.bio.data[0].id
     
         
@@ -122,6 +127,8 @@ class Discover extends Component {
         formData.append('userPhotoUrl', userPhotoUrl);
         formData.append('postTag', postTag);
         formData.append('id', id);
+        formData.append('checked', checked);
+
         
        
         fetch(`http://localhost:3001/addtags?posttag=${postTag}`)
@@ -132,7 +139,13 @@ class Discover extends Component {
             // access results...
            
             console.log(result)
-            });
+            })
+
+            .then(() => {
+               
+
+                
+            })
     }
       
  
@@ -231,7 +244,7 @@ class Discover extends Component {
        
 
     onDrop = (e) => {
-        this.setState({ selectedFile: e[0],previewImage: URL.createObjectURL(e[0]),isUploading:true})
+    this.setState({ selectedFile: e[0],previewImage: URL.createObjectURL(e[0]),isUploading:true})
     console.log(e.file)
     console.log(e.target)
     console.log(e[0])
@@ -244,6 +257,13 @@ class Discover extends Component {
 
     console.log(this.state)
     }
+
+    handleCheck(e){
+        this.setState({
+         checked: '1'
+        })
+        console.log(this.state)
+      }
     
 
 
@@ -253,7 +273,8 @@ class Discover extends Component {
         const loadPost = this.state
         const {users,product} = this.state 
         const { description, selectedFile,postTag,id } = this.state;
-        const {uuid,displayName,userPhotoUrl} = this.state
+        const {uuid,displayName,userPhotoUrl} = this.state;
+        const {auth} = this.props; 
         
         
         
@@ -265,9 +286,9 @@ class Discover extends Component {
 
 
           
-        if (!isLoaded) {
-            return <div>Loading...</div>
-        }
+        if (!isLoaded)   return <div>loading</div>
+        
+        
         else{
           
               const dropzoneStyle = {
@@ -358,10 +379,11 @@ class Discover extends Component {
                         </div>  
                     );
                     })}    
-                {/* Upload Zone */}
+                
                 <div  className = 'row' style = {{float:'left'}}> 
+                {/* Upload Zone */}
                     <div className = 'col s3 m3 l3 ' style = {uploadBoxshadow}  >
-                        <form onSubmit={this.onSubmit}>
+                        <form onSubmit={this.onSubmit} action="#">
                         <div style = {uploadInputs}>
                             <img src={this.state.previewImage}/>
                             <div  className = 'row'>
@@ -371,6 +393,7 @@ class Discover extends Component {
                                 </div>
                             </div>
                         </div>
+                        {/* Description input */}
                         <input
                         style = {uploadInputs}
                         type="text"
@@ -379,6 +402,7 @@ class Discover extends Component {
                         placeholder="Add a description,if you'd like"
                         onChange={this.onChange}
                         />
+                        {/* Category Input */}
                         <h3 style = {categoryHeader}>category</h3>
                         <input
                         style = {uploadInputs}
@@ -388,6 +412,30 @@ class Discover extends Component {
                         placeholder="Art,Photography,Car design,Memes etc."
                         onChange={this.onChange}
                         />
+                            <p style = {uploadInputs}>
+                            <label>
+                                <input
+                                onChange={this.handleCheck} 
+                                name="checked"
+                                type="checkbox" />
+                                <span>I created the image I'm sharing
+                                </span>
+                            </label>
+                            <Popup modal trigger={<span><br/>(what is this)</span>}>
+                                <div className = ' ownership col s12 m12 l12' style = {{paddingLeft:'5%',paddingRight:'5%',paddingBottom:'5%'}}>
+                                    <img className = 'ownership' src = {Ownershipimage}/>
+                                    <img  className = 'ownership' src = {Logo} style = {{width:'75px'}}/>
+                                    <h1>Ownership</h1>
+                                    <p className = 'ownershipP'>
+                                        By checking this box your post will receive a green check that represents that the content you are contributing was created by you.  
+                                    </p>
+                                    <p  className = 'ownershipP2'>
+                                        As between you and Designerspen, you will retain ownership of all original text, images, videos, messages, comments, ratings, 
+                                        reviews and other original content you provide on or through the Site.
+                                    </p>
+                                </div>
+                            </Popup>
+                            </p>
                             <Dropzone 
 
                             maxFiles={3}
@@ -418,7 +466,7 @@ class Discover extends Component {
                         
                             
                             
-                                
+                            
                             <Button 
                                 style = {uploadButtons}
                                 variant="outline-primary"
@@ -443,7 +491,7 @@ class Discover extends Component {
                     </div> 
                     {/* //mapping through all the usernames in the new_tabel tabel */}
                     
-                    {this.state.userphotos.data.map((n,index) => { 
+                    {this.state.userphotos.data.slice(0).reverse().map((n,index) => { 
                      
                     
                     return (
@@ -455,12 +503,12 @@ class Discover extends Component {
                                 <div className = 'col s4 m4 l4'>
                                 <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
                                     <a href={"http://localhost:3000/users/" + n.uuid} > <p>{n.displayname}</p> </a>
-                                    <p>{n.description}</p>  
+                                    <p>{n.description}</p>
                                 </div>
                             </Popup>
                         
                             <div   style = {{backgroundColor:'white',paddingTop:'2%'}} className = "row dis"> 
-                                <div className = "col s6 m6 l6">
+                                <div  style = {{display: n.displayname === "undefined" ? "none": "inline-block"}} className = "col s6 m6 l6">
                                     <div style = {{float:'left'}}><img  style = {{maxWidth:"25px"}} src = {n.userphotourl}/></div> 
                                     <div style = {{float:'left'}}><a  href={"http://localhost:3000/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
                                 </div>
@@ -482,6 +530,7 @@ class Discover extends Component {
                                     onClick={this.createNotification('success')}>Success
                                     </button> */}
                                     <button 
+                                        style = {{float: n.displayname === "undefined" ? "right": ""}}
                                         className = 'collectButton  btn-success' 
                                         onClick={e => this.setState({collectedimage: n.imageUrl},this.createNotification('success'),this.onCollect)}  type="button">
                                     </button>
@@ -497,17 +546,16 @@ class Discover extends Component {
                                     </button>  */}
                                 </div>
                             
-
-                        <div className = "row">
-                            <div className = "col s6 m6 l6">
+                        <div  className = "row">
+                            <div className = "col s8 m8 l8">
                                 <p>{n.description}</p>
+                               <img src = {Logo} style = {{display : n.usersubmitted === '1' ? "inline-block": "none",width:'30px',paddingLeft:'1em'}}/>
+                               <div className = 'tag' style = {{float:'left'}}><a  href={"http://localhost:3000/Discover/" + n.posttag} >  <p >{n.posttag}</p> </a></div>
+
                             </div>
-                           
                         </div>
                         </div>
-                         
                         </div>
-                        
                     );
                     })}
                 </div>

@@ -6,6 +6,8 @@ import axios from 'axios'
 import './Profile.scss'
 import Tabs from './Tabs'
 import { Button } from 'react-bootstrap';
+import Popup from "reactjs-popup";
+
 
 
 class MyProfile extends Component {
@@ -230,6 +232,7 @@ class MyProfile extends Component {
            
             <Tabs 
             uuid = {this.state}
+            userCollection = {this.state}
             />
         </div>   
         
