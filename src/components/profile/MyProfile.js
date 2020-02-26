@@ -37,15 +37,15 @@ class MyProfile extends Component {
         // M.Tabs.init(this.Tabs);
         const {uuid} = this.state
         Promise.all([
-            fetch(`http://localhost:3001/profileimages/:uuid?uuid=${(uuid)}`, {
+            fetch(`https://designerspendroplet.getdpsvapi.com/profileimages/:uuid?uuid=${(uuid)}`, {
             method: "GET",
             headers: {'Content-Type':'application/json'}  
             }),
-            fetch(`http://localhost:3001/collection/:uuid?uuid=${(uuid)}`, {
+            fetch(`https://designerspendroplet.getdpsvapi.com/collection/:uuid?uuid=${(uuid)}`, {
                 method: "GET",
                 headers: {'Content-Type':'application/json'}  
             }),
-            fetch(`http://localhost:3001/bio/:uuid?uuid=${(uuid)}`, {
+            fetch(`https://designerspendroplet.getdpsvapi.com/bio/:uuid?uuid=${(uuid)}`, {
                 method: "GET",
                 headers: {'Content-Type':'application/json'}  
             })
@@ -74,7 +74,7 @@ class MyProfile extends Component {
         let formData = new FormData();        
         formData.append('newbio', newbio);
         
-        fetch(`http://localhost:3001/editbio?bio=${newbio}&uuid=${this.props.match.params.uuid}`)
+        fetch(`https://designerspendroplet.getdpsvapi.com/editbio?bio=${newbio}&uuid=${this.props.match.params.uuid}`)
             .then((result) => {
             // access results...
             console.log(result)
@@ -104,7 +104,7 @@ class MyProfile extends Component {
         formData.append('userid', uuid);
         formData.append('file', selectedFile);
 
-        axios.post('http://localhost:3001/uploadProfilePhoto', formData)
+        axios.post('https://designerspendroplet.getdpsvapi.com/uploadProfilePhoto', formData)
         
         
             .then((result) => {

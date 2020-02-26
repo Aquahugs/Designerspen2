@@ -8,12 +8,13 @@ import PopNotification from './shared/PopNotification'
 import {Redirect} from 'react-router-dom'
 import Popup from "reactjs-popup";
 import { Button } from 'react-bootstrap';
-
+import InfiniteScroll from 'react-infinite-scroll-component';
 import {connect} from 'react-redux'
 import Dropzone from 'react-dropzone'
 import {useDropzone} from 'react-dropzone'
 import 'react-notifications/lib/notifications.css';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
+import BottomScrollListener from 'react-bottom-scroll-listener';
 
 import Logo from '../assets/images/Asset 1.svg'
 import Ownershipimage from '../assets/images/ownershipimage.png'
@@ -23,6 +24,8 @@ import Ownershipimage from '../assets/images/ownershipimage.png'
 
 
 class Discover extends Component {
+
+    
     createNotification = (type) => {
         return () => {
             const {uuid,collectedimage} = this.state;
@@ -32,7 +35,7 @@ class Discover extends Component {
               break;
             case 'success':
               NotificationManager.success('Success ', 'Image was added to your collection');
-              fetch(`http://localhost:3001/collectpost?uuid=${uuid}&post_id=${collectedimage}`)
+              fetch(`https://designerspendroplet.getdpsvapi.com/collectpost?uuid=${uuid}&post_id=${collectedimage}`)
               .then(console.log("this worked stuff submitted"))
               .catch (err => console.err(err))
               break;
@@ -43,7 +46,7 @@ class Discover extends Component {
                 NotificationManager.error('error ', 'Image was removed from your collection');
                 
 
-                fetch(`http://localhost:3001/removecollectpost?uuid=${uuid}&post_id=${collectedimage}`)
+                fetch(`https://designerspendroplet.getdpsvapi.com/removecollectpost?uuid=${uuid}&post_id=${collectedimage}`)
                 .then(console.log("this worked stuff REMOVED"))
                 .catch (err => console.err(err))
                 break;
@@ -68,6 +71,11 @@ class Discover extends Component {
             displayName: props.auth.displayName,
             userPhotoUrl: props.auth.photoURL,
             userphotos:[],
+            morepost:[],
+            limit:50,
+            per:2,
+            page:1,
+            totalPages:null,
             tags:[],
             bio:[],
             id:[],
@@ -88,8 +96,7 @@ class Discover extends Component {
             // },
             
         }
-        this.handleCheck = this.handleCheck.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleCheck = this.handleCheck.bind(this); 
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
@@ -131,22 +138,16 @@ class Discover extends Component {
 
         
        
-        fetch(`http://localhost:3001/addtags?posttag=${postTag}`)
-        axios.post('http://localhost:3001/uploadHandler', formData)
-        
-        
+        fetch(`https://designerspendroplet.getdpsvapi.com/addtags?posttag=${postTag}`)
+        axios.post('https://designerspendroplet.getdpsvapi.com/uploadHandler', formData)
             .then((result) => {
             // access results...
-           
             console.log(result)
             })
-
             .then(() => {
-               
-
-                
-            })
+        })
     }
+    
       
  
    
@@ -154,92 +155,54 @@ class Discover extends Component {
     
 
     componentDidMount() {
-        window.addEventListener('scroll', this.handleScroll)
-        //  window.onscroll = function() {
-        //      if(window.pageYOffset >= 1000) {
-        //           console.log("poopty scoop")
-        //           this.setState({
-        //             loadPost:true,
-        //           })
-        //          }
-        //          window.onscroll = null;
-                 
-        //      }
-        const {posttag} = this.state
+        document.addEventListener('scroll', this.trackScrolling);
         const {uuid} = this.state
-
-
          Promise.all([
-           
-             fetch('http://localhost:3001/Discover'),
-             fetch('http://localhost:3001/tags'),
-             fetch(`http://localhost:3001/bio/:uuid?uuid=${(uuid)}`,
+             fetch('https://designerspendroplet.getdpsvapi.com/Discover'), 
+             fetch('https://designerspendroplet.getdpsvapi.com/tags'),
+             fetch(`https://designerspendroplet.getdpsvapi.com/bio/:uuid?uuid=${(uuid)}`,
              
               {
                 method: "GET",
                 headers: {'Content-Type':'application/json'}  
             }),
-            fetch(`http://localhost:3001/collection/:uuid?uuid=${(uuid)}`)
-            
-
+            fetch(`https://designerspendroplet.getdpsvapi.com/collection/:uuid?uuid=${(uuid)}`)
          ])
          .then(([res1, res2,res3,res4]) => Promise.all([res1.json(), res2.json(),res3.json(),res4.json()]))
          .then(([data1,data2,data3,data4]) => this.setState({
              isLoaded:true,
-             collection:data4,
              userphotos:data1,
              tags:data2,
-             bio:data3
-         }));
+             bio:data3,
+             collection:data4
+         }))      
     }
+    
 
    
     
-    handleScroll(event) { // IGNORE
-        if(window.pageYOffset <= 1000) {
-            console.log ("correct")
-            
-        }
-      }
+    
 
-      handleSubmit(event){ //IGNORE
-        event.preventDefault();
-        fetch('http://localhost:3001/users/add', {
-         method: 'post',
-         headers: {'Content-Type':'application/json'},
-         body: JSON.stringify({
-            "username": this.username.value,
-            "email":this.email.value,
-            "password":this.password.value
-       })
-        });
-       };
-
-       addProduct = _ => { //IGNORE 
-            const {product} = this.state;
-            fetch(`http://localhost:3001/users/add?username=${product.name}&email=${product.email}&password=${product.password}`)
-            .then(console.log("this worked stuff submitted"))
-            .catch (err => console.err(err))
-       }
-       onCollect = _ => {  
-        const {uuid,collectedimage} = this.state;
-        fetch(`http://localhost:3001/collectpost?uuid=${uuid}&post_id=${collectedimage}`)
-        .then(console.log("this worked stuff submitted"))
-        .catch (err => console.err(err))
+   
+    onCollect = _ => {  
+    const {uuid,collectedimage} = this.state;
+    fetch(`https://designerspendroplet.getdpsvapi.com/collectpost?uuid=${uuid}&post_id=${collectedimage}`)
+    .then(console.log("this worked stuff submitted"))
+    .catch (err => console.err(err))
     }
 
     onRemoveCollect = _ => {  
         const {uuid,collectedimage} = this.state;
-        fetch(`http://localhost:3001/removecollectpost?uuid=${uuid}&post_id=${collectedimage}`)
+        fetch(`https://designerspendroplet.getdpsvapi.com/removecollectpost?uuid=${uuid}&post_id=${collectedimage}`)
         .then(console.log("this worked stuff REMOVED"))
         .catch (err => console.err(err))
     }
     openModal() {
     this.setState({ open: true });
-  }
-  closeModal() {
-    this.setState({ open: false });
-  }
+    }
+    closeModal() {
+        this.setState({ open: false });
+    }
 
        
 
@@ -264,7 +227,25 @@ class Discover extends Component {
         })
         console.log(this.state)
       }
+
+      isBottom(el) {
+        return el.getBoundingClientRect().bottom <= window.innerHeight;
+      }
     
+     
+      loadmore = (event) => {
+        const {limit} = this.state;
+        fetch(`https://designerspendroplet.getdpsvapi.com/Discovermore?limit=${limit}`)
+        .then((res1) => Promise.all([res1.json()]))
+        .then(([data1]) => this.setState({ 
+            userphotos:data1,
+            limit:limit + 50
+           
+        }));
+        console.log(this.state)
+     } 
+
+     
 
 
     render(){
@@ -273,21 +254,19 @@ class Discover extends Component {
         const loadPost = this.state
         const {users,product} = this.state 
         const { description, selectedFile,postTag,id } = this.state;
-        const {uuid,displayName,userPhotoUrl} = this.state;
+        const {uuid,displayName,userPhotoUrl,userphotos} = this.state;
         const {auth} = this.props; 
+        const {data} = this.state.userphotos
         
-        
-        
- 
+       
           console.log(this.state)
-
-          console.log(this.state.userphotos)
+          console.log(this.state.userphotos.data)
           console.log(this.state.collection.data)
 
 
           
-        if (!isLoaded)   return <div>loading</div>
-        
+        if (!isLoaded)    {return <div style = {{paddingTop:'50%'}}><h1 >Loading...</h1></div>
+        }
         
         else{
           
@@ -365,13 +344,13 @@ class Discover extends Component {
             
             <div style = {{padding:"5%"}}>
                  <NotificationContainer/>
+                 <BottomScrollListener onBottom={this.loadmore}/>
 
                 <SubNav/>     
-                
                 {this.state.tags.data.map(function (n) { 
                     return ( //post tags 
                         <div  key={n}>
-                            <a  href={"http://localhost:3000/Discover/" + n.posttag} > 
+                            <a  href={"https://www.designerspen.com/Discover/" + n.posttag} > 
                                 <ul style = {{display:'inline'}}>
                                     <li style = {{display:'inline',float:'left',padding:'1%'}} >{n.posttag}</li>
                                 </ul>
@@ -438,11 +417,11 @@ class Discover extends Component {
                             </p>
                             <Dropzone 
 
-                            maxFiles={3}
-                            multiple={true}
-                            canCancel={true}
-                            accept="image/png, image/gif,image/jpeg, image/jpg, image/png"
-                            onDrop={this.onDrop} accept='image/*' >
+                                maxFiles={3}
+                                multiple={true}
+                                canCancel={true}
+                                accept="image/png, image/gif,image/jpeg, image/jpg, image/png"
+                                onDrop={this.onDrop} accept='image/*' >
                                 {({getRootProps, getInputProps,isDragActive,isDragReject}) => (
                                     <section>
                                     <div className = 'dropzone' style={dropzoneStyle} {...getRootProps({ onChange: e =>  this.setState({ selectedFile: e.target.files[0],previewImage: URL.createObjectURL(e.target.files[0])}) })}>
@@ -463,10 +442,6 @@ class Discover extends Component {
                             
 
                             {/* <DefaultUpload doWhatever={this.onChange.bind(this,file)}></DefaultUpload> */}
-                        
-                            
-                            
-                            
                             <Button 
                                 style = {uploadButtons}
                                 variant="outline-primary"
@@ -491,7 +466,9 @@ class Discover extends Component {
                     </div> 
                     {/* //mapping through all the usernames in the new_tabel tabel */}
                     
-                    {this.state.userphotos.data.slice(0).reverse().map((n,index) => { 
+                    <div style = {{display: this.state.isLoaded ? 'none' : 'inline-block'}}><h1>loading</h1></div>
+
+                    {this.state.userphotos.data.slice(0).map((n,index) => { 
                      
                     
                     return (
@@ -502,7 +479,7 @@ class Discover extends Component {
                                 </div>
                                 <div className = 'col s4 m4 l4'>
                                 <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
-                                    <a href={"http://localhost:3000/users/" + n.uuid} > <p>{n.displayname}</p> </a>
+                                    <a href={"https://www.designerspen.com/users/" + n.uuid} > <p>{n.displayname}</p> </a>
                                     <p>{n.description}</p>
                                 </div>
                             </Popup>
@@ -510,25 +487,22 @@ class Discover extends Component {
                             <div   style = {{backgroundColor:'white',paddingTop:'2%'}} className = "row dis"> 
                                 <div  style = {{display: n.displayname === "undefined" ? "none": "inline-block"}} className = "col s6 m6 l6">
                                     <div style = {{float:'left'}}><img  style = {{maxWidth:"25px"}} src = {n.userphotourl}/></div> 
-                                    <div style = {{float:'left'}}><a  href={"http://localhost:3000/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
+                                    <div style = {{float:'left'}}><a  href={"https://www.designerspen.com/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
                                 </div>
                                 <div className = "col s6 m6 l6">
 
                                     {/* REMOVE BUTTON */}
-                                {this.state.collection.data.map((j,index) => { 
-                                    return(
-                                        <div key={j}>
-                                         <button   className = 'uncollectButton  btn-danger'   style = {{display : n.imageUrl === j.post_id ? "inline-block": "none"}}
-                                         onClick={e => this.setState({collectedimage: n.imageUrl},this.createNotification('error'),this.onRemoveCollect)}  type="button"
-                                        >   </button>
-                                         <p className = 'remove'>Remove</p>
-                                        </div>
-                                    )
-                                })}
+                                    {this.state.collection.data.map((j,index) => { 
+                                        return(
+                                            <div key={j}>
+                                            <button   className = 'uncollectButton  btn-danger'   style = {{display : n.imageUrl === j.post_id ? "inline-block": "none"}}
+                                            onClick={e => this.setState({collectedimage: n.imageUrl},this.createNotification('error'),this.onRemoveCollect)}  type="button"
+                                            >   </button>
+                                            <p className = 'remove'>Remove</p>
+                                            </div>
+                                        )
+                                    })}
                                     {/* COLLECT BUTTON */}
-                                    {/* <button className='btn btn-success'
-                                    onClick={this.createNotification('success')}>Success
-                                    </button> */}
                                     <button 
                                         style = {{float: n.displayname === "undefined" ? "right": ""}}
                                         className = 'collectButton  btn-success' 
@@ -536,21 +510,13 @@ class Discover extends Component {
                                     </button>
                                     
                                     <p className = 'collect'>Collect</p>
-
-                                     {/* <button  
-                                        style={{
-                                        display: this.state.red ? "none": "inline-block",
-                                        }}                                       
-                                        onClick={e => this.setState({collectedimage: n.imageUrl,collect:false},this.onRemoveCollect)} 
-                                        type="button" class="btn btn-primary">Uncollect
-                                    </button>  */}
                                 </div>
                             
                         <div  className = "row">
                             <div className = "col s8 m8 l8">
                                 <p>{n.description}</p>
                                <img src = {Logo} style = {{display : n.usersubmitted === '1' ? "inline-block": "none",width:'30px',paddingLeft:'1em'}}/>
-                               <div className = 'tag' style = {{float:'left'}}><a  href={"http://localhost:3000/Discover/" + n.posttag} >  <p >{n.posttag}</p> </a></div>
+                               <div className = 'tag' style = {{float:'left'}}><a  href={"https://www.designerspen.com/Discover/" + n.posttag} >  <p >{n.posttag}</p> </a></div>
 
                             </div>
                         </div>

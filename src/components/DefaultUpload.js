@@ -15,7 +15,7 @@ export default class DefaultUpload extends React.Component {
         this.componentConfig = {
             iconFiletypes: ['.jpg', '.png', '.gif'],
             showFiletypeIcon: true,
-            postUrl: 'http://localhost:3001/'
+            postUrl: 'https://designerspendroplet.getdpsvapi.com/'
         };
 
         // If you want to attach multiple callbacks, simply

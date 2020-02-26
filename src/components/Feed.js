@@ -32,7 +32,7 @@ class Feed extends Component {
               break;
             case 'success':
               NotificationManager.success('Success ', 'Image was added to your collection');
-              fetch(`http://localhost:3001/collectpost?uuid=${uuid}&post_id=${collectedimage}`)
+              fetch(`https://designerspendroplet.getdpsvapi.com/collectpost?uuid=${uuid}&post_id=${collectedimage}`)
               .then(console.log("this worked stuff submitted"))
               .catch (err => console.err(err))
               break;
@@ -43,7 +43,7 @@ class Feed extends Component {
                 NotificationManager.error('error ', 'Image was removed from your collection');
                 
 
-                fetch(`http://localhost:3001/removecollectpost?uuid=${uuid}&post_id=${collectedimage}`)
+                fetch(`https://designerspendroplet.getdpsvapi.com/removecollectpost?uuid=${uuid}&post_id=${collectedimage}`)
                 .then(console.log("this worked stuff REMOVED"))
                 .catch (err => console.err(err))
                 break;
@@ -130,8 +130,8 @@ class Feed extends Component {
 
         
        
-        fetch(`http://localhost:3001/addtags?posttag=${postTag}`)
-        axios.post('http://localhost:3001/uploadHandler', formData)
+        fetch(`https://designerspendroplet.getdpsvapi.com/addtags?posttag=${postTag}`)
+        axios.post('https://designerspendroplet.getdpsvapi.com/uploadHandler', formData)
         
         
             .then((result) => {
@@ -164,15 +164,15 @@ class Feed extends Component {
 
          Promise.all([
            
-             fetch('http://localhost:3001/Feed'),
-             fetch('http://localhost:3001/tags'),
-             fetch(`http://localhost:3001/bio/:uuid?uuid=${(uuid)}`,
+             fetch('https://designerspendroplet.getdpsvapi.com/Feed'),
+             fetch('https://designerspendroplet.getdpsvapi.com/tags'),
+             fetch(`https://designerspendroplet.getdpsvapi.com/bio/:uuid?uuid=${(uuid)}`,
              
               {
                 method: "GET",
                 headers: {'Content-Type':'application/json'}  
             }),
-            fetch(`http://localhost:3001/collection/:uuid?uuid=${(uuid)}`)
+            fetch(`https://designerspendroplet.getdpsvapi.com/collection/:uuid?uuid=${(uuid)}`)
             
 
          ])
@@ -197,7 +197,7 @@ class Feed extends Component {
 
       handleSubmit(event){ //IGNORE
         event.preventDefault();
-        fetch('http://localhost:3001/users/add', {
+        fetch('https://designerspendroplet.getdpsvapi.com/users/add', {
          method: 'post',
          headers: {'Content-Type':'application/json'},
          body: JSON.stringify({
@@ -210,20 +210,20 @@ class Feed extends Component {
 
        addProduct = _ => { //IGNORE 
             const {product} = this.state;
-            fetch(`http://localhost:3001/users/add?username=${product.name}&email=${product.email}&password=${product.password}`)
+            fetch(`https://designerspendroplet.getdpsvapi.com/users/add?username=${product.name}&email=${product.email}&password=${product.password}`)
             .then(console.log("this worked stuff submitted"))
             .catch (err => console.err(err))
        }
        onCollect = _ => {  
         const {uuid,collectedimage} = this.state;
-        fetch(`http://localhost:3001/collectpost?uuid=${uuid}&post_id=${collectedimage}`)
+        fetch(`https://designerspendroplet.getdpsvapi.com/collectpost?uuid=${uuid}&post_id=${collectedimage}`)
         .then(console.log("this worked stuff submitted"))
         .catch (err => console.err(err))
     }
 
     onRemoveCollect = _ => {  
         const {uuid,collectedimage} = this.state;
-        fetch(`http://localhost:3001/removecollectpost?uuid=${uuid}&post_id=${collectedimage}`)
+        fetch(`https://designerspendroplet.getdpsvapi.com/removecollectpost?uuid=${uuid}&post_id=${collectedimage}`)
         .then(console.log("this worked stuff REMOVED"))
         .catch (err => console.err(err))
     }
@@ -485,7 +485,7 @@ class Feed extends Component {
                                 </div>
                                 <div className = 'col s4 m4 l4'>
                                 <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
-                                    <a href={"http://localhost:3000/users/" + n.uuid} > <p>{n.displayname}</p> </a>
+                                    <a href={"https://www.designerspen.com/users/" + n.uuid} > <p>{n.displayname}</p> </a>
                                     <p>{n.description}</p>  
                                 </div>
                             </Popup>
@@ -493,7 +493,7 @@ class Feed extends Component {
                             <div   style = {{backgroundColor:'white',paddingTop:'2%'}} className = "row dis"> 
                                 <div  className = "col s6 m6 l6">
                                     <div style = {{float:'left'}}><img  style = {{maxWidth:"25px"}} src = {n.userphotourl}/></div> 
-                                    <div style = {{float:'left'}}><a  href={"http://localhost:3000/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
+                                    <div style = {{float:'left'}}><a  href={"https://www.designerspen.com/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
                                 </div>
                                 <div className = "col s6 m6 l6">
 

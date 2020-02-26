@@ -30,14 +30,11 @@ class PostDetail extends Component {
         
         const {Id} = this.state
         Promise.all([
-        fetch(`http://localhost:3001/postdetail/:Id?Id=${(Id)}`, {
+        fetch(`https://designerspendroplet.getdpsvapi.com/postdetail/:Id?Id=${(Id)}`, {
         method: "GET",
         headers: {'Content-Type':'application/json'}  
         }),
-        // fetch(`http://localhost:3001/collection/:uuid?uuid=${(uuid)}`, {
-        //     method: "GET",
-        //     headers: {'Content-Type':'application/json'}  
-        //     })
+     
         ])
         
         .then(([res1 ]) => Promise.all([res1.json()]))
@@ -82,7 +79,7 @@ class PostDetail extends Component {
                     </div>
                     <div className = 'col s6 m6 l6'>
                     <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
-                        <a href={"http://localhost:3000/users/" + n.uuid} > <p>{n.displayname}</p> </a>
+                        <a href={"https://www.designerspen.com/users/" + n.uuid} > <p>{n.displayname}</p> </a>
                         <p>{n.description}</p>  
                     </div>
                 </div>

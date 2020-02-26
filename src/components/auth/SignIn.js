@@ -19,7 +19,7 @@ class SignIn extends Component {
         callbacks: {
             signInSuccessWithAuthResult: (e) => {
                 console.log(e)
-                fetch(`http://localhost:3001/adduser?uuid=${e.user.uid}&username=${e.user.displayName}&photourl=''&bio=''&email=${e.user.email}`)
+                fetch(`https://designerspendroplet.getdpsvapi.com/adduser?uuid=${e.user.uid}&username=${e.user.displayName}&photourl=''&bio=''&email=${e.user.email}`)
             }
         },
         signInSuccessUrl: '/Feed'

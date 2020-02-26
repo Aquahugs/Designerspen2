@@ -49,7 +49,7 @@ export const signUp = (newUser) => {
        
         .then ((resp) => {
            console.log(resp)
-           fetch(`http://localhost:3001/adduser?uuid=${resp.user.uid}&username=${resp.user.displayName}&photourl=''&bio=''&email=${resp.user.email}`)
+           fetch(`https://designerspendroplet.getdpsvapi.com/adduser?uuid=${resp.user.uid}&username=${resp.user.displayName}&photourl=''&bio=''&email=${resp.user.email}`)
             return firestore.collection('users').doc(resp.user.uid).set ({ // logging the parameters into the firebase users collection 
                 displayName: newUser.displayName,
                 email: newUser.email,

@@ -60,7 +60,7 @@ class Tabs extends Component {
             {this.state.props.uuid.info.data.map(function (n) { 
                 function handleClick() {
                   const imagelink = n.imageUrl
-                  fetch('http://localhost:3001/profile/delete', {
+                  fetch('https://designerspendroplet.getdpsvapi.com/profile/delete', {
                   method: 'DELETE',
                   headers: {
                       'Content-Type': 'application/json'
@@ -80,7 +80,7 @@ class Tabs extends Component {
                 <img style = {{maxWidth:"100%"}}src = {n.imageUrl}/>
                 <div  style = {{backgroundColor:'white',padding:'2%'}}> 
                   <img style = {{maxWidth:"25px",float:'left'}} src = {n.userphotourl}/> 
-                  <a href={"http://localhost:3000/users/" + n.uuid} > <p style = {{float:'left'}}>{n.displayname}:</p> </a>
+                  <a href={"https://www.designerspen.com/users/" + n.uuid} > <p style = {{float:'left'}}>{n.displayname}:</p> </a>
                   <p>{n.description}</p>
                   <Popup
                     trigger={<img style = {deleteButton} src = 'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/TDOT3.png?alt=media&token=551b1b80-55bc-4a14-906e-fb0bdc044615' className="button"/>}
@@ -105,7 +105,7 @@ class Tabs extends Component {
            
            function onRemoveCollect() {
       
-            fetch(`http://localhost:3001/removecollectpost?uuid=${n.uuid}&post_id=${n.post_id}`)
+            fetch(`https://designerspendroplet.getdpsvapi.com/removecollectpost?uuid=${n.uuid}&post_id=${n.post_id}`)
             .then(console.log("this worked stuff REMOVED"),console.log(n))
             .catch (err => console.err(err))
             
@@ -114,7 +114,7 @@ class Tabs extends Component {
             <div  className = 'col s3 m3 l3'  key={n}>
                 <img style = {{maxWidth:"100%"}}src = {n.post_id}/>
                 <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
-            <a href={"http://localhost:3000/users/" + n.uuid} > <p>{n.displayname}</p> </a>
+            <a href={"https://www.designerspen.com/users/" + n.uuid} > <p>{n.displayname}</p> </a>
             <p>{n.description}</p> 
                 <Popup
                     trigger={<img style = {deleteButton} src = 'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/TDOT3.png?alt=media&token=551b1b80-55bc-4a14-906e-fb0bdc044615' className="button"/>}

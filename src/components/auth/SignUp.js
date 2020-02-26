@@ -31,7 +31,7 @@ class SignUp extends Component {
         callbacks: {
             signInSuccessWithAuthResult: (e) => {
                 console.log(e)
-                fetch(`http://localhost:3001/adduser?uuid=${e.user.uid}&username=${e.user.displayName}&photourl=''&bio=''&email=${e.user.email}`)
+                fetch(`https://designerspendroplet.getdpsvapi.com/adduser?uuid=${e.user.uid}&username=${e.user.displayName}&photourl=''&bio=''&email=${e.user.email}`)
             }
         },
         signInSuccessUrl: '/Feed'
@@ -80,14 +80,7 @@ class SignUp extends Component {
     <div className = 'row backgroundimage'>
         
         <div className = 'col s6 m6 l6'>
-            {/* <h1>[Your work here]</h1> 
-            <p> By / You</p> 
-            <p> Anything Creative</p>
-            <div className = 'row submitbtn'>
-            <button  style = {{fontWeight:'bold'}} className = 'btn-large lighten-1 z-depth-0'>Submit</button> 
-            </div> */}
-            {/* <p style = {{ color:'#262626'}}>Illustration By / Emmanuel Edeko</p>
-            <a href = 'https://www.instagram.com/manny.oe/?hl=en'><p style = {{fontWeight:'bold', color:'#262626'}}>Instagram</p></a> */}
+            
         </div>
         <div className = ' col s6 m6 l6 box' >
             <form
