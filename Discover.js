@@ -1,6 +1,11 @@
     import React, {Component} from 'react';
+import NavBar from './navbar/NavBar';
+import  './Inspiration.scss'
 import axios from 'axios';
+import DefaultUpload from './DefaultUpload'
 import SubNav from './shared/SubNav'
+import PopNotification from './shared/PopNotification'
+import {Redirect} from 'react-router-dom'
 import Popup from "reactjs-popup";
 import { Button } from 'react-bootstrap';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -118,6 +123,8 @@ class Discover extends Component {
         console.log(e)
         const { selectedFile,description,uuid,displayName,userPhotoUrl,postTag,checked} = this.state;
         const id = this.state.bio.data[0].id
+    
+        
         let formData = new FormData();
 
         formData.append('description', description);
@@ -129,9 +136,10 @@ class Discover extends Component {
         formData.append('id', id);
         formData.append('checked', checked);
 
-            
-        fetch(`http://localhost:3001/addtags?posttag=${postTag}`)
-        axios.post('http://localhost:3001/uploadHandler', formData)
+        
+       
+        fetch(`https://designerspendroplet.getdpsvapi.com/addtags?posttag=${postTag}`)
+        axios.post('https://designerspendroplet.getdpsvapi.com/uploadHandler', formData)
             .then((result) => {
             // access results...
             console.log(result)
@@ -150,9 +158,9 @@ class Discover extends Component {
         document.addEventListener('scroll', this.trackScrolling);
         const {uuid} = this.state
          Promise.all([
-             fetch('http://localhost:3001/Discover'), 
-             fetch('http://localhost:3001/tags'),
-                fetch(`https://designerspendroplet.getdpsvapi.com/bio/:uuid?uuid=${(uuid)}`,
+             fetch('https://designerspendroplet.getdpsvapi.com/Discover'), 
+             fetch('https://designerspendroplet.getdpsvapi.com/tags'),
+             fetch(`https://designerspendroplet.getdpsvapi.com/bio/:uuid?uuid=${(uuid)}`,
              
               {
                 method: "GET",
@@ -325,13 +333,10 @@ class Discover extends Component {
                   display: this.state.isUploading ? "inline-block": "none"
               }
 
-            
-              
               const uploadBoxshadow = {
                 height:'100%',
                 boxShadow: this.state.isUploading ? "-2px 4px 16px 0px rgba(0,0,0,0.19)": "none"
             }
-
 
 
 
@@ -345,7 +350,7 @@ class Discover extends Component {
                 {this.state.tags.data.map(function (n) { 
                     return ( //post tags 
                         <div  key={n}>
-                            <a  href={"http://localhost:3000/Discover/" + n.posttag} > 
+                            <a  href={"https://www.designerspen.com/Discover/" + n.posttag} > 
                                 <ul style = {{display:'inline'}}>
                                     <li style = {{display:'inline',float:'left',padding:'1%'}} >{n.posttag}</li>
                                 </ul>
@@ -354,9 +359,9 @@ class Discover extends Component {
                     );
                     })}    
                 
-                <div      className = 'row' style = {{float:'left'}}> 
+                <div  className = 'row' style = {{float:'left'}}> 
                 {/* Upload Zone */}
-                    <div className = 'col s3 m3 l3 ' style = {uploadBoxshadow}>
+                    <div className = 'col s3 m3 l3 ' style = {uploadBoxshadow}  >
                         <form onSubmit={this.onSubmit} action="#">
                         <div style = {uploadInputs}>
                             <img src={this.state.previewImage}/>

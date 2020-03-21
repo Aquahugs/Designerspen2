@@ -40,14 +40,14 @@ const App = (props) => {
 
     // if (!auth.uid)   return <Redirect exact to="/signup"  /> 
 
-    if(!auth.uid){
-      return (
-          <Switch>
-                <Route path ='/signup' component = {SignUp} />
-                 <Redirect to={'/signup'} />
-          </Switch>
-      );
-    }
+    // if(!auth.uid){
+    //   return (
+    //       <Switch>
+    //             <Route path ='/signup' component = {SignUp} />
+    //              <Redirect to={'/signup'} />
+    //       </Switch>
+    //   );
+    // }
 
   
     return (

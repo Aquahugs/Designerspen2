@@ -1,8 +1,30 @@
 .backgroundimage {
     // background-image:url(https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/BIG.jpg?alt=media&token=40d33966-0516-46d9-83eb-62b4cec35d39);
     // width: 100%;
-    background-image:url(https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/SMALL.jpg?alt=media&token=0f955d0b-be99-423b-be62-fa5151efe673);
+    // background-image:url(https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/SMALL.jpg?alt=media&token=0f955d0b-be99-423b-be62-fa5151efe673);
+    background-image:url(https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/BIGBIGBIG.jpg?alt=media&token=b48c95fc-6184-4756-a779-e37eea7d8700);
+    /* Background image is centered vertically and horizontally at all times */
+  background-position: center center;
   
+  /* Background image doesn't tile */
+  background-repeat: no-repeat;
+  
+  /* Background image is fixed in the viewport so that it doesn't move when 
+     the content's height is greater than the image's height */
+  background-attachment: fixed;
+  
+  /* This is what makes the background image rescale based
+     on the container's size */
+  background-size: cover;
+  
+ margin-bottom: 0 !important;
+  
+}
+
+.btn{
+    width:60% !important;
+    display: block;
+    margin : 0 auto;
 }
 .image2 {
     background-image:url(https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/image.jpg?alt=media&token=9f6f3f94-7411-4018-b2b1-093f497f22eb);
@@ -10,25 +32,23 @@
     width: 90%;
   
 }
-.btn {
-    width:100%;
-}
+
 .signinform {
     background-color: white;
-    margin-bottom:12%;
+    margin-bottom:10%;
     padding:25%;
-}
-.signinform {
-    background-color: white;
-    margin-bottom:15%;
-    padding:25%;
+    margin: auto;
+    width: 50%;
+  
+    padding: 10px;
 }
 
+
 .input-field input[type=email], select {
-  width: 100%;
+  width: 60%;
   padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
+  display: block;
+  margin : 0 auto;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
@@ -36,20 +56,20 @@
 
 
 .input-field input[type=text], select {
-    width: 100%;
+    width: 60%;
     padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
+    display: block;
+    margin : 0 auto;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
   }
 
   .input-field input[type=password], select {
-    width: 100%;
+    width: 60%;
     padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
+    display: block;
+    margin : 0 auto;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
@@ -84,7 +104,13 @@
 }
  
 .box {
-    margin-top:10% !important
+    margin-top:10% !important;
+    margin-bottom:10% !important;
+    padding-left:20% !important;
+    padding-right:20% !important;
+    
+
+    
 }
 
 .banner {

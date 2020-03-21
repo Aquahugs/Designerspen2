@@ -25,8 +25,9 @@ class SignUp extends Component {
     uiConfig = {
         signInFlow: "popup",
         signInOptions: [
-          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
           firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          
         ],
         callbacks: {
             signInSuccessWithAuthResult: (e) => {
@@ -79,10 +80,8 @@ class SignUp extends Component {
     <div>
     <div className = 'row backgroundimage'>
         
-        <div className = 'col s6 m6 l6'>
-            
-        </div>
-        <div className = ' col s6 m6 l6 box' >
+       
+        <div className = ' col s12 m12 l12 box' >
             <form
              style={{ 
                  visibility: this.state.isSignUp ? 'visible': 'hidden',
@@ -92,12 +91,10 @@ class SignUp extends Component {
                 <div className = 'banner'>
                      <img className = "logo" src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/logo.png?alt=media&token=e4875c11-d904-48bc-8271-cd3b5cfa8be1"/>
                     <h2>Welcome to Designerspen</h2>
-                    <p>The starting point for creative inspiration</p>
+                    <p>Discover inspiration from around the web</p>
                 </div>
                 
-                <h5>Join</h5>
-                <p style = {{color:'#1589ff'}}  onClick={e => this.setState({isSignUp:false})}>or login to your account </p>
-            
+               
                 {/* <h5 ><NavLink to ='/signin'>Sign-In</NavLink>/ <NavLink to ='/signup'>Sign-Up</NavLink></h5> */}
                 <div className = 'input-field'>
                     <input type ='email' id='email' placeholder = "Email" onChange={this.handleChange}/>
@@ -118,6 +115,8 @@ class SignUp extends Component {
                 <p style = {{textAlign:'center'}}>or</p>
                 <StyledFirebaseAuth style ={{width:'100%'}}uiConfig = {this.uiConfig}
                 firebaseAuth={firebase.auth()}/>
+                <p style = {{color:'#1589ff', textAlign:'center'}}  onClick={e => this.setState({isSignUp:false})}>or login to your account </p>
+
                 
             </form>
 
@@ -148,6 +147,7 @@ class SignUp extends Component {
                         </div>
                     </div>
                     
+                    
                 </form>
                 
             {/* <div className = 'col s12 m12 l12 socialIcons'>
@@ -157,13 +157,13 @@ class SignUp extends Component {
         </div>
         
     </div>
-        <div className = "row">
+        {/* <div className = "row">
             <div className = 'col s4 m4 l4 motto'>
                 <h5>Share and collect visually inspiring images from around the web.</h5>
             </div>
             <div className = 'col s8 m8 l8 image2'>
             </div>
-        </div>
+        </div> */}
         <div className = "row footer">
             <div className = "col s6 m6 l6">
                 <h5>Designerspen</h5>
