@@ -59,6 +59,11 @@ class SignIn extends Component {
                         <input  type ='email' id='email' onChange={this.handleChange}/>
                     </div>
                     <div className = 'input-field'>
+                    <label htmlFor='password'> Password</label>
+
+                        <input  type ='username' id='username' placeholder = "Username" onChange={this.handleChange}/>
+                    </div>
+                    <div className = 'input-field'>
                         <label htmlFor='password'> Password</label>
                         <input type ='password' id='password' onChange={this.handleChange} className = {'blue-text text-darken-2'}/>
                     </div>
@@ -69,7 +74,8 @@ class SignIn extends Component {
                         </div>
                     </div>
                 </form>
-                <StyledFirebaseAuth uiConfig = {this.uiConfig}
+                
+                <StyledFirebaseAuth style ={{width:'100%'}}uiConfig = {this.uiConfig}
                 firebaseAuth={firebase.auth()}/>
                 
                 

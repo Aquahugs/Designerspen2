@@ -11,6 +11,9 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 
 
 import BACKGROUND  from '../../assets/images/BACKGROUND1.jpg'
+import instagram  from '../../assets/images/instagram.svg'
+import youtube  from '../../assets/images/youtube.svg'
+
 import { Desktop, Tablet, Mobile, Phone } from '../shared';
 
 class SignUp extends Component {
@@ -74,6 +77,7 @@ class SignUp extends Component {
       
   render() {
     const {auth,authError} = this.props;
+    console.log(this.state)
     if(auth.uid) return <Redirect to='/'/>
     return (
     
@@ -84,14 +88,14 @@ class SignUp extends Component {
         <div className = ' col s12 m12 l12 box' >
             <form
              style={{ 
-                 visibility: this.state.isSignUp ? 'visible': 'hidden',
-                 display: this.state.isSignUp ? 'inline-block': 'none'}} 
+                 visibility: this.state.isSignUp ? 'hidden': 'visible',
+                 display: this.state.isSignUp ? 'none': 'inline-block'}} 
                 onSubmit={this.handleSubmit}  
                 className = 'signinform'>
                 <div className = 'banner'>
                      <img className = "logo" src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/logo.png?alt=media&token=e4875c11-d904-48bc-8271-cd3b5cfa8be1"/>
                     <h2>Welcome to Designerspen</h2>
-                    <p>Discover inspiration from around the web</p>
+                    <p>Find currated inspiration from around the web</p>
                 </div>
                 
                
@@ -107,33 +111,30 @@ class SignUp extends Component {
                 </div>
                 
                 <div className = 'input-field'>
-                    <button className = 'btn #11b2cf lighten-1 z-depth-0'>Join</button>
+                    <button className = 'btn #11b2cf lighten-1 z-depth-0'>Sign up</button>
                     <div className = 'red-text center'>
                         {authError ? <p> {authError}</p> : null }
                     </div>
                 </div>
                 <p style = {{textAlign:'center'}}>or</p>
-                <StyledFirebaseAuth style ={{width:'100%'}}uiConfig = {this.uiConfig}
-                firebaseAuth={firebase.auth()}/>
-                <p style = {{color:'#1589ff', textAlign:'center'}}  onClick={e => this.setState({isSignUp:false})}>or login to your account </p>
-
+                {/* <StyledFirebaseAuth style ={{width:'100%'}}uiConfig = {this.uiConfig}
+                firebaseAuth={firebase.auth()}/> */}
+                <p style = {{color:'#1589ff', textAlign:'center'}}  onClick={e => this.setState({isSignUp:true})}>or login to your account </p>
                 
             </form>
 
             {/* SIGN IN FORM */}
             <form 
             style={{ 
-                visibility: this.state.isSignUp ? 'hidden': 'visible',
-                display: this.state.isSignUp ? 'none': 'inline-block'}} 
+                visibility: this.state.isSignUp ? 'visible': 'hidden',
+                display: this.state.isSignUp ? 'inline-block': 'none'}} 
                 onSubmit={this.handleSubmitSignin} 
                 className = 'signinform' >
                 <div className = 'banner'>
                     <img className = "logo" src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/logo.png?alt=media&token=e4875c11-d904-48bc-8271-cd3b5cfa8be1"/>
                     <h2>Welcome to Designerspen</h2>
-                    <p>The starting point for creative inspiration</p>
+                    <p>Find new inspiration from around the web</p>
                 </div>
-                    <h5>Log in</h5>
-                    <p  style = {{color:'#1589ff'}}  onClick={e => this.setState({isSignUp:true})}>or create an account</p>
                     <div className = 'input-field'>
                         <input  type ='email' id='email' placeholder = "Email" onChange={this.handleChange}/>
                     </div>
@@ -141,11 +142,18 @@ class SignUp extends Component {
                         <input type ='password' id='password' onChange={this.handleChange}  placeholder = "Password" className = {'blue-text text-darken-2'}/>
                     </div>
                     <div className = 'input-field'>
-                        <button className = 'btn  lighten-1 z-depth-0'>Login</button>
+                        <button className = 'btn  lighten-1 z-depth-0'>Sign in</button>
                         <div className = 'red-text center'>
                             {authError ? <p>{authError}</p> : null }
                         </div>
                     </div>
+              
+                <StyledFirebaseAuth style ={{width:'100%'}}uiConfig = {this.uiConfig}
+                firebaseAuth={firebase.auth()}/>
+                <p style = {{textAlign:'center'}}>or</p>
+                <p  style = {{color:'#1589ff',textAlign:'center'}}  onClick={e => this.setState({isSignUp:false})}>Create an account</p>
+
+                
                     
                     
                 </form>
@@ -155,6 +163,7 @@ class SignUp extends Component {
             <svg style = {{float:'left'}} role="img"width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>YouTube icon</title><path class="a" d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
             </div> */}
         </div>
+       <a href = 'http://archvizual.com/'> <h1 className = 'credit'>By /Roman Vlasov</h1></a>
         
     </div>
         {/* <div className = "row">
@@ -167,16 +176,17 @@ class SignUp extends Component {
         <div className = "row footer">
             <div className = "col s6 m6 l6">
                 <h5>Designerspen</h5>
-                <p>contact us</p>
-            </div>
-            <div className = "col s6 m6 l6" style = {{paddingLeft:'40%'}}>
+                
+            
                 <a href = 'https://www.instagram.com/designerspen/'>
-                    <img src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/insta%20.png?alt=media&token=9b51a8b6-d7d8-47fc-8c20-14ac523e0846"/>
+                    <img src = {instagram}/>
                 </a>
                 <a href = 'https://www.youtube.com/channel/UCWohaJg37iEA-Rjmng6Lb0w'>
-                    <img src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/youtube%20icon.png?alt=media&token=63c52e9b-2078-4036-ba95-fbc913107438"/>
+                    <img src = {youtube}/>
                 </a>
+         
             </div>
+            
         </div>
     </div>
 

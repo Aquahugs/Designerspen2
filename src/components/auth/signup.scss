@@ -2,7 +2,8 @@
     // background-image:url(https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/BIG.jpg?alt=media&token=40d33966-0516-46d9-83eb-62b4cec35d39);
     // width: 100%;
     // background-image:url(https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/SMALL.jpg?alt=media&token=0f955d0b-be99-423b-be62-fa5151efe673);
-    background-image:url(https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/BIGBIGBIG.jpg?alt=media&token=b48c95fc-6184-4756-a779-e37eea7d8700);
+    // background-image:url(https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/BIGBIGBIG.jpg?alt=media&token=b48c95fc-6184-4756-a779-e37eea7d8700);
+    background-image:url('../../assets/images/BACKGROUND1.jpg');
     /* Background image is centered vertically and horizontally at all times */
   background-position: center center;
   
@@ -22,7 +23,7 @@
 }
 
 .btn{
-    width:60% !important;
+    width:92% !important;
     display: block;
     margin : 0 auto;
 }
@@ -45,7 +46,8 @@
 
 
 .input-field input[type=email], select {
-  width: 60%;
+    width:92% !important;
+
   padding: 12px 20px;
   display: block;
   margin : 0 auto;
@@ -56,7 +58,8 @@
 
 
 .input-field input[type=text], select {
-    width: 60%;
+    width:92% !important;
+
     padding: 12px 20px;
     display: block;
     margin : 0 auto;
@@ -66,7 +69,8 @@
   }
 
   .input-field input[type=password], select {
-    width: 60%;
+    width:92% !important;
+
     padding: 12px 20px;
     display: block;
     margin : 0 auto;
@@ -76,12 +80,27 @@
   }
 
   .footer {
-      background-color: black;
+      background-color: #3a3a3a;
       margin:0 ;
       h5,p{
           color:white;
       }
+      h5{
+          font-size: 18px;
+      }
   }
+
+  .footer {
+    
+  img{
+      width: 20px;
+      padding-right: 5px;
+      float:left;
+      padding-bottom: 50%;
+      
+  }
+  
+}
 
   .firebaseui-card-content {
       padding: 0 !important
@@ -136,5 +155,17 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    
 }
+
+.credit {
+    font-size: 14px;
+    color:white;
+    float:right;
+    padding:2%;
+}
+
+.socials img {
+    width: 20%;
+    padding-left: 10%;
+}
+
