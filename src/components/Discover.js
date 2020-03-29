@@ -130,8 +130,8 @@ class Discover extends Component {
         formData.append('checked', checked);
 
             
-        fetch(`http://localhost:3001/addtags?posttag=${postTag}`)
-        axios.post('http://localhost:3001/uploadHandler', formData)
+        fetch(`https://designerspendroplet.getdpsvapi.com/addtags?posttag=${postTag}`)
+        axios.post('https://designerspendroplet.getdpsvapi.com/uploadHandler', formData)
             .then((result) => {
             // access results...
             console.log(result)
@@ -150,8 +150,8 @@ class Discover extends Component {
         document.addEventListener('scroll', this.trackScrolling);
         const {uuid} = this.state
          Promise.all([
-             fetch('http://localhost:3001/Discover'), 
-             fetch('http://localhost:3001/tags'),
+             fetch('https://designerspendroplet.getdpsvapi.com/Discover'), 
+             fetch('https://designerspendroplet.getdpsvapi.com/tags'),
                 fetch(`https://designerspendroplet.getdpsvapi.com/bio/:uuid?uuid=${(uuid)}`,
              
               {
@@ -356,109 +356,7 @@ class Discover extends Component {
                 
                 <div      className = 'row' style = {{float:'left'}}> 
                 {/* Upload Zone */}
-                    <div className = 'col s3 m3 l3 ' style = {uploadBoxshadow}>
-                        <form onSubmit={this.onSubmit} action="#">
-                        <div style = {uploadInputs}>
-                            <img src={this.state.previewImage}/>
-                            <div  className = 'row'>
-                                <div className = 'col s12 m12 l12'  >
-                                    <img  style = {myuserPhoto} src = {this.state.userPhotoUrl}/>
-                                    <p  style={myDisplayname}>{this.state.displayName}</p>
-                                </div>
-                            </div>
-                        </div>
-                        {/* Description input */}
-                        <input
-                        style = {uploadInputs}
-                        type="text"
-                        name="description"
-                        value={description}
-                        placeholder="Add a description,if you'd like"
-                        onChange={this.onChange}
-                        />
-                        {/* Category Input */}
-                        <h3 style = {categoryHeader}>category</h3>
-                        <input
-                        style = {uploadInputs}
-                        type="text"
-                        name="postTag"
-                        value={postTag}
-                        placeholder="Art,Photography,Car design,Memes etc."
-                        onChange={this.onChange}
-                        />
-                            <p style = {uploadInputs}>
-                            <label>
-                                <input
-                                onChange={this.handleCheck} 
-                                name="checked"
-                                type="checkbox" />
-                                <span>I created the image I'm sharing
-                                </span>
-                            </label>
-                            <Popup modal trigger={<span><br/>(what is this)</span>}>
-                                <div className = ' ownership col s12 m12 l12' style = {{paddingLeft:'5%',paddingRight:'5%',paddingBottom:'5%'}}>
-                                    <img className = 'ownership' src = {Ownershipimage}/>
-                                    <img  className = 'ownership' src = {Logo} style = {{width:'75px'}}/>
-                                    <h1>Ownership</h1>
-                                    <p className = 'ownershipP'>
-                                        By checking this box your post will receive a green check that represents that the content you are contributing was created by you.  
-                                    </p>
-                                    <p  className = 'ownershipP2'>
-                                        As between you and Designerspen, you will retain ownership of all original text, images, videos, messages, comments, ratings, 
-                                        reviews and other original content you provide on or through the Site.
-                                    </p>
-                                </div>
-                            </Popup>
-                            </p>
-                            <Dropzone 
-
-                                maxFiles={3}
-                                multiple={true}
-                                canCancel={true}
-                                accept="image/png, image/gif,image/jpeg, image/jpg, image/png"
-                                onDrop={this.onDrop} accept='image/*' >
-                                {({getRootProps, getInputProps,isDragActive,isDragReject}) => (
-                                    <section>
-                                    <div className = 'dropzone' style={dropzoneStyle} {...getRootProps({ onChange: e =>  this.setState({ selectedFile: e.target.files[0],previewImage: URL.createObjectURL(e.target.files[0])}) })}>
-                                        <input  {...getInputProps()} />
-                                        <div className = 'row'>
-                                            <img style ={{display: isDragActive && !isDragReject  ? "inline-block": "none",width:'70px'}}src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/Asset%201.png?alt=media&token=855ff9bd-be14-433c-a7aa-97f70c8b6f1d"/>
-                                            <img style ={{display: isDragActive ? "none": "inline-block",width:'100px'}}src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/Add%20Image_929899.png?alt=media&token=a928b5aa-b0ee-4ba8-a59c-6bf5697dcd1a"/>
-                                            <img style ={{display: isDragReject ? "inline-block": "none",width:'70px'}}src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/Stop.png?alt=media&token=c8d96781-e668-4976-89ea-4a3213d405cb"/>
-                                        </div>
-                                        {!isDragActive && 'Click here or Drag and Drop images'}
-                                        {isDragActive && !isDragReject && "Upload"}
-                                        {isDragActive && !isDragReject && ":)"}
-                                        {isDragReject && "Welp...that file type is not accepted, sorry "}
-                                    </div>
-                                    </section>
-                                )}
-                            </Dropzone> 
-                            
-
-                            {/* <DefaultUpload doWhatever={this.onChange.bind(this,file)}></DefaultUpload> */}
-                            <Button 
-                                style = {uploadButtons}
-                                variant="outline-primary"
-                                type="submit">Submit
-                            </Button>
-                            <Button 
-                                onClick={this.onCancel}
-                                style = {cancelButtons}
-                                variant="outline-primary"
-                                type="button">
-                                Cancel
-                            </Button>
-                            
-                            <div style = {{display:"none", opacity:"0",maxWidth:"1px"}} >
-
-                            <input type="text" name="userid" value={uuid} readOnly />
-                            <input type="text" name="displayName" value={this.state.bio.data[0].username} readOnly />
-                            <input type="text" name="userPhotoUrl" value={this.state.bio.data[0].photourl} readOnly />
-                            </div>
-                        </form>
-                        
-                    </div> 
+                     
                     {/* //mapping through all the usernames in the new_tabel tabel */}
                     
                     <div style = {{display: this.state.isLoaded ? 'none' : 'inline-block'}}><h1>loading</h1></div>
@@ -507,14 +405,13 @@ class Discover extends Component {
                                     <p className = 'collect'>Collect</p>
                                 </div>
                             
-                        <div  className = "row">
-                            <div className = "col s8 m8 l8">
-                                <p>{n.description}</p>
-                               <img src = {Logo} style = {{display : n.usersubmitted === '1' ? "inline-block": "none",width:'30px',paddingLeft:'1em'}}/>
-                               <div className = 'tag' style = {{float:'left'}}><a  href={"https://www.designerspen.com/Discover/" + n.posttag} >  <p >{n.posttag}</p> </a></div>
-
-                            </div>
-                        </div>
+                                <div  className = "row">
+                                    <div className = "col s8 m8 l8">
+                                        <p>{n.description}</p>
+                                    <img src = {Logo} style = {{display : n.usersubmitted === '1' ? "inline-block": "none",width:'30px',paddingLeft:'1em'}}/>
+                                    <div className = 'tag' style = {{float:'left'}}><a  href={"https://www.designerspen.com/Discover/" + n.posttag} >  <p >{n.posttag}</p> </a></div>
+                                    </div>
+                                </div>
                         </div>
                         </div>
                     );

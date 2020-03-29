@@ -10,7 +10,7 @@ import Dropzone from 'react-dropzone'
 import Ownershipimage from '../../assets/images/ownershipimage.png'
 import { Button } from 'react-bootstrap';
 
-import Logo from '../../assets/images/ownershipimage.png'
+import Logo from '../../assets/images/Asset 1.svg'
 
 
 
@@ -65,6 +65,8 @@ class Taggedpost extends Component {
             selectedFile: '',
             isLoaded: false,
             loadPost:false,
+            isUploading:false
+
             // product: {
             //     username:'',
             //     email:'',
@@ -116,6 +118,12 @@ class Taggedpost extends Component {
             .then(() => {
         })
     }
+    
+    onCancel = (e) => {
+        this.setState({ selectedFile:[],previewImage:[],isUploading:false})
+    
+        console.log(this.state)
+        }
 
       
     
@@ -249,11 +257,12 @@ class Taggedpost extends Component {
         }
         else{
            
-              const dropzoneStyle = {
+            const dropzoneStyle = {
                 flex: 1,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
+                textAlign:'center',
                 padding: '20px',
                 borderWidth: 2,
                 borderRadius: 2,
@@ -262,8 +271,13 @@ class Taggedpost extends Component {
                 backgroundColor: '#fafafa',
                 color: '#bdbdbd',
                 outline: 'none',
-                transition: 'border .24s ease-in-out'
+                transition: 'border .24s ease-in-out',
+                width:'350px',
+                height:'500px',
+                display: this.state.isUploading ? "none": "inline-block", 
+                paddingTop:'35%'
               };
+
               const myuserPhoto = {
                 float:'left',
                 width:'25px',
@@ -329,6 +343,7 @@ class Taggedpost extends Component {
                     );
                     })}   
                 {/* Upload Zone */}
+                <div className = 'row'><h1 style = {{textAlign:'center'}}>{this.state.posttag}</h1></div>
                 <div  className = 'row' style = {{float:'left'}}> 
                 <div className = 'col s3 m3 l3 ' style = {uploadBoxshadow}>
                         <form onSubmit={this.onSubmit} action="#">
@@ -351,15 +366,15 @@ class Taggedpost extends Component {
                         onChange={this.onChange}
                         />
                         {/* Category Input */}
-                        <h3 style = {categoryHeader}>category</h3>
+                        <h3 style = {categoryHeader}>Posting to</h3>
                         <input
                         style = {uploadInputs}
                         type="text"
                         name="postTag"
-                        value={postTag}
-                        placeholder="Art,Photography,Car design,Memes etc."
+                        value={this.state.posttag}
                         onChange={this.onChange}
                         />
+
                             <p style = {uploadInputs}>
                             <label>
                                 <input

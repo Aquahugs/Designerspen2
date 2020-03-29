@@ -1,13 +1,31 @@
 import React, {Component} from 'react'
 import ProjectCard from './ProjectCard'
 import {Link} from 'react-router-dom'
-import '../../assets/stylesheets/ProjectList.css'
+import {Row,Col} from 'react-bootstrap'
+import Container from 'react-bootstrap/Container'
+import '../../assets/stylesheets/NavBar.css'
+
 
 
 const Articles = () => {
     return(
-        <div className = 'post'>
-         <div className = ' col s12 m4 card z-depth-0 project-summary'>
+        <div >
+            <div className = 'row squares' >
+                <div style = {{padding:'0'}}className = 'col s8 m8 l8'>
+                    <img style = {{width:'100%',height:'auto'}} src = 'https://place-hold.it/900x500'/>
+                    <div style = {{padding:'0'}} className='col s6 m6 l6'>
+                        <img style = {{width:'100%',height:'auto'}} src = 'https://place-hold.it/300x500'/>
+                    </div>
+                    <div style = {{padding:'0'}} className='col s6 m6 l6'>
+                        <img style = {{width:'100%',height:'auto'}} src = 'https://place-hold.it/300x500'/>
+                    </div>
+                </div>
+                <div style = {{padding:'0'}} className = 'col s4 m4 l4'>
+                    <img style = {{width:'100%',height:'auto'}} src = 'https://place-hold.it/500x700'/>
+                </div>
+            </div>  
+            
+         {/* <div className = ' col s12 m12 card z-depth-0 project-summary'>
                 <div className = 'card-content grey-text text-darken-3'>
                     <div className = 'card-image'>
                     <Link to = '/WorkFlows'><a><img src= {require('../../assets/images/Cardimage/WorkFlow.jpg')}/></a></Link>
@@ -18,7 +36,7 @@ const Articles = () => {
                 </div>
         </div>
 
-        <div className = ' col s12 m4 card z-depth-0 project-summary'>
+        <div className = ' col s12 m12 card z-depth-0 project-summary'>
                 <div className = 'card-content grey-text text-darken-3'>
                     <div className = 'card-image'>
                     <Link to = '/HoloLens2'><a><img src='https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/HoloLens.jpg?alt=media&token=d97e56bf-9447-4f52-8f37-d5b7a541a29c'/></a></Link>
@@ -30,7 +48,7 @@ const Articles = () => {
         </div>
 
 
-        <div className = ' col s12 m4 card z-depth-0 project-summary'>
+        <div className = ' col s12 m12 card z-depth-0 project-summary'>
             <div className = 'card-content grey-text text-darken-3'>
                 <div className = 'card-image '>
                 <Link to="/airpod2"> <img src="https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/Ar.jpg?alt=media&token=7f67596c-caa2-4367-9078-4493739e58d0"/></Link>
@@ -41,7 +59,7 @@ const Articles = () => {
             </div>
         </div>
 
-
+x
 
 
         <div className = ' col s12 m4 card z-depth-0 project-summary'>
@@ -75,7 +93,7 @@ const Articles = () => {
                 <p> </p>
                 <p className = "grey-text"> 2/8/2019</p>
             </div>
-        </div>
+        </div> */}
         
     </div>
     )

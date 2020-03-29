@@ -30,25 +30,25 @@ class Home extends Component {
         
         return(
                 
-            <div className ='bgcolor'>
-                <div className = ' dashboard  container ' style ={styles1}  >
-                    <div className = 'row'>
-                        <div className = ' col s12 m12 card z-depth-0 project-summary'>
-                            <div className = 'card-content grey-text text-darken-3'>
+          
+                <div   >
+                    <div>
+                        <div >
+                            {/* <div className = 'card-content grey-text text-darken-3'>
                                 <div className = 'card-image z-depth-2'>
                                 <Link to="/AiDesign"><img src={require('../../assets/images/Articles/2019/AiDesign/patternbrain.jpg')}/></Link>
                                 </div>
                                 <span className = "card-title"><h1 style = {{fontSize:'35px'}}>How AI is changing the way we create. </h1></span>
                                 <p></p>
                                 <p className = "grey-text"> 9/8/2019  </p>
-                            </div>
+                            </div> */}
                         </div> 
-                        <h2 style = {{fontSize:'16px', paddingLeft:'5%'}}>Feed</h2>
+                        
                         <Articles/>
                     </div>
                     <Footer/>
                 </div>         
-            </div>
+            
         )
     }
 }

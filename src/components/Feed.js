@@ -181,57 +181,10 @@ class Inspiration extends Component {
             
             <div style = {{padding:"5%"}}>
                 <SubNav/>     
-                <p>Tags</p>          
-                
-                
-                
+                          
                 {/* Upload Zone */}
                 <div  className = 'row'> 
-                <div className = 'col s3 m3 l3'  >
-                <h1 style = {headerStyle}>upload photo</h1>
-                <form onSubmit={this.onSubmit}>
-                {/* <div {...getRootProps({ onChange: e =>  this.setState({ selectedFile: e.target.files[0] })})}>
-                    <input {...getInputProps()} />
-                    <p>Drag 'n' drop some files here, or click to select files</p>
-                </div> */}
-                     <Dropzone 
-                     styles={dropzoneStyle}
-                      maxFiles={1}
-                      multiple={false}
-                      canCancel={true}
-                     accept="image/png, image/gif,image/jpeg, image/jpg"
-                     onDrop={this.onDrop} accept='image/*'  onDrop={acceptedFiles => console.log(acceptedFiles)}>
-                        {({getRootProps, getInputProps,isDragActive,isDragReject}) => (
-                            <section>
-                            <div {...getRootProps({ onChange: e =>  this.setState({ selectedFile: e.target.files[0] })})}>
-                                <input  {...getInputProps()} />
-                                {!isDragActive && 'Click here or Drag and Drop files'}
-                                {isDragActive && !isDragReject && "Upload"}
-                                {isDragReject && "Welp...that file type is not accepted, sorry "}
-                            </div>
-                            </section>
-                        )}
-                    </Dropzone> 
-                    {/* <DefaultUpload doWhatever={this.onChange.bind(this,file)}></DefaultUpload> */}
-                    <p>description</p>
-                    <input
-                    type="text"
-                    name="description"
-                    value={description}
-                    placeholder="Talk about it"
-                    onChange={this.onChange}
-                    />
-                        
-                    <button type="submit">Submit</button>
-                    
-                    <div style = {{display:"25px", opacity:"0",maxWidth:"1px"}}>
-
-                    <input type="text" name="userid" value={uuid} readOnly />
-                    <input type="text" name="displayName" value={displayName} readOnly />
-                    <input type="text" name="userPhotoUrl" value={userPhotoUrl} readOnly />
-                    </div>
-                 </form>
-                </div> 
+                
                     {/* //mapping through all the usernames in the new_tabel tabel */}
                     {this.state.userphotos.data.map(function (n) { 
                     return (
