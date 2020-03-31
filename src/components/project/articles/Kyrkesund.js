@@ -223,9 +223,7 @@ class Kyrkesund extends Component {
                             </h1>
                             <p style = {{ fontSize :'20px'}}> By / Mattias Gunneflo</p>
                         </div>
-                        
                     </div>
-                    
                     <div className = 'row'>
                         <div className = 'col x12 m12 l12'>
                             <img src = {cover}></img>
@@ -239,10 +237,7 @@ class Kyrkesund extends Component {
 
                     <div className ='row' >
                         <div className = 'col s2 m6 l6' style = {{paddingLeft:'15%',fontFamily:'Georgia'}} >
-                          
                             <div style = {{paddingRight:'20%'}} >
-                            
-                    
                             </div>
                         </div>
                         {/* <div className = 'col s4 m6 l6' style = {{paddingRight:'15%'}} >

@@ -46,10 +46,7 @@ const Navbar = (props) => { // 2.) brings in all the inspect properties
         <Mobile>
             <nav className = 'navbar' style={styles1}>
                 <div className = "container">
-                    <Link to ='/' className = "Logo ">
-                    <img  style = {{display:auth.uid ? "none" : "inline-block", paddingTop:'0.5%'}}src = 'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/white%20logofont.png?alt=media&token=1b17c09e-f2f2-4ee6-a232-1d3e68eba33b'/>
-                    <img  style = {{display:auth.uid ? "inline-block" : "none", paddingTop:'0.5%'}}src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Black%20logofont.png?alt=media&token=16f2a7b6-eef4-418a-b8b9-9a6cbf1e7f94'/>
-                    </Link>
+                    
                     {links} 
                 </div>
             </nav>

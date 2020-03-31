@@ -41,14 +41,22 @@ const App = (props) => {
 
     // if (!auth.uid)   return <Redirect exact to="/signup"  /> 
 
-    // if(!auth.uid){
-    //   return (
-    //       <Switch>
-    //             <Route path ='/signup' component = {SignUp} />
-    //              <Redirect to={'/signup'} />
-    //       </Switch>
-    //   );
-    // }
+    if(!auth.uid){
+      return (
+          <Switch>
+                <Route path ='/signup' component = {SignUp} />
+                 <Route path ='/KojimaProductions' component = {KojimaProductions}/>
+                 <Route path ='/sahmtesla' component = {SahmTesla}/>
+                <Route path ='/airpod2' component = {AirPod}/>
+                <Route path ='/Kyrkesund' component = {Kyrkesund}/>
+                <Route path ='/WorkFlows' component = {WorkFlows}/>
+                <Route path ='/News' component = {Home}/>'
+                <Route path ='/about' component = {About} />
+                 <Redirect to={'/signup'} />
+
+          </Switch>
+      );
+    }
 
   
     return (
