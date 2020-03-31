@@ -22,6 +22,7 @@ import WorkFlows from './components/project/articles/WorkFlows';
 import AiDesign from './components/project/articles/AiDesign';
 import ArExp from './components/project/articles/ArExp';
 import KojimaProductions from './components/project/articles/KojimaProductions';
+import Kyrkesund from './components/project/articles/Kyrkesund';
 import history from "./utils/history";
 import {connect} from 'react-redux'
 
@@ -67,6 +68,7 @@ const App = (props) => {
                 <Route path ='/submitproject' component = {SubmitProject}/>
                 <Route path ='/uploadpohoto' component = {UploadPhoto}/>
                 <Route path ='/KojimaProductions' component = {KojimaProductions}/>
+                <Route path ='/Kyrkesund' component = {Kyrkesund}/>
                 <Route path ='/hololens' component = {KojimaProductions}/>
                 <Route path ='/sahmtesla' component = {SahmTesla}/>
                 <Route path ='/airpod2' component = {AirPod}/>

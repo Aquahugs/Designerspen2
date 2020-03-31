@@ -1,0 +1,62 @@
+.centered {
+    position: absolute;
+    z-index: 999;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 40%; /* Adjust this value to move the positioned div up and down */
+    text-align: center;
+    width: 60%; /* Set the width of the positioned div */
+  }
+
+  .squares{
+    position: relative;
+    display: inline-block; /* Make the width of box same as image */
+    margin: 0 !important;
+    width:100%;
+}
+
+.centered p {
+    font-family: 'Roboto', sans-serif;
+    bottom: 20px;
+    right: 80px;
+    color: white;
+    margin: 0;
+    font-size: 1.2rem;
+    left:10px;
+}
+
+.right p {
+    font-family: 'Roboto', sans-serif;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  margin: 0;
+  font-size: 1.2rem;
+  opacity: 0.9;
+  }
+  
+
+.module {
+    background-color:black ;
+    img{
+        opacity: 0.5;
+    }
+
+    img:hover{
+        opacity: 1;
+        transition: opacity 0.3s ease;
+
+    }
+    
+  
+}
+
+.posttag {
+    font-size: 0.7rem;
+    background-color: rgba(255, 255, 255, 0.3); 
+    padding:5px;
+}
+
+

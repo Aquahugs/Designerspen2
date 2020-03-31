@@ -31,7 +31,7 @@ class Home extends Component {
         return(
                 
           
-                <div   >
+                <div style = {{backgroundColor:'black',margin:'0'}}   >
                     <div>
                         <div >
                             {/* <div className = 'card-content grey-text text-darken-3'>
