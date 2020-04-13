@@ -33,8 +33,7 @@ const SignedInLinks = (props) => {
     }
     return (
         <ul className = 'right'>
-            <li > <NavLink to ='/Feed' style = {styles1}>Feed</NavLink></li>
-            <li> <NavLink to ='/Discover' style = {styles1}>Discover</NavLink></li>
+            <li> <NavLink to ='/News' style = {styles1}>News</NavLink></li>
             <li > <a style = {styles1} onClick ={props.signOut}>Log Out</a></li>
             <li> 
                 <a href={"https://www.designerspen.com/profile/" + props.auth.uid} style = {containerPro}>

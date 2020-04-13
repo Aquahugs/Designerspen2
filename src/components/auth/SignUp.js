@@ -94,7 +94,7 @@ class SignUp extends Component {
                 <div className = 'banner'>
                      <img className = "logo" src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/logo.png?alt=media&token=e4875c11-d904-48bc-8271-cd3b5cfa8be1"/>
                     <h2>Welcome to Designerspen</h2>
-                    <p>Find currated inspiration from around the web</p>
+                    <p>Discover currated inspiration from around the web</p>
                 </div>
                 
                
@@ -129,7 +129,7 @@ class SignUp extends Component {
                 <div className = 'banner'>
                     <img className = "logo" src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/logo.png?alt=media&token=e4875c11-d904-48bc-8271-cd3b5cfa8be1"/>
                     <h2>Welcome to Designerspen</h2>
-                    <p>Find currated inspiration from around the web</p>
+                    <p>Discover currated inspiration from around the web</p>
                 </div>
                     <div className = 'input-field'>
                         <input  type ='email' id='email' placeholder = "Email" onChange={this.handleChange}/>
@@ -193,7 +193,7 @@ class SignUp extends Component {
                 <div className = 'banner'>
                      <img className = "logo" src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/logo.png?alt=media&token=e4875c11-d904-48bc-8271-cd3b5cfa8be1"/>
                     <h2>Welcome to Designerspen</h2>
-                    <p>Find currated inspiration from around the web</p>
+                    <p>Discover currated inspiration from around the web</p>
                 </div>
                 
                
@@ -228,7 +228,7 @@ class SignUp extends Component {
                 <div className = 'banner'>
                     <img className = "logo" src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/logo.png?alt=media&token=e4875c11-d904-48bc-8271-cd3b5cfa8be1"/>
                     <h2>Welcome to Designerspen</h2>
-                    <p>Find currated inspiration from around the web</p>
+                    <p>Discover currated inspiration from around the web</p>
                 </div>
                     <div className = 'input-field'>
                         <input  type ='email' id='email' placeholder = "Email" onChange={this.handleChange}/>

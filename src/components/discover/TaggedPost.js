@@ -12,7 +12,16 @@ import { Button } from 'react-bootstrap';
 
 import Logo from '../../assets/images/Asset 1.svg'
 
-
+function shuffleArray(array) {
+    let i = array.length - 1;
+    for (; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
+  }
 
 
 class Taggedpost extends Component {
@@ -44,10 +53,14 @@ class Taggedpost extends Component {
           }
         };
       };
+
+      fileObj = [];
+      fileArray = [];
     
     constructor(props){
         super(props);
         this.state= {
+            files: [null],
             items :[],
             users:[],
             description: '',
@@ -75,13 +88,54 @@ class Taggedpost extends Component {
             
         }
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.uploadMultipleFiles = this.uploadMultipleFiles.bind(this)
+        this.uploadFiles = this.uploadFiles.bind(this)
+    }
+
+    uploadMultipleFiles(e) {
+        this.fileObj.push(e.target.files)
+        for (let i = 0; i < this.fileObj[0].length; i++) {
+            this.fileArray.push(URL.createObjectURL(this.fileObj[0][i]))
+        }
+        this.setState({ files: this.fileArray })
+    }
+
+    uploadFiles(e) {
+        e.preventDefault()
+        console.log(this.state.files)
+        console.log(e)
+        const { files,posttag} = this.state;
+                
+        let formData = new FormData();
+        console.log(formData)
+
+
+        formData.append('file', files);
+        formData.append('postTag', posttag);
+       
+        const config = {
+            headers: {
+                'content-type' : 'multipart/form-data;boundary=${data._boundary}'
+            }
+        }
+        
+       
+        // fetch(`http://localhost:3001/addtags?posttag=${posttag}`)
+        axios.post('http://localhost:3001/uploadHandler', formData,config)
+            .then((result) => {
+            // access results...
+            console.log(result)
+            console.log(window.location.pathname); //yields: "/js" (where snippets run)
+            console.log(window.location.href);
+            })
     }
 
     onChange = (e) => {
         // event to update state when form inputs change
         switch (e.target.name) {
             case 'selectedFile':
-              this.setState({ selectedFile: e.target.files[0] });
+                console.log(e)
+              this.setState({ selectedFile: e.target.files });
               break;
             default:
               this.setState({ [e.target.name]: e.target.value });
@@ -90,34 +144,67 @@ class Taggedpost extends Component {
 
     onSubmit = (e) => {
         // event to submit the data to the server
-        // e.preventDefault();
+        e.preventDefault();
         console.log(e)
-        const { selectedFile,description,uuid,displayName,userPhotoUrl,postTag,checked} = this.state;
-        const id = this.state.bio.data[0].id
-    
-        
+        const { files,posttag} = this.state;
+                
         let formData = new FormData();
 
-        formData.append('description', description);
-        formData.append('file', selectedFile);
-        formData.append('userid', uuid);
-        formData.append('displayName', displayName);
-        formData.append('userPhotoUrl', userPhotoUrl);
-        formData.append('postTag', postTag);
-        formData.append('id', id);
-        formData.append('checked', checked);
+        formData.append('file', files);
+        formData.append('postTag', posttag);
+       
 
         
        
-        fetch(`http://localhost:3001/addtags?posttag=${postTag}`)
+        fetch(`http://localhost:3001/addtags?posttag=${posttag}`)
         axios.post('http://localhost:3001/uploadHandler', formData)
+        
             .then((result) => {
             // access results...
             console.log(result)
+            console.log(window.location.pathname); //yields: "/js" (where snippets run)
+            console.log(window.location.href);
             })
-            .then(() => {
-        })
     }
+    // onSubmit = (e) => {
+    //     // event to submit the data to the server
+    //     // e.preventDefault();
+    //     console.log(e)
+    //     const { file,description,uuid,displayName,userPhotoUrl,checked,posttag} = this.state;
+    //     const id = this.state.bio.data[0].id;
+
+       
+
+    
+        
+    //     let formData = new FormData();
+
+    //     formData.append('description', description);
+    //     formData.append('file', file);
+    //     formData.append('userid', uuid);
+    //     formData.append('displayName', displayName);
+    //     formData.append('userPhotoUrl', userPhotoUrl);
+    //     formData.append('postTag', posttag);
+    //     formData.append('id', id);
+    //     formData.append('checked', checked);
+
+        
+       
+    //     fetch(`http://localhost:3001/addtags?posttag=${posttag}`)
+    //     axios.post('http://localhost:3001/uploadHandler', formData)
+        
+        
+    //         .then((result) => {
+    //         // access results...
+             
+    //         console.log(result)
+    //         console.log(window.location.pathname); //yields: "/js" (where snippets run)
+    //         console.log(window.location.href);
+    //         })
+
+           
+    // }
+    
     
     onCancel = (e) => {
         this.setState({ selectedFile:[],previewImage:[],isUploading:false})
@@ -149,7 +236,7 @@ class Taggedpost extends Component {
              
             fetch(`http://localhost:3001/Discover/:posttag?posttag=${(posttag)}&limit=${limit}`),
             fetch('http://localhost:3001/tags'),
-            fetch(`http://localhost:3001/collection/:uuid?uuid=${(uuid)}`),
+            fetch(`https://designerspendroplet.getdpsvapi.com/collection/:uuid?uuid=${(uuid)}`),
             fetch(`https://designerspendroplet.getdpsvapi.com/bio/:uuid?uuid=${(uuid)}`,
              
               {
@@ -203,7 +290,7 @@ class Taggedpost extends Component {
         this.setState({ selectedFile: e[0],previewImage: URL.createObjectURL(e[0]),isUploading:true})
         console.log(e.file)
         console.log(e.target)
-        console.log(e[0])
+        console.log(e)
         console.log(this.state)
         }
     
@@ -221,23 +308,25 @@ class Taggedpost extends Component {
             console.log(this.state)
           }
     
-      loadmore = (event) => {
-        const {posttag} = this.state
-
-        const {limit} = this.state;
-        fetch(`https://designerspendroplet.getdpsvapi.com/Discover/:posttag?posttag=${(posttag)}&limit=${limit}`)
-        .then((res1) => Promise.all([res1.json()]))
-        .then(([data1]) => this.setState({ 
-            userphotos:data1,
-            limit:limit + 50
-           
-        }));
-        console.log(this.state)
-     } 
+          loadmore = (event) => {
+            const {posttag} = this.state
+    
+            const {limit} = this.state;
+            fetch(`http://localhost:3001/Discover/:posttag?posttag=${(posttag)}&limit=${limit}`)
+            .then((res1) => Promise.all([res1.json()]))
+            .then(([data1]) => this.setState({ 
+                userphotos:data1,
+                limit:limit + 50
+               
+            }));
+            console.log(this.state)
+            console.log(limit)
+         } 
      isBottom(el) {
         return el.getBoundingClientRect().bottom <= window.innerHeight;
       }
     
+      
 
     render(){
         var { isLoaded,items} = this.state;
@@ -251,6 +340,7 @@ class Taggedpost extends Component {
  
           console.log(this.state)
           console.log(this.props)
+          
           
         if (!isLoaded) {
             return <div>Loading...</div>
@@ -322,8 +412,10 @@ class Taggedpost extends Component {
               const uploadBoxshadow = {
                 height:'100%',
                 boxShadow: this.state.isUploading ? "-2px 4px 16px 0px rgba(0,0,0,0.19)": "none"
-            }
 
+                
+            }
+            const shuffledPosts = shuffleArray(this.state.userphotos.data);
 
         return(   
             
@@ -402,13 +494,13 @@ class Taggedpost extends Component {
                             <Dropzone 
 
                                 maxFiles={3}
-                                multiple={true}
+                                multiple
                                 canCancel={true}
                                 accept="image/png, image/gif,image/jpeg, image/jpg, image/png"
                                 onDrop={this.onDrop} accept='image/*' >
                                 {({getRootProps, getInputProps,isDragActive,isDragReject}) => (
                                     <section>
-                                    <div className = 'dropzone' style={dropzoneStyle} {...getRootProps({ onChange: e =>  this.setState({ selectedFile: e.target.files[0],previewImage: URL.createObjectURL(e.target.files[0])}) })}>
+                                    <div className = 'dropzone' style={dropzoneStyle} {...getRootProps({ onChange: e =>  this.setState({ selectedFile: e,previewImage: URL.createObjectURL(e.target.files[0])})  })}>
                                         <input  {...getInputProps()} />
                                         <div className = 'row'>
                                             <img style ={{display: isDragActive && !isDragReject  ? "inline-block": "none",width:'70px'}}src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/Asset%201.png?alt=media&token=855ff9bd-be14-433c-a7aa-97f70c8b6f1d"/>
@@ -446,11 +538,32 @@ class Taggedpost extends Component {
                             <input type="text" name="userPhotoUrl" value={this.state.userPhotoUrl} readOnly />
                             </div>
                         </form>
+
+                        {/* <form action = "http://localhost:3001/uploadHandler" enctype="multipart/form-data" method="POST">
+                        <div className="form-group multi-preview">
+                            {(this.fileArray || []).map(url => (
+                                <img src={url} alt="..." />
+                            ))}
+                        </div>
+
+                        <div className="form-group">
+                            <input name ='file' type="file" className="form-control" onChange={this.uploadMultipleFiles} multiple />
+                            <input type = "submit" value = "upload photo" />
+                            <input
+                        type="text"
+                        name="postTag"
+                        value={this.state.posttag}
+                        onChange={this.onChange}
+                        />
+                        </div>
+                        
+                        {/* <button type="button" className="btn btn-danger btn-block" onClick={this.uploadFiles}>Upload</button> */}
+                    {/* </form >  */}
                         
                     </div> 
                  
                     {/* //mapping through all the usernames in the new_tabel tabel */}
-                    {this.state.userphotos.data.slice(0).map((n,index) => { 
+                    {shuffledPosts.slice(0).map((n,index) => { 
                      
                     
                      return (

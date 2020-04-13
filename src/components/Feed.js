@@ -60,7 +60,7 @@ class Inspiration extends Component {
 
         
 
-        axios.post('http://localhost:3001/uploadHandler', formData)
+        axios.post('https://designerspendroplet.getdpsvapi.com/uploadHandler', formData)
         
             .then((result) => {
             // access results...
@@ -86,9 +86,9 @@ class Inspiration extends Component {
         //      }
         
          Promise.all([
-             fetch('http://localhost:3001/userphotos'),
+             fetch('https://designerspendroplet.getdpsvapi.com/userphotos'),
              fetch('https://api.tumblr.com/v2/blog/designerspen.tumblr.com/posts?api_key=TAdFdj2jjYcaIm47BF3JSMsmcrdtiD1qXCWinlXakycsTC0l9y&limit=50&offset=52&format=text'),
-             fetch(`http://localhost:3001/adduser?uuid=${this.props.auth.uid}&username=${this.props.auth.displayName}&photourl='${this.props.auth.photoURL}'&bio=''&email=''`)
+             fetch(`https://designerspendroplet.getdpsvapi.com/adduser?uuid=${this.props.auth.uid}&username=${this.props.auth.displayName}&photourl='${this.props.auth.photoURL}'&bio=''&email=''`)
 
          ])
          .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
