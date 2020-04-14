@@ -11,6 +11,7 @@ import Ownershipimage from '../../assets/images/ownershipimage.png'
 import { Button } from 'react-bootstrap';
 
 import Logo from '../../assets/images/Asset 1.svg'
+import Upload from '../../assets/images/upload.jpg'
 
 function shuffleArray(array) {
     let i = array.length - 1;
@@ -78,6 +79,7 @@ class Taggedpost extends Component {
             selectedFile: '',
             isLoaded: false,
             loadPost:false,
+            isAuth:true,
             isUploading:false
 
             // product: {
@@ -121,7 +123,7 @@ class Taggedpost extends Component {
         
        
         // fetch(`http://localhost:3001/addtags?posttag=${posttag}`)
-        axios.post('http://localhost:3001/uploadHandler', formData,config)
+        axios.post('https://designerspendroplet.getdpsvapi.com/uploadHandler', formData,config)
             .then((result) => {
             // access results...
             console.log(result)
@@ -142,68 +144,70 @@ class Taggedpost extends Component {
           }
     }
 
-    onSubmit = (e) => {
-        // event to submit the data to the server
-        e.preventDefault();
-        console.log(e)
-        const { files,posttag} = this.state;
-                
-        let formData = new FormData();
-
-        formData.append('file', files);
-        formData.append('postTag', posttag);
-       
-
-        
-       
-        fetch(`http://localhost:3001/addtags?posttag=${posttag}`)
-        axios.post('http://localhost:3001/uploadHandler', formData)
-        
-            .then((result) => {
-            // access results...
-            console.log(result)
-            console.log(window.location.pathname); //yields: "/js" (where snippets run)
-            console.log(window.location.href);
-            })
-    }
+    //mass uploader
     // onSubmit = (e) => {
     //     // event to submit the data to the server
-    //     // e.preventDefault();
+    //     e.preventDefault();
     //     console.log(e)
-    //     const { file,description,uuid,displayName,userPhotoUrl,checked,posttag} = this.state;
-    //     const id = this.state.bio.data[0].id;
-
-       
-
-    
-        
+    //     const { files,posttag} = this.state;
+                
     //     let formData = new FormData();
 
-    //     formData.append('description', description);
-    //     formData.append('file', file);
-    //     formData.append('userid', uuid);
-    //     formData.append('displayName', displayName);
-    //     formData.append('userPhotoUrl', userPhotoUrl);
+    //     formData.append('file', files);
     //     formData.append('postTag', posttag);
-    //     formData.append('id', id);
-    //     formData.append('checked', checked);
+       
 
         
        
     //     fetch(`http://localhost:3001/addtags?posttag=${posttag}`)
     //     axios.post('http://localhost:3001/uploadHandler', formData)
         
-        
     //         .then((result) => {
     //         // access results...
-             
     //         console.log(result)
     //         console.log(window.location.pathname); //yields: "/js" (where snippets run)
     //         console.log(window.location.href);
     //         })
+    // }
+
+    onSubmit = (e) => {
+        // event to submit the data to the server
+        // e.preventDefault();
+        console.log(e)
+        const { file,description,uuid,displayName,userPhotoUrl,checked,posttag} = this.state;
+        const id = this.state.bio.data[0].id;
+
+       
+
+    
+        
+        let formData = new FormData();
+
+        formData.append('description', description);
+        formData.append('file', file);
+        formData.append('userid', uuid);
+        formData.append('displayName', displayName);
+        formData.append('userPhotoUrl', userPhotoUrl);
+        formData.append('postTag', posttag);
+        formData.append('id', id);
+        formData.append('checked', checked);
+
+        
+       
+        fetch(`https://designerspendroplet.getdpsvapi.com/addtags?posttag=${posttag}`)
+        axios.post('https://designerspendroplet.getdpsvapi.com/uploadHandler', formData)
+        
+        
+            .then((result) => {
+            // access results...
+             
+            console.log(result)
+            console.log(window.location.pathname); //yields: "/js" (where snippets run)
+            console.log(window.location.href);
+            })
 
            
-    // }
+    }
     
     
     onCancel = (e) => {
@@ -217,6 +221,11 @@ class Taggedpost extends Component {
 
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll)
+        if (this.state.displayName = 'undefined') {
+            console.log('You are not authenticated')
+            this.setState({isAuth : false})
+        }
+
         //  window.onscroll = function() {
         //      if(window.pageYOffset >= 1000) {
         //           console.log("poopty scoop")
@@ -231,11 +240,12 @@ class Taggedpost extends Component {
         const {limit} = this.state;
         const {uuid} = this.state
 
+       
 
          Promise.all([
              
-            fetch(`http://localhost:3001/Discover/:posttag?posttag=${(posttag)}&limit=${limit}`),
-            fetch('http://localhost:3001/tags'),
+            fetch(`https://designerspendroplet.getdpsvapi.com/Discover/:posttag?posttag=${(posttag)}&limit=${limit}`),
+            fetch('https://designerspendroplet.getdpsvapi.com/tags'),
             fetch(`https://designerspendroplet.getdpsvapi.com/collection/:uuid?uuid=${(uuid)}`),
             fetch(`https://designerspendroplet.getdpsvapi.com/bio/:uuid?uuid=${(uuid)}`,
              
@@ -254,7 +264,9 @@ class Taggedpost extends Component {
              limit:limit + 50,
              collection:data3,
              bio:data4
-         }));
+         }))
+         .then(  )
+         
     }
 
    
@@ -312,7 +324,7 @@ class Taggedpost extends Component {
             const {posttag} = this.state
     
             const {limit} = this.state;
-            fetch(`http://localhost:3001/Discover/:posttag?posttag=${(posttag)}&limit=${limit}`)
+            fetch(`https://designerspendroplet.getdpsvapi.com/Discover/:posttag?posttag=${(posttag)}&limit=${limit}`)
             .then((res1) => Promise.all([res1.json()]))
             .then(([data1]) => this.setState({ 
                 userphotos:data1,
@@ -438,7 +450,12 @@ class Taggedpost extends Component {
                 <div className = 'row'><h1 style = {{textAlign:'center'}}>{this.state.posttag}</h1></div>
                 <div  className = 'row' style = {{float:'left'}}> 
                 <div className = 'col s3 m3 l3 ' style = {uploadBoxshadow}>
-                        <form onSubmit={this.onSubmit} action="#">
+                        
+                <a  href={"https://www.designerspen.com/signup/"}>
+                    <p style = {{color:'#5b5b5b'}}>Upload Files</p>
+                    <img  class = 'uploadbox'style ={{display: this.state.isAuth ? "none": "inline-block"}} src = {Upload}/> 
+                 </a>
+                        <form onSubmit={this.onSubmit} action="#" style ={{display: this.state.isAuth ? "inline-block": "none"}}>
                         <div style = {uploadInputs}>
                             <img src={this.state.previewImage}/>
                             <div  className = 'row'>
