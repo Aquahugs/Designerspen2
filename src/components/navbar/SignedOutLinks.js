@@ -20,7 +20,7 @@ const SignedOutLinks = () => {
             <li> <NavLink  style = {{color:'#0E0E0C'}} to ='/Feed'>Feed</NavLink></li>
             <li> <NavLink  style = {{color:'#0E0E0C'}} to ='/Discover'>Discover</NavLink></li>
             <li> <NavLink  style = {{color:'#0E0E0C'}} to ='/News'>News</NavLink></li>
-            <li> <NavLink style = {{color:'#0E0E0C'}} to ='/signup'>Signup</NavLink></li>
+            <li> <NavLink style = {{color:'#0E0E0C'}} to ='/signup'>Signup/Login</NavLink></li>
             
         </ul>
     )

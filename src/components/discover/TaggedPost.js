@@ -79,8 +79,9 @@ class Taggedpost extends Component {
             selectedFile: '',
             isLoaded: false,
             loadPost:false,
-            isAuth:true,
-            isUploading:false
+            isAuth:false,
+            isUploading:false,
+            dookie: this.props.auth.isEmpty
 
             // product: {
             //     username:'',
@@ -221,10 +222,7 @@ class Taggedpost extends Component {
 
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll)
-        if (this.state.displayName = 'undefined') {
-            console.log('You are not authenticated')
-            this.setState({isAuth : false})
-        }
+       
 
         //  window.onscroll = function() {
         //      if(window.pageYOffset >= 1000) {
@@ -352,6 +350,7 @@ class Taggedpost extends Component {
  
           console.log(this.state)
           console.log(this.props)
+          console.log(this.props.auth.isEmpty)
           
           
         if (!isLoaded) {
@@ -453,9 +452,9 @@ class Taggedpost extends Component {
                         
                 <a  href={"https://www.designerspen.com/signup/"}>
                     <p style = {{color:'#5b5b5b'}}>Upload Files</p>
-                    <img  class = 'uploadbox'style ={{display: this.state.isAuth ? "none": "inline-block"}} src = {Upload}/> 
+                    <img  class = 'uploadbox'style ={{display: this.props.auth.isEmpty ? "inline-block": "none"}} src = {Upload}/> 
                  </a>
-                        <form onSubmit={this.onSubmit} action="#" style ={{display: this.state.isAuth ? "inline-block": "none"}}>
+                        <form onSubmit={this.onSubmit} action="#" style ={{display: this.props.auth.isEmpty  ? "none": "inline-block"}}>
                         <div style = {uploadInputs}>
                             <img src={this.state.previewImage}/>
                             <div  className = 'row'>

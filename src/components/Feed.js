@@ -193,7 +193,7 @@ class Inspiration extends Component {
                             <div className = "row"> 
                                 <div className = "col s12 m12 l12">
                                     <div style = {{float:'left'}}><img  style = {{maxWidth:"25px"}} src = {n.userphotourl}/></div> 
-                                    <div style = {{float:'left'}}><a  href={"http://localhost:3000/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
+                                    <div style = {{float:'left'}}><a  href={"https://www.designerspen.com/users/" + n.uuid} > <p >{n.displayname}</p> </a></div>
                                 </div>
                             </div>
                         <p>{n.description}</p>  

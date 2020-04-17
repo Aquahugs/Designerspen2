@@ -374,7 +374,7 @@ class Discover extends Component {
                                 </div>
                                 <div className = 'col s4 m4 l4'>
                                 <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
-                                    <a href={"https://www.designerspen.com/users/" + n.uuid} > <p>{n.displayname}</p> </a>
+                                    <a href={"https://www.designerspen.com/users/" + n.uuid}> <p>{n.displayname}</p> </a>
                                     <p>{n.description}</p>
                                 </div>
                             </Popup>
