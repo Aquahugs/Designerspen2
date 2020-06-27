@@ -108,7 +108,7 @@ class Inspiration extends Component {
 
       handleSubmit(event){ 
         event.preventDefault();
-        fetch('http://localhost:3001/users/add', {
+        fetch('https://designerspendroplet.getdpsvapi.com/users/add', {
          method: 'post',
          headers: {'Content-Type':'application/json'},
          body: JSON.stringify({
@@ -121,7 +121,7 @@ class Inspiration extends Component {
 
        addProduct = _ => {
             const {product} = this.state;
-            fetch(`http://localhost:3001/users/add?username=${product.name}&email=${product.email}&password=${product.password}`)
+            fetch(`https://designerspendroplet.getdpsvapi.com/users/add?username=${product.name}&email=${product.email}&password=${product.password}`)
             .then(console.log("this worked stuff submitted"))
             .catch (err => console.err(err))
        }
@@ -193,7 +193,7 @@ class Inspiration extends Component {
                             <div className = "row"> 
                                 <div className = "col s12 m12 l12">
                                     <div style = {{float:'left'}}><img  style = {{maxWidth:"25px"}} src = {n.userphotourl}/></div> 
-                                    <div style = {{float:'left'}}><a  href={"https://www.designerspen.com/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
+                                    <div style = {{float:'left'}}><a  href={"https://designerspen.com/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
                                 </div>
                             </div>
                         <p>{n.description}</p>  

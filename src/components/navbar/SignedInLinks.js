@@ -36,11 +36,11 @@ const SignedInLinks = (props) => {
             <li> <NavLink to ='/News' style = {styles1}>News</NavLink></li>
             <li > <a style = {styles1} onClick ={props.signOut}>Log Out</a></li>
             <li> 
-                <a href={"https://www.designerspen.com/profile/" + props.auth.uid} style = {containerPro}>
+                <a href={"https://designerspen.com/profile/" + props.auth.uid} style = {containerPro}>
                 <img src = {props.auth.photoURL} style = {profileimg}/>
                 </a>
             </li>
-            <li><a href={"https://www.designerspen.com/profile/" + props.auth.uid} style = {styles2}>{props.auth.displayName} {props.profile.displayName}</a></li>
+            <li><a href={"https://designerspen.com/profile/" + props.auth.uid} style = {styles2}>{props.auth.displayName} {props.profile.displayName}</a></li>
 
            
         </ul>

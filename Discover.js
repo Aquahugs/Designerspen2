@@ -350,7 +350,7 @@ class Discover extends Component {
                 {this.state.tags.data.map(function (n) { 
                     return ( //post tags 
                         <div  key={n}>
-                            <a  href={"https://www.designerspen.com/Discover/" + n.posttag} > 
+                            <a  href={"https://designerspendroplet.getdpsvapi.com/Discover/" + n.posttag} > 
                                 <ul style = {{display:'inline'}}>
                                     <li style = {{display:'inline',float:'left',padding:'1%'}} >{n.posttag}</li>
                                 </ul>
@@ -479,7 +479,7 @@ class Discover extends Component {
                                 </div>
                                 <div className = 'col s4 m4 l4'>
                                 <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
-                                    <a href={"https://www.designerspen.com/users/" + n.uuid} > <p>{n.displayname}</p> </a>
+                                    <a href={"https://designerspendroplet.getdpsvapi.com/users/" + n.uuid} > <p>{n.displayname}</p> </a>
                                     <p>{n.description}</p>
                                 </div>
                             </Popup>
@@ -487,7 +487,7 @@ class Discover extends Component {
                             <div   style = {{backgroundColor:'white',paddingTop:'2%'}} className = "row dis"> 
                                 <div  style = {{display: n.displayname === "undefined" ? "none": "inline-block"}} className = "col s6 m6 l6">
                                     <div style = {{float:'left'}}><img  style = {{maxWidth:"25px"}} src = {n.userphotourl}/></div> 
-                                    <div style = {{float:'left'}}><a  href={"https://www.designerspen.com/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
+                                    <div style = {{float:'left'}}><a  href={"https://designerspendroplet.getdpsvapi.com/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
                                 </div>
                                 <div className = "col s6 m6 l6">
 
@@ -516,7 +516,7 @@ class Discover extends Component {
                             <div className = "col s8 m8 l8">
                                 <p>{n.description}</p>
                                <img src = {Logo} style = {{display : n.usersubmitted === '1' ? "inline-block": "none",width:'30px',paddingLeft:'1em'}}/>
-                               <div className = 'tag' style = {{float:'left'}}><a  href={"https://www.designerspen.com/Discover/" + n.posttag} >  <p >{n.posttag}</p> </a></div>
+                               <div className = 'tag' style = {{float:'left'}}><a  href={"https://designerspendroplet.getdpsvapi.com/Discover/" + n.posttag} >  <p >{n.posttag}</p> </a></div>
 
                             </div>
                         </div>

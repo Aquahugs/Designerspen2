@@ -1,0 +1,62 @@
+# Query: https://designerspendroplet.getdpsvapi.com
+
+39 results - 10 files
+
+Discover.js:
+  38:               fetch(`http://localhost:3000/Discover/collectpost?uuid=${uuid}&post_id=${collectedimage}`)
+  49:                 fetch(`http://localhost:3000/Discover/removecollectpost?uuid=${uuid}&post_id=${collectedimage}`)
+  141:         fetch(`http://localhost:3000/Discover/addtags?posttag=${postTag}`)
+  142:         axios.post('http://localhost:3000/Discover/uploadHandler', formData)
+  161:              fetch('http://localhost:3000/Discover/Discover'), 
+  162:              fetch('http://localhost:3000/Discover/tags'),
+  163:              fetch(`http://localhost:3000/Discover/bio/:uuid?uuid=${(uuid)}`,
+  169:             fetch(`http://localhost:3000/Discover/collection/:uuid?uuid=${(uuid)}`)
+  189:     fetch(`http://localhost:3000/Discover/collectpost?uuid=${uuid}&post_id=${collectedimage}`)
+  196:         fetch(`http://localhost:3000/Discover/removecollectpost?uuid=${uuid}&post_id=${collectedimage}`)
+  238:         fetch(`http://localhost:3000/Discover/Discovermore?limit=${limit}`)
+
+src\components\DefaultUpload.js:
+  18:             postUrl: 'http://localhost:3000/Discover/'
+
+src\components\Discover.js:
+  34:               fetch(`http://localhost:3000/Discover/collectpost?uuid=${uuid}&post_id=${collectedimage}`)
+  45:                 fetch(`http://localhost:3000/Discover/removecollectpost?uuid=${uuid}&post_id=${collectedimage}`)
+  134:         fetch(`http://localhost:3000/Discover/addtags?posttag=${postTag}`)
+  135:         axios.post('http://localhost:3000/Discover/uploadHandler', formData)
+  154:              fetch('http://localhost:3000/Discover/Discover'), 
+  155:              fetch('http://localhost:3000/Discover/tags'),
+  156:                 fetch(`http://localhost:3000/Discover/bio/:uuid?uuid=${(uuid)}`,
+  162:             fetch(`http://localhost:3000/Discover/collection/:uuid?uuid=${(uuid)}`)
+  182:     fetch(`http://localhost:3000/Discover/collectpost?uuid=${uuid}&post_id=${collectedimage}`)
+  189:         fetch(`http://localhost:3000/Discover/removecollectpost?uuid=${uuid}&post_id=${collectedimage}`)
+  231:         fetch(`http://localhost:3000/Discover/Discovermore?limit=${limit}`)
+  441:                             <a  href={"http://localhost:3000/Discover/Discover/" + n.posttag} > 
+  531:                             <a  href={"http://localhost:3000/Discover/Discover/" + n.posttag} > 
+
+src\components\Feed.js:
+  63:         axios.post('http://localhost:3000/Discover/uploadHandler', formData)
+  89:              fetch('http://localhost:3000/Discover/userphotos'),
+  91:              fetch(`http://localhost:3000/Discover/adduser?uuid=${this.props.auth.uid}&username=${this.props.auth.displayName}&photourl='${this.props.auth.photoURL}'&bio=''&email=''`)
+
+src\components\PostDetail.js:
+  33:         fetch(`http://localhost:3000/Discover/postdetail/:Id?Id=${(Id)}`, {
+
+src\components\auth\SignIn.js:
+  22:                 fetch(`http://localhost:3000/Discover/adduser?uuid=${e.user.uid}&username=${e.user.displayName}&photourl=''&bio=''&email=${e.user.email}`)
+
+src\components\auth\SignUp.js:
+  36:                 fetch(`http://localhost:3000/Discover/adduser?uuid=${e.user.uid}&username=${e.user.displayName}&photourl=''&bio=''&email=${e.user.email}`)
+
+src\components\profile\MyProfile.js:
+  40:             fetch(`http://localhost:3000/Discover/profileimages/:uuid?uuid=${(uuid)}`, {
+  44:             fetch(`http://localhost:3000/Discover/collection/:uuid?uuid=${(uuid)}`, {
+  48:             fetch(`http://localhost:3000/Discover/bio/:uuid?uuid=${(uuid)}`, {
+  77:         fetch(`http://localhost:3000/Discover/editbio?bio=${newbio}&uuid=${this.props.match.params.uuid}`)
+  107:         axios.post('http://localhost:3000/Discover/uploadProfilePhoto', formData)
+
+src\components\profile\Tabs.js:
+  63:                   fetch('http://localhost:3000/Discover/profile/delete', {
+  108:             fetch(`http://localhost:3000/Discover/removecollectpost?uuid=${n.uuid}&post_id=${n.post_id}`)
+
+src\store\actions\authActions.js:
+  52:            fetch(`http://localhost:3000/Discover/adduser?uuid=${resp.user.uid}&username=${resp.user.displayName}&photourl=''&bio=''&email=${resp.user.email}`)

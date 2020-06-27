@@ -438,7 +438,7 @@ class Discover extends Component {
                 {this.state.tags.data.map(function (n) { 
                     return ( //post tags 
                         <div  key={n}>
-                            <a  href={"https://designerspendroplet.getdpsvapi.com/Discover/" + n.posttag} > 
+                            <a  href={"https://www.designerspen.com/Discover/Discover/" + n.posttag} > 
                                 <ul style = {{display:'inline'}}>
                                     <li style = {{display:'inline',float:'left',padding:'1%'}} >{n.posttag}</li>
                                 </ul>
@@ -528,7 +528,7 @@ class Discover extends Component {
                 {this.state.tags.data.map(function (n) { 
                     return ( //post tags 
                         <div  key={n}>
-                            <a  href={"https://designerspendroplet.getdpsvapi.com/Discover/" + n.posttag} > 
+                            <a  href={"https://www.designerspen.com/Discover/" + n.posttag} > 
                                 <ul style = {{display:'inline'}}>
                                     <li style = {{display:'inline',float:'left',padding:'1%'}} >{n.posttag}</li>
                                 </ul>

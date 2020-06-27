@@ -37,7 +37,7 @@ class Taggedpost extends Component {
               break;
             case 'success':
               NotificationManager.success('Success ', 'Image was added to your collection');
-              fetch(`http://localhost:3001/collectpost?uuid=${uuid}&post_id=${collectedimage}`)
+              fetch(`https://designerspendroplet.getdpsvapi.com/collectpost?uuid=${uuid}&post_id=${collectedimage}`)
               .then(console.log("this worked stuff submitted"))
               .catch (err => console.err(err))
               break;
@@ -124,7 +124,7 @@ class Taggedpost extends Component {
         }
         
        
-        // fetch(`http://localhost:3001/addtags?posttag=${posttag}`)
+        // fetch(`https://designerspendroplet.getdpsvapi.com/addtags?posttag=${posttag}`)
         axios.post('https://designerspendroplet.getdpsvapi.com/uploadHandler', formData,config)
             .then((result) => {
             // access results...
@@ -161,8 +161,8 @@ class Taggedpost extends Component {
 
         
        
-    //     fetch(`http://localhost:3001/addtags?posttag=${posttag}`)
-    //     axios.post('http://localhost:3001/uploadHandler', formData)
+    //     fetch(`https://designerspendroplet.getdpsvapi.com/addtags?posttag=${posttag}`)
+    //     axios.post('https://designerspendroplet.getdpsvapi.com/uploadHandler', formData)
         
     //         .then((result) => {
     //         // access results...
@@ -435,22 +435,26 @@ class Taggedpost extends Component {
                 <Desktop>
                 <NotificationContainer/>
                 <BottomScrollListener onBottom={this.loadmore} />
-                <SubNav/>     
+                <SubNav/>    
+                <h2 style = {{fontSize:'14px',margin:'0',paddingLeft:'1%'}}>Archives</h2> 
                 {this.state.tags.data.map(function (n) { 
                     return ( //post tags 
+                        
                         <div  key={n}>
                             <a  href={"https://www.designerspen.com/Discover/" + n.posttag} > 
                                 <ul style = {{display:'inline'}}>
-                                    <li style = {{display:'inline',float:'left',padding:'1%'}} >{n.posttag}</li>
+                                    <li style = {{display:'inline',float:'left',paddingLeft:'1%'}} >{n.posttag}</li>
                                 </ul>
                             </a>
                         </div>  
                     );
                     })}   
+
+                    
                 {/* Upload Zone */}
-                <div className = 'row'><h1 style = {{textAlign:'center'}}>{this.state.posttag}</h1></div>
+                <div className = 'row' ><h1 style = {{textAlign:'cnter'}}>{this.state.posttag}</h1></div>
                 <div  className = 'row' style = {{float:'left'}}> 
-                <div className = 'col s3 m3 l3 ' style = {uploadBoxshadow}>
+                {/* <div className = 'col s3 m3 l3 ' style = {uploadBoxshadow}>
                         
                 <a  href={"https://www.designerspen.com/signup/"}>
                     <p style = {{color:'#5b5b5b'}}>Upload Files</p>
@@ -466,16 +470,16 @@ class Taggedpost extends Component {
                                 </div>
                             </div>
                         </div>
-                        {/* Description input */}
+                         Description input 
                         <input
-                        style = {uploadInputs}
-                        type="text"
-                        name="description"
-                        value={description}
-                        placeholder="Add a description,if you'd like"
-                        onChange={this.onChange}
+                            style = {uploadInputs}
+                            type="text"
+                            name="description"
+                            value={description}
+                            placeholder="Add a description,if you'd like"
+                            onChange={this.onChange}
                         />
-                        {/* Category Input */}
+                         Category Input 
                         <h3 style = {categoryHeader}>Posting to</h3>
                         <input
                         style = {uploadInputs}
@@ -484,7 +488,6 @@ class Taggedpost extends Component {
                         value={this.state.posttag}
                         onChange={this.onChange}
                         />
-
                             <p style = {uploadInputs}>
                             <label>
                                 <input
@@ -494,6 +497,8 @@ class Taggedpost extends Component {
                                 <span>I created the image I'm sharing
                                 </span>
                             </label>
+                              Upload Zone 
+
                             <Popup modal trigger={<span><br/>(what is this)</span>}>
                                 <div className = ' ownership col s12 m12 l12' style = {{paddingLeft:'5%',paddingRight:'5%',paddingBottom:'5%'}}>
                                     <img className = 'ownership' src = {Ownershipimage}/>
@@ -535,7 +540,7 @@ class Taggedpost extends Component {
                             </Dropzone> 
                             
 
-                            {/* <DefaultUpload doWhatever={this.onChange.bind(this,file)}></DefaultUpload> */}
+                            <DefaultUpload doWhatever={this.onChange.bind(this,file)}></DefaultUpload> *
                             <Button 
                                 style = {uploadButtons}
                                 variant="outline-primary"
@@ -557,7 +562,7 @@ class Taggedpost extends Component {
                             </div>
                         </form>
 
-                        {/* <form action = "http://localhost:3001/uploadHandler" enctype="multipart/form-data" method="POST">
+                        {/* <form action = "https://designerspendroplet.getdpsvapi.com/uploadHandler" enctype="multipart/form-data" method="POST">
                         <div className="form-group multi-preview">
                             {(this.fileArray || []).map(url => (
                                 <img src={url} alt="..." />
@@ -576,9 +581,9 @@ class Taggedpost extends Component {
                         </div>
                         
                         {/* <button type="button" className="btn btn-danger btn-block" onClick={this.uploadFiles}>Upload</button> */}
-                    {/* </form >  */}
+                    {/* </form >  
                         
-                    </div> 
+                    </div>  */}
                  
                     {/* //mapping through all the usernames in the new_tabel tabel */}
                     {shuffledPosts.slice(0).map((n,index) => { 
@@ -592,7 +597,7 @@ class Taggedpost extends Component {
                                  </div>
                                  <div className = 'col s4 m4 l4'>
                                  <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
-                                     <a href={"https://www.designerspen.com/users/" + n.uuid} > <p>{n.displayname}</p> </a>
+                                     <a href={"http://localhost:3000/profile/profile/" + n.uuid} > <p>{n.displayname}</p> </a>
                                      <p>{n.description}</p>
                                  </div>
                              </Popup>
@@ -600,7 +605,7 @@ class Taggedpost extends Component {
                                 <div   style = {{backgroundColor:'white',paddingTop:'2%'}} className = "row dis"> 
                                  <div  style = {{display: n.displayname === "undefined" ? "none": "inline-block"}} className = "col s6 m6 l6">
                                      <div style = {{float:'left'}}><img  style = {{maxWidth:"25px"}} src = {n.userphotourl}/></div> 
-                                     <div style = {{float:'left'}}><a  href={"https://www.designerspen.com/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
+                                     <div style = {{float:'left'}}><a  href={"http://localhost:3000/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
                                  </div>
                                  <div className = "col s6 m6 l6">
                                      {/* REMOVE BUTTON */}
@@ -641,22 +646,26 @@ class Taggedpost extends Component {
                 <Tablet>
                 <NotificationContainer/>
                 <BottomScrollListener onBottom={this.loadmore} />
-                <SubNav/>     
+                <SubNav/>    
+                <h2 style = {{fontSize:'14px',margin:'0',paddingLeft:'1%'}}>Archives</h2> 
                 {this.state.tags.data.map(function (n) { 
                     return ( //post tags 
+                        
                         <div  key={n}>
                             <a  href={"https://www.designerspen.com/Discover/" + n.posttag} > 
                                 <ul style = {{display:'inline'}}>
-                                    <li style = {{display:'inline',float:'left',padding:'1%'}} >{n.posttag}</li>
+                                    <li style = {{display:'inline',float:'left',paddingLeft:'1%'}} >{n.posttag}</li>
                                 </ul>
                             </a>
                         </div>  
                     );
                     })}   
+
+                    
                 {/* Upload Zone */}
-                <div className = 'row'><h1 style = {{textAlign:'center'}}>{this.state.posttag}</h1></div>
+                <div className = 'row' ><h1 style = {{textAlign:'cnter'}}>{this.state.posttag}</h1></div>
                 <div  className = 'row' style = {{float:'left'}}> 
-                <div className = 'col s3 m3 l3 ' style = {uploadBoxshadow}>
+                {/* <div className = 'col s3 m3 l3 ' style = {uploadBoxshadow}>
                         
                 <a  href={"https://www.designerspen.com/signup/"}>
                     <p style = {{color:'#5b5b5b'}}>Upload Files</p>
@@ -672,16 +681,16 @@ class Taggedpost extends Component {
                                 </div>
                             </div>
                         </div>
-                        {/* Description input */}
+                         Description input 
                         <input
-                        style = {uploadInputs}
-                        type="text"
-                        name="description"
-                        value={description}
-                        placeholder="Add a description,if you'd like"
-                        onChange={this.onChange}
+                            style = {uploadInputs}
+                            type="text"
+                            name="description"
+                            value={description}
+                            placeholder="Add a description,if you'd like"
+                            onChange={this.onChange}
                         />
-                        {/* Category Input */}
+                         Category Input 
                         <h3 style = {categoryHeader}>Posting to</h3>
                         <input
                         style = {uploadInputs}
@@ -690,7 +699,6 @@ class Taggedpost extends Component {
                         value={this.state.posttag}
                         onChange={this.onChange}
                         />
-
                             <p style = {uploadInputs}>
                             <label>
                                 <input
@@ -700,6 +708,8 @@ class Taggedpost extends Component {
                                 <span>I created the image I'm sharing
                                 </span>
                             </label>
+                              Upload Zone 
+
                             <Popup modal trigger={<span><br/>(what is this)</span>}>
                                 <div className = ' ownership col s12 m12 l12' style = {{paddingLeft:'5%',paddingRight:'5%',paddingBottom:'5%'}}>
                                     <img className = 'ownership' src = {Ownershipimage}/>
@@ -741,7 +751,7 @@ class Taggedpost extends Component {
                             </Dropzone> 
                             
 
-                            {/* <DefaultUpload doWhatever={this.onChange.bind(this,file)}></DefaultUpload> */}
+                            <DefaultUpload doWhatever={this.onChange.bind(this,file)}></DefaultUpload> *
                             <Button 
                                 style = {uploadButtons}
                                 variant="outline-primary"
@@ -763,7 +773,7 @@ class Taggedpost extends Component {
                             </div>
                         </form>
 
-                        {/* <form action = "http://localhost:3001/uploadHandler" enctype="multipart/form-data" method="POST">
+                        {/* <form action = "https://designerspendroplet.getdpsvapi.com/uploadHandler" enctype="multipart/form-data" method="POST">
                         <div className="form-group multi-preview">
                             {(this.fileArray || []).map(url => (
                                 <img src={url} alt="..." />
@@ -782,9 +792,9 @@ class Taggedpost extends Component {
                         </div>
                         
                         {/* <button type="button" className="btn btn-danger btn-block" onClick={this.uploadFiles}>Upload</button> */}
-                    {/* </form >  */}
+                    {/* </form >  
                         
-                    </div> 
+                    </div>  */}
                  
                     {/* //mapping through all the usernames in the new_tabel tabel */}
                     {shuffledPosts.slice(0).map((n,index) => { 
@@ -798,7 +808,7 @@ class Taggedpost extends Component {
                                  </div>
                                  <div className = 'col s4 m4 l4'>
                                  <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
-                                     <a href={"https://www.designerspen.com/users/" + n.uuid} > <p>{n.displayname}</p> </a>
+                                     <a href={"http://localhost:3000/profile/" + n.uuid} > <p>{n.displayname}</p> </a>
                                      <p>{n.description}</p>
                                  </div>
                              </Popup>
@@ -806,7 +816,7 @@ class Taggedpost extends Component {
                                 <div   style = {{backgroundColor:'white',paddingTop:'2%'}} className = "row dis"> 
                                  <div  style = {{display: n.displayname === "undefined" ? "none": "inline-block"}} className = "col s6 m6 l6">
                                      <div style = {{float:'left'}}><img  style = {{maxWidth:"25px"}} src = {n.userphotourl}/></div> 
-                                     <div style = {{float:'left'}}><a  href={"https://www.designerspen.com/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
+                                     <div style = {{float:'left'}}><a  href={"http://localhost:3000/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
                                  </div>
                                  <div className = "col s6 m6 l6">
                                      {/* REMOVE BUTTON */}
@@ -843,14 +853,15 @@ class Taggedpost extends Component {
                      );
                      })}
                 </div>
-                </Tablet>
+                 </Tablet>
                 <Mobile>
                 <BottomScrollListener onBottom={this.loadmore} />
                 <div style = {{paddingTop:'15%'}}></div>     
+                <h2 style = {{fontSize:'14px',margin:'0',paddingLeft:'1%'}}>Archives</h2> 
                 {this.state.tags.data.map(function (n) { 
                     return ( //post tags 
                         <div  key={n}>
-                            <a  href={"https://www.designerspen.com/Discover/" + n.posttag} > 
+                            <a  href={"https://designerspen.com/Discover/" + n.posttag} > 
                                 <ul style = {{display:'inline'}}>
                                     <li style = {{display:'inline',float:'left',padding:'1%'}} >{n.posttag}</li>
                                 </ul>
@@ -882,7 +893,7 @@ class Taggedpost extends Component {
                                  </div>
                                  <div className = 'col s4 m4 l4'>
                                  <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
-                                     <a href={"https://www.designerspen.com/profile/" + n.uuid} > <p>{n.displayname}</p> </a>
+                                     <a href={"https://designerspen.com/profile/" + n.uuid} > <p>{n.displayname}</p> </a>
                                      <p>{n.description}</p>
                                  </div>
                              </Popup>
@@ -890,7 +901,7 @@ class Taggedpost extends Component {
                                 <div   style = {{backgroundColor:'white',paddingTop:'2%'}} className = "row dis"> 
                                  <div  style = {{display: n.displayname === "undefined" ? "none": "inline-block"}} className = "col s6 m6 l6">
                                      <div style = {{float:'left'}}><img  style = {{maxWidth:"25px"}} src = {n.userphotourl}/></div> 
-                                     <div style = {{float:'left'}}><a  href={"https://www.designerspen.com/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
+                                     <div style = {{float:'left'}}><a  href={"https://designerspen.com/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
                                  </div>
                                  <div className = "col s6 m6 l6">
                                      {/* REMOVE BUTTON */}
@@ -918,7 +929,7 @@ class Taggedpost extends Component {
                                         <div className = "col s8 m8 l8">
                                             <p>{n.description}</p>
                                             <img src = {Logo} style = {{display : n.usersubmitted === '1' ? "inline-block": "none",width:'30px',paddingLeft:'1em'}}/>
-                                            <div className = 'tag' style = {{float:'left'}}><a  href={"https://www.designerspen.com/Discover/" + n.posttag} >  <p >{n.posttag}</p> </a></div>
+                                            <div className = 'tag' style = {{float:'left'}}><a  href={"https://designerspen.com/Discover/" + n.posttag} >  <p >{n.posttag}</p> </a></div>
             
                                         </div>
                                     </div>
