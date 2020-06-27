@@ -5,6 +5,10 @@ import Home from './components/dashboard/Dashboard2';
 import Wall from './components/Wall';
 import Feed from './components/Feed';
 import Discover from './components/Discover';
+import CurratorSignup from './components/CurratorSignup';
+import Vizcom from './components/vizcom/Vizcom';
+import VizcomLearnmore from './components/vizcom/VizcomLearnmore';
+import Generate from './components/vizcom/Generate';
 import PostDetail from './components/PostDetail';
 import About from './components/dashboard/About';
 import ProjectDetails from './components/project/ProjectDetails';
@@ -89,6 +93,10 @@ const App = (props) => {
                 <Route path ='/News' component = {Home}/>
                 <Route exact path ='/'  component = {Discover} />
                 <Route path ='/signup' component = {SignUp} />
+                <Route path ='/CurratorSignup' component = {CurratorSignup} />
+                <Route path ='/Vizcom' component = {Vizcom} />
+                <Route path ='/learnmore' component = {VizcomLearnmore} />
+                <Route path ='/Generate' component = {Generate} />
 
             </Switch>
           </div>

@@ -108,7 +108,7 @@ class Inspiration extends Component {
 
       handleSubmit(event){ 
         event.preventDefault();
-        fetch('http://localhost:3001/users/add', {
+        fetch('https://designerspendroplet.getdpsvapi.com/users/add', {
          method: 'post',
          headers: {'Content-Type':'application/json'},
          body: JSON.stringify({
@@ -121,7 +121,7 @@ class Inspiration extends Component {
 
        addProduct = _ => {
             const {product} = this.state;
-            fetch(`http://localhost:3001/users/add?username=${product.name}&email=${product.email}&password=${product.password}`)
+            fetch(`https://designerspendroplet.getdpsvapi.com/users/add?username=${product.name}&email=${product.email}&password=${product.password}`)
             .then(console.log("this worked stuff submitted"))
             .catch (err => console.err(err))
        }

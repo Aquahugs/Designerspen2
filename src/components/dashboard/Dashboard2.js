@@ -26,24 +26,86 @@ class Home extends Component {
             paddingTop:'3%'
             
         }
+        const title1 = {
+            color:'white',
+            textAlight:'center',
+            margin:'0',
+            padding:'1%',
+            textAlign:'center'
+            
+        }
+        const title2 = {
+            color:'#a3a3a3',
+            textAlight:'center',
+            margin:'0',
+            paddingTop:'5%',
+            textAlign:'center',
+            fontSize:'12px',
+            fontWeight:'light'
+        }
 
+        const bodytext = {
+            color: '#e9e9e9',
+            textAlign:'center',
+            margin:'0', 
+            padding:'5px' 
+        }
+
+        const GeaButton = {
+            backgroundColor: 'white',
+            border: 'none',
+            color: '#191919',
+            padding: '20px',
+            textAlign: 'center',
+            textDecoration: 'none',
+            display: 'inlineblock',
+            fontSize: '16px',
+            margin: '4px 2px',
+            borderRadius: '50px',
+            cursor: 'pointer',
+            
+
+        }
+        const BacButton = {
+            backgroundColor: 'transparent',
+            border: 'solid white 4px',
+            color: 'white',
+            padding: '20px',
+            textAlign: 'center',
+            textDecoration: 'none',
+            display: 'inlineblock',
+            fontSize: '16px',
+            margin: '4px 2px',
+            borderRadius: '50px',
+            cursor: 'pointer',
+        }
+
+        const buttonRow = {
+
+            display: 'flex',
+            alignTtems: 'center',
+            justifyContent: 'center'
+            
+        }
         
         return(
                 
           
                 <div style = {{backgroundColor:'black',margin:'0'}}   >
                     <div>
+                        {/* <h2 style = {title2}>Introducing</h2>
+                        <h1 style = {title1}>Archives</h1>
+                        <p style = {bodytext}>Feed your curiosity and make better sense of the world through 
+                        carefully-curated archives that matter to you.</p>
+                        <div className = 'row' style = {buttonRow}>
+                        <button  style = {GeaButton}>Get Early Access</button>
+                        <button  style = {BacButton}>Become a Currator</button> 
+                        </div>
+                       
+
                         <div >
-                            {/* <div className = 'card-content grey-text text-darken-3'>
-                                <div className = 'card-image z-depth-2'>
-                                <Link to="/AiDesign"><img src={require('../../assets/images/Articles/2019/AiDesign/patternbrain.jpg')}/></Link>
-                                </div>
-                                <span className = "card-title"><h1 style = {{fontSize:'35px'}}>How AI is changing the way we create. </h1></span>
-                                <p></p>
-                                <p className = "grey-text"> 9/8/2019  </p>
-                            </div> */}
-                        </div> 
-                        
+                        </div>  */}
+                     
                         <Articles/>
                     </div>
                     <Footer/>

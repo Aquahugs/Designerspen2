@@ -14,6 +14,8 @@ import { Desktop, Tablet, Mobile, Phone } from './shared';
 
 import Logo from '../assets/images/Asset 1.svg'
 import Ownershipimage from '../assets/images/ownershipimage.png'
+import  { transitions } from "react-stack-grid";
+import StackGrid from "react-stack-grid";
 
 
 
@@ -333,6 +335,9 @@ class Discover extends Component {
                 boxShadow: this.state.isUploading ? "-2px 4px 16px 0px rgba(0,0,0,0.19)": "none"
             }
 
+            const { scaleDown } = transitions;
+
+
 
 
 
@@ -367,10 +372,20 @@ class Discover extends Component {
                      
                     
                     return (
+                        
                         <div style ={{padding:'0.75%'}} className = 'col s3 m3 l3'  key={n}>
+                            
                             <Popup modal trigger={<img  style = {{maxWidth:"100%"}}src = {n.imageUrl}/>} style = {{width:"100%"}}>
-                                <div className = 'col s8 m8 l8'>
+                                <div className = 'col s12 m12 l12'>
+                                <StackGrid
+                                 columnWidth={250}
+                                 appear={scaleDown.appear}
+                                appeared={scaleDown.appeared}
+                                enter={scaleDown.enter}
+                                entered={scaleDown.entered}
+                                leaved={scaleDown.leaved}>
                                     <img style = {{maxWidth:"100%",maxHeight:"800px"}}src = {n.imageUrl}/> 
+                                    </StackGrid>
                                 </div>
                                 <div className = 'col s4 m4 l4'>
                                 <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
@@ -406,7 +421,7 @@ class Discover extends Component {
                                     
                                     <p className = 'collect'>Collect</p>
                                 </div>
-                            
+                                {/* POST TAG */}
                                 <div  className = "row">
                                     <div className = "col s8 m8 l8">
                                         <p>{n.description}</p>
@@ -416,6 +431,7 @@ class Discover extends Component {
                                 </div>
                         </div>
                         </div>
+                        
                     );
                     })}
                 </div>
@@ -438,7 +454,7 @@ class Discover extends Component {
                 {this.state.tags.data.map(function (n) { 
                     return ( //post tags 
                         <div  key={n}>
-                            <a  href={"https://designerspendroplet.getdpsvapi.com/Discover/" + n.posttag} > 
+                            <a  href={"https://www.designerspen.com/Discover/" + n.posttag} > 
                                 <ul style = {{display:'inline'}}>
                                     <li style = {{display:'inline',float:'left',padding:'1%'}} >{n.posttag}</li>
                                 </ul>
@@ -522,9 +538,94 @@ class Discover extends Component {
                 </div> */}
             </Tablet>    
             <Mobile>
-                <iframe src="https://giphy.com/embed/HIYW8sTRTHt1m" width="100%" height="269" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/HIYW8sTRTHt1m"></a></p>
-                    <p>Currently only available on desktop and tablets :(</p>
-                    <p style = {{fontSize:'14px'}}> <span style = {{fontWeight:'bold'}}>Looking for a Web Developer (React JS /Redux, Node.Js, SQL)</span> to help build out the designerspen  discovery platform to inspire and empower all forms of creation. <br/> For more details please feel free to email me <span style = {{fontWeight:'bold'}}>Designerspenmail@gmail.com</span>  </p>
+                 <BottomScrollListener onBottom={this.loadmore}/>
+                
+                <div style = {{paddingTop:'5%'}}></div>     
+                {this.state.tags.data.map(function (n) { 
+                    return ( //post tags 
+                        <div  key={n}>
+                            <a  href={"https://www.designerspen.com/Discover/" + n.posttag} > 
+                                <ul style = {{display:'inline'}}>
+                                    <li style = {{display:'inline',float:'left',padding:'1%'}} >{n.posttag}</li>
+                                </ul>
+                            </a>
+                        </div>  
+                    );
+                    })}    
+                
+                <div      className = 'row' style = {{float:'left'}}> 
+                {/* Upload Zone */}
+                     
+                    {/* //mapping through all the usernames in the new_tabel tabel */}
+                    
+                    <div style = {{display: this.state.isLoaded ? 'none' : 'inline-block'}}><h1>loading</h1></div>
+
+                    {this.state.userphotos.data.slice(0).map((n,index) => { 
+                     
+                    
+                    return (
+                        <div style ={{padding:'0.75%'}} className = 'col s12 m12 l12'  key={n}>
+                            <Popup modal trigger={<img  style = {{maxWidth:"100%"}}src = {n.imageUrl}/>} style = {{width:"100%"}}>
+                                <div className = 'col s8 m8 l8'>
+                                    <img style = {{maxWidth:"100%",maxHeight:"800px"}}src = {n.imageUrl}/> 
+                                </div>
+                                <div className = 'col s4 m4 l4'>
+                                <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
+                                    <a href={"https://www.designerspen.com/users/" + n.uuid} > <p>{n.displayname}</p> </a>
+                                    <p>{n.description}</p>
+                                </div>
+                            </Popup>
+                        
+                            <div   style = {{backgroundColor:'white',paddingTop:'2%'}} className = "row dis"> 
+                                <div  style = {{display: n.displayname === "undefined" ? "none": "inline-block"}} className = "col s6 m6 l6">
+                                    <div style = {{float:'left'}}><img  style = {{maxWidth:"25px"}} src = {n.userphotourl}/></div> 
+                                    <div style = {{float:'left'}}><a  href={"https://www.designerspen.com/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
+                                </div>
+                                <div className = "col s6 m6 l6">
+
+                                    {/* REMOVE BUTTON */}
+                                    {this.state.collection.data.map((j,index) => { 
+                                        return(
+                                            <div key={j}>
+                                            <button   className = 'uncollectButton  btn-danger'   style = {{display : n.imageUrl === j.post_id ? "inline-block": "none"}}
+                                            onClick={e => this.setState({collectedimage: n.imageUrl},this.createNotification('error'),this.onRemoveCollect)}  type="button"
+                                            >   </button>
+                                            <p className = 'remove'>Remove</p>
+                                            </div>
+                                        )
+                                    })}
+                                    {/* COLLECT BUTTON */}
+                                    <button 
+                                        style = {{float: n.displayname === "undefined" ? "right": ""}}
+                                        className = 'collectButton  btn-success' 
+                                        onClick={e =>  alert("Sign up to collect and save images")}  type="button">
+                                    </button>
+                                    
+                                    <p className = 'collect'>Collect</p>
+                                </div>
+                            
+                                <div  className = "row">
+                                    <div className = "col s8 m8 l8">
+                                        <p>{n.description}</p>
+                                    <img src = {Logo} style = {{display : n.usersubmitted === '1' ? "inline-block": "none",width:'30px',paddingLeft:'1em'}}/>
+                                    <div className = 'tag' style = {{float:'left'}}><a  href={"https://www.designerspen.com/Discover/" + n.posttag} >  <p >{n.posttag}</p> </a></div>
+                                    </div>
+                                </div>
+                        </div>
+                        </div>
+                    );
+                    })}
+                </div>
+
+                {/* <div id="signup">
+                <input value = {product.name}
+                       onChange={e => this.setState({product: {...product, name: e.target.value}})}/>
+                <input value = {product.email} 
+                       onChange={e => this.setState({product: {...product, email: e.target.value}})}/>
+                <input value = {product.password} 
+                       onChange={e => this.setState({product: {...product, password: e.target.value}})}/>
+                <button onClick = {this.addProduct}>Submit this stuff</button>
+                </div> */}
             </Mobile>
             </div>
         )

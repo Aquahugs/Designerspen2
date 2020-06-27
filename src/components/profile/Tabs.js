@@ -146,7 +146,7 @@ class Tabs extends Component {
     //             {this.state.info.data.map(function (n) { 
     //                 function handleClick() {
     //                    const imagelink = n.imageUrl
-    //                    fetch('http://localhost:3001/profile/delete', {
+    //                    fetch('https://designerspendroplet.getdpsvapi.com/profile/delete', {
     //                     method: 'DELETE',
     //                     headers: {
     //                       'Content-Type': 'application/json'
