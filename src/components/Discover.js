@@ -14,6 +14,8 @@ import { Desktop, Tablet, Mobile, Phone } from './shared';
 
 import Logo from '../assets/images/Asset 1.svg'
 import Ownershipimage from '../assets/images/ownershipimage.png'
+import  { transitions } from "react-stack-grid";
+import StackGrid from "react-stack-grid";
 
 
 
@@ -333,6 +335,9 @@ class Discover extends Component {
                 boxShadow: this.state.isUploading ? "-2px 4px 16px 0px rgba(0,0,0,0.19)": "none"
             }
 
+            const { scaleDown } = transitions;
+
+
 
 
 
@@ -367,10 +372,20 @@ class Discover extends Component {
                      
                     
                     return (
+                        
                         <div style ={{padding:'0.75%'}} className = 'col s3 m3 l3'  key={n}>
+                            
                             <Popup modal trigger={<img  style = {{maxWidth:"100%"}}src = {n.imageUrl}/>} style = {{width:"100%"}}>
-                                <div className = 'col s8 m8 l8'>
+                                <div className = 'col s12 m12 l12'>
+                                <StackGrid
+                                 columnWidth={250}
+                                 appear={scaleDown.appear}
+                                appeared={scaleDown.appeared}
+                                enter={scaleDown.enter}
+                                entered={scaleDown.entered}
+                                leaved={scaleDown.leaved}>
                                     <img style = {{maxWidth:"100%",maxHeight:"800px"}}src = {n.imageUrl}/> 
+                                    </StackGrid>
                                 </div>
                                 <div className = 'col s4 m4 l4'>
                                 <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
@@ -406,7 +421,7 @@ class Discover extends Component {
                                     
                                     <p className = 'collect'>Collect</p>
                                 </div>
-                            
+                                {/* POST TAG */}
                                 <div  className = "row">
                                     <div className = "col s8 m8 l8">
                                         <p>{n.description}</p>
@@ -416,6 +431,7 @@ class Discover extends Component {
                                 </div>
                         </div>
                         </div>
+                        
                     );
                     })}
                 </div>
@@ -438,7 +454,7 @@ class Discover extends Component {
                 {this.state.tags.data.map(function (n) { 
                     return ( //post tags 
                         <div  key={n}>
-                            <a  href={"https://www.designerspen.com/Discover/Discover/" + n.posttag} > 
+                            <a  href={"https://www.designerspen.com/Discover/" + n.posttag} > 
                                 <ul style = {{display:'inline'}}>
                                     <li style = {{display:'inline',float:'left',padding:'1%'}} >{n.posttag}</li>
                                 </ul>
@@ -610,8 +626,12 @@ class Discover extends Component {
                        onChange={e => this.setState({product: {...product, password: e.target.value}})}/>
                 <button onClick = {this.addProduct}>Submit this stuff</button>
                 </div> */}
+<<<<<<< HEAD
             </Mobile>    
            
+=======
+            </Mobile>
+>>>>>>> 221f68f3bbaa84a37ad35b2a96a4735d2d24bbd7
             </div>
         )
         }

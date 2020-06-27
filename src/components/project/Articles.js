@@ -23,7 +23,7 @@ const Articles = () => {
             <div className = 'row' style = {{margin:'0'}}>
             <div style = {{padding:'0'}}className = 'col s8 m8 l8 module'>
                 <div className = 'row squares' >
-
+                    
                     <div style = {{padding:'0'}} className='col s12 m12 l12 squares'>
                             <div className = 'row squares'>
                                 <Link to="/sahmtesla"><img style = {{width:'100%',height:'auto'}} src = {sahm}/>

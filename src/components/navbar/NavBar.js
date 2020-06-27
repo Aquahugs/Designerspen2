@@ -46,7 +46,7 @@ const Navbar = (props) => { // 2.) brings in all the inspect properties
             <nav className = 'navbar' style={styles1}>
                 <div className = "container">
                     
-                    {links} 
+                    
                 </div>
             </nav>
         </Mobile>
