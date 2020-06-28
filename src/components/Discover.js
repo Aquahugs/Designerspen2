@@ -626,12 +626,7 @@ class Discover extends Component {
                        onChange={e => this.setState({product: {...product, password: e.target.value}})}/>
                 <button onClick = {this.addProduct}>Submit this stuff</button>
                 </div> */}
-<<<<<<< HEAD
-            </Mobile>    
-           
-=======
             </Mobile>
->>>>>>> 221f68f3bbaa84a37ad35b2a96a4735d2d24bbd7
             </div>
         )
         }

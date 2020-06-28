@@ -435,11 +435,9 @@ class Taggedpost extends Component {
                 <Desktop>
                 <NotificationContainer/>
                 <BottomScrollListener onBottom={this.loadmore} />
-                <SubNav/>    
-                <h2 style = {{fontSize:'14px',margin:'0',paddingLeft:'1%'}}>Archives</h2> 
+                <SubNav/>     
                 {this.state.tags.data.map(function (n) { 
                     return ( //post tags 
-                        
                         <div  key={n}>
                             <a  href={"http://localhost:3000/Discover/" + n.posttag} > 
                                 <ul style = {{display:'inline'}}>
@@ -649,18 +647,16 @@ class Taggedpost extends Component {
                         <div  key={n}>
                             <a  href={"http://localhost:3000/Discover/" + n.posttag} > 
                                 <ul style = {{display:'inline'}}>
-                                    <li style = {{display:'inline',float:'left',paddingLeft:'1%'}} >{n.posttag}</li>
+                                    <li style = {{display:'inline',float:'left',padding:'1%'}} >{n.posttag}</li>
                                 </ul>
                             </a>
                         </div>  
                     );
                     })}   
-
-                    
                 {/* Upload Zone */}
-                <div className = 'row' ><h1 style = {{textAlign:'cnter'}}>{this.state.posttag}</h1></div>
+                <div className = 'row'><h1 style = {{textAlign:'center'}}>{this.state.posttag}</h1></div>
                 <div  className = 'row' style = {{float:'left'}}> 
-                {/* <div className = 'col s3 m3 l3 ' style = {uploadBoxshadow}>
+                <div className = 'col s3 m3 l3 ' style = {uploadBoxshadow}>
                         
                 <a  href={"https://www.designerspen.com/signup/"}>
                     <p style = {{color:'#5b5b5b'}}>Upload Files</p>
@@ -676,16 +672,16 @@ class Taggedpost extends Component {
                                 </div>
                             </div>
                         </div>
-                         Description input 
+                        {/* Description input */}
                         <input
-                            style = {uploadInputs}
-                            type="text"
-                            name="description"
-                            value={description}
-                            placeholder="Add a description,if you'd like"
-                            onChange={this.onChange}
+                        style = {uploadInputs}
+                        type="text"
+                        name="description"
+                        value={description}
+                        placeholder="Add a description,if you'd like"
+                        onChange={this.onChange}
                         />
-                         Category Input 
+                        {/* Category Input */}
                         <h3 style = {categoryHeader}>Posting to</h3>
                         <input
                         style = {uploadInputs}
@@ -694,6 +690,7 @@ class Taggedpost extends Component {
                         value={this.state.posttag}
                         onChange={this.onChange}
                         />
+
                             <p style = {uploadInputs}>
                             <label>
                                 <input
@@ -703,8 +700,6 @@ class Taggedpost extends Component {
                                 <span>I created the image I'm sharing
                                 </span>
                             </label>
-                              Upload Zone 
-
                             <Popup modal trigger={<span><br/>(what is this)</span>}>
                                 <div className = ' ownership col s12 m12 l12' style = {{paddingLeft:'5%',paddingRight:'5%',paddingBottom:'5%'}}>
                                     <img className = 'ownership' src = {Ownershipimage}/>
@@ -746,7 +741,7 @@ class Taggedpost extends Component {
                             </Dropzone> 
                             
 
-                            <DefaultUpload doWhatever={this.onChange.bind(this,file)}></DefaultUpload> *
+                            {/* <DefaultUpload doWhatever={this.onChange.bind(this,file)}></DefaultUpload> */}
                             <Button 
                                 style = {uploadButtons}
                                 variant="outline-primary"
@@ -787,9 +782,9 @@ class Taggedpost extends Component {
                         </div>
                         
                         {/* <button type="button" className="btn btn-danger btn-block" onClick={this.uploadFiles}>Upload</button> */}
-                    {/* </form >  
+                    {/* </form >  */}
                         
-                    </div>  */}
+                    </div> 
                  
                     {/* //mapping through all the usernames in the new_tabel tabel */}
                     {shuffledPosts.slice(0).map((n,index) => { 
@@ -803,7 +798,7 @@ class Taggedpost extends Component {
                                  </div>
                                  <div className = 'col s4 m4 l4'>
                                  <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
-                                     <a href={"http://localhost:3000/profile/profile/" + n.uuid} > <p>{n.displayname}</p> </a>
+                                     <a href={"https://www.designerspen.com/users/" + n.uuid} > <p>{n.displayname}</p> </a>
                                      <p>{n.description}</p>
                                  </div>
                              </Popup>
@@ -811,218 +806,7 @@ class Taggedpost extends Component {
                                 <div   style = {{backgroundColor:'white',paddingTop:'2%'}} className = "row dis"> 
                                  <div  style = {{display: n.displayname === "undefined" ? "none": "inline-block"}} className = "col s6 m6 l6">
                                      <div style = {{float:'left'}}><img  style = {{maxWidth:"25px"}} src = {n.userphotourl}/></div> 
-                                     <div style = {{float:'left'}}><a  href={"http://localhost:3000/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
-                                 </div>
-                                 <div className = "col s6 m6 l6">
-                                     {/* REMOVE BUTTON */}
-                                     {this.state.collection.data.map((j,index) => { 
-                                         return(
-                                             <div key={j}>
-                                             <button   className = 'uncollectButton  btn-danger'   style = {{display : n.imageUrl === j.post_id ? "inline-block": "none"}}
-                                             onClick={e => this.setState({collectedimage: n.imageUrl},this.createNotification('error'),this.onRemoveCollect)}  type="button"
-                                             >   </button>
-                                             <p className = 'remove'>Remove</p>
-                                             </div>
-                                         )
-                                     })}
-                                     {/* COLLECT BUTTON */}
-                                     <button 
-                                         style = {{float: n.displayname === "undefined" ? "right": ""}}
-                                         className = 'collectButton  btn-success' 
-                                         onClick={e => this.setState({collectedimage: n.imageUrl},this.createNotification('success'),this.onCollect)}  type="button">
-                                     </button>
-                                     
-                                     <p className = 'collect'>Collect</p>
-                                 </div>
-                             
-                                    <div  className = "row">
-                                        <div className = "col s8 m8 l8">
-                                            <p>{n.description}</p>
-                                            <img src = {Logo} style = {{display : n.usersubmitted === '1' ? "inline-block": "none",width:'30px',paddingLeft:'1em'}}/>
-                                            <div className = 'tag' style = {{float:'left'}}><a  href={"https://www.designerspen.com/Discover/" + n.posttag} >  <p >{n.posttag}</p> </a></div>
-            
-                                        </div>
-                                    </div>
-                                </div>
-                         </div>
-                     );
-                     })}
-                </div>
-                </Desktop>
-                <Tablet>
-                <NotificationContainer/>
-                <BottomScrollListener onBottom={this.loadmore} />
-                <SubNav/>    
-                <h2 style = {{fontSize:'14px',margin:'0',paddingLeft:'1%'}}>Archives</h2> 
-                {this.state.tags.data.map(function (n) { 
-                    return ( //post tags 
-                        
-                        <div  key={n}>
-                            <a  href={"https://www.designerspen.com/Discover/" + n.posttag} > 
-                                <ul style = {{display:'inline'}}>
-                                    <li style = {{display:'inline',float:'left',paddingLeft:'1%'}} >{n.posttag}</li>
-                                </ul>
-                            </a>
-                        </div>  
-                    );
-                    })}   
-
-                    
-                {/* Upload Zone */}
-                <div className = 'row' ><h1 style = {{textAlign:'cnter'}}>{this.state.posttag}</h1></div>
-                <div  className = 'row' style = {{float:'left'}}> 
-                {/* <div className = 'col s3 m3 l3 ' style = {uploadBoxshadow}>
-                        
-                <a  href={"https://www.designerspen.com/signup/"}>
-                    <p style = {{color:'#5b5b5b'}}>Upload Files</p>
-                    <img  class = 'uploadbox'style ={{display: this.props.auth.isEmpty ? "inline-block": "none"}} src = {Upload}/> 
-                 </a>
-                        <form onSubmit={this.onSubmit} action="#" style ={{display: this.props.auth.isEmpty  ? "none": "inline-block"}}>
-                        <div style = {uploadInputs}>
-                            <img src={this.state.previewImage}/>
-                            <div  className = 'row'>
-                                <div className = 'col s12 m12 l12'  >
-                                    <img  style = {myuserPhoto} src = {this.state.userPhotoUrl}/>
-                                    <p  style={myDisplayname}>{this.state.displayName}</p>
-                                </div>
-                            </div>
-                        </div>
-                         Description input 
-                        <input
-                            style = {uploadInputs}
-                            type="text"
-                            name="description"
-                            value={description}
-                            placeholder="Add a description,if you'd like"
-                            onChange={this.onChange}
-                        />
-                         Category Input 
-                        <h3 style = {categoryHeader}>Posting to</h3>
-                        <input
-                        style = {uploadInputs}
-                        type="text"
-                        name="postTag"
-                        value={this.state.posttag}
-                        onChange={this.onChange}
-                        />
-                            <p style = {uploadInputs}>
-                            <label>
-                                <input
-                                onChange={this.handleCheck} 
-                                name="checked"
-                                type="checkbox" />
-                                <span>I created the image I'm sharing
-                                </span>
-                            </label>
-                              Upload Zone 
-
-                            <Popup modal trigger={<span><br/>(what is this)</span>}>
-                                <div className = ' ownership col s12 m12 l12' style = {{paddingLeft:'5%',paddingRight:'5%',paddingBottom:'5%'}}>
-                                    <img className = 'ownership' src = {Ownershipimage}/>
-                                    <img  className = 'ownership' src = {Logo} style = {{width:'75px'}}/>
-                                    <h1>Ownership</h1>
-                                    <p className = 'ownershipP'>
-                                        By checking this box your post will receive a green check that represents that the content you are contributing was created by you.  
-                                    </p>
-                                    <p  className = 'ownershipP2'>
-                                        As between you and Designerspen, you will retain ownership of all original text, images, videos, messages, comments, ratings, 
-                                        reviews and other original content you provide on or through the Site.
-                                    </p>
-                                </div>
-                            </Popup>
-                            </p>
-                            <Dropzone 
-
-                                maxFiles={3}
-                                multiple
-                                canCancel={true}
-                                accept="image/png, image/gif,image/jpeg, image/jpg, image/png"
-                                onDrop={this.onDrop} accept='image/*' >
-                                {({getRootProps, getInputProps,isDragActive,isDragReject}) => (
-                                    <section>
-                                    <div className = 'dropzone' style={dropzoneStyle} {...getRootProps({ onChange: e =>  this.setState({ selectedFile: e,previewImage: URL.createObjectURL(e.target.files[0])})  })}>
-                                        <input  {...getInputProps()} />
-                                        <div className = 'row'>
-                                            <img style ={{display: isDragActive && !isDragReject  ? "inline-block": "none",width:'70px'}}src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/Asset%201.png?alt=media&token=855ff9bd-be14-433c-a7aa-97f70c8b6f1d"/>
-                                            <img style ={{display: isDragActive ? "none": "inline-block",width:'100px'}}src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/Add%20Image_929899.png?alt=media&token=a928b5aa-b0ee-4ba8-a59c-6bf5697dcd1a"/>
-                                            <img style ={{display: isDragReject ? "inline-block": "none",width:'70px'}}src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/Stop.png?alt=media&token=c8d96781-e668-4976-89ea-4a3213d405cb"/>
-                                        </div>
-                                        {!isDragActive && 'Click here or Drag and Drop images'}
-                                        {isDragActive && !isDragReject && "Upload"}
-                                        {isDragActive && !isDragReject && ":)"}
-                                        {isDragReject && "Welp...that file type is not accepted, sorry "}
-                                    </div>
-                                    </section>
-                                )}
-                            </Dropzone> 
-                            
-
-                            <DefaultUpload doWhatever={this.onChange.bind(this,file)}></DefaultUpload> *
-                            <Button 
-                                style = {uploadButtons}
-                                variant="outline-primary"
-                                type="submit">Submit
-                            </Button>
-                            <Button 
-                                onClick={this.onCancel}
-                                style = {cancelButtons}
-                                variant="outline-primary"
-                                type="button">
-                                Cancel
-                            </Button>
-                            
-                            <div style = {{display:"none", opacity:"0",maxWidth:"1px"}} >
-
-                            <input type="text" name="userid" value={uuid} readOnly />
-                            <input type="text" name="displayName" value={this.state.displayName} readOnly />
-                            <input type="text" name="userPhotoUrl" value={this.state.userPhotoUrl} readOnly />
-                            </div>
-                        </form>
-
-                        {/* <form action = "https://designerspendroplet.getdpsvapi.com/uploadHandler" enctype="multipart/form-data" method="POST">
-                        <div className="form-group multi-preview">
-                            {(this.fileArray || []).map(url => (
-                                <img src={url} alt="..." />
-                            ))}
-                        </div>
-
-                        <div className="form-group">
-                            <input name ='file' type="file" className="form-control" onChange={this.uploadMultipleFiles} multiple />
-                            <input type = "submit" value = "upload photo" />
-                            <input
-                        type="text"
-                        name="postTag"
-                        value={this.state.posttag}
-                        onChange={this.onChange}
-                        />
-                        </div>
-                        
-                        {/* <button type="button" className="btn btn-danger btn-block" onClick={this.uploadFiles}>Upload</button> */}
-                    {/* </form >  
-                        
-                    </div>  */}
-                 
-                    {/* //mapping through all the usernames in the new_tabel tabel */}
-                    {shuffledPosts.slice(0).map((n,index) => { 
-                     
-                    
-                     return (
-                         <div style ={{padding:'0.75%'}} className = 'col s3 m3 l3'  key={n}>
-                             <Popup modal trigger={<img  style = {{maxWidth:"100%"}}src = {n.imageUrl}/>} style = {{width:"100%"}}>
-                                 <div className = 'col s8 m8 l8'>
-                                     <img style = {{maxWidth:"100%",maxHeight:"800px"}}src = {n.imageUrl}/> 
-                                 </div>
-                                 <div className = 'col s4 m4 l4'>
-                                 <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
-                                     <a href={"http://localhost:3000/profile/" + n.uuid} > <p>{n.displayname}</p> </a>
-                                     <p>{n.description}</p>
-                                 </div>
-                             </Popup>
-                         
-                                <div   style = {{backgroundColor:'white',paddingTop:'2%'}} className = "row dis"> 
-                                 <div  style = {{display: n.displayname === "undefined" ? "none": "inline-block"}} className = "col s6 m6 l6">
-                                     <div style = {{float:'left'}}><img  style = {{maxWidth:"25px"}} src = {n.userphotourl}/></div> 
-                                     <div style = {{float:'left'}}><a  href={"http://localhost:3000/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
+                                     <div style = {{float:'left'}}><a  href={"https://www.designerspen.com/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
                                  </div>
                                  <div className = "col s6 m6 l6">
                                      {/* REMOVE BUTTON */}

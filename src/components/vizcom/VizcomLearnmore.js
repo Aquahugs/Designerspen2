@@ -54,8 +54,7 @@ class VizcomLearnmore extends Component {
             bio:[],
             id:[],
             isLoaded: false,
-            selectedImage:'',
-            limit:50
+            submitted:true
            
 
             // product: {
@@ -80,56 +79,15 @@ class VizcomLearnmore extends Component {
     }
 
   
- 
-      
- 
-   
-      
-    
-
     componentDidMount() {
-        document.addEventListener('scroll', this.trackScrolling);
-        const {uuid} = this.state
-         Promise.all([
-             fetch('https://designerspendroplet.getdpsvapi.com/Discover'), 
-             fetch('https://designerspendroplet.getdpsvapi.com/tags'),
-                fetch(`https://designerspendroplet.getdpsvapi.com/bio/:uuid?uuid=${(uuid)}`,
-             
-              {
-                method: "GET",
-                headers: {'Content-Type':'application/json'}  
-            }),
-            fetch(`https://designerspendroplet.getdpsvapi.com/collection/:uuid?uuid=${(uuid)}`)
-         ])
-         .then(([res1, res2,res3,res4]) => Promise.all([res1.json(), res2.json(),res3.json(),res4.json()]))
-         .then(([data1,data2,data3,data4]) => this.setState({
-             isLoaded:true,
-             userphotos:data1,
-             tags:data2,
-             bio:data3,
-             collection:data4
-         }))      
+        
+        this.setState({ isLoaded: true }); 
     }
     
 
    
     
-    
 
-   
-    onCollect = _ => {  
-    const {uuid,collectedimage} = this.state;
-    fetch(`https://designerspendroplet.getdpsvapi.com/collectpost?uuid=${uuid}&post_id=${collectedimage}`)
-    .then(console.log("this worked stuff submitted"))
-    .catch (err => console.err(err))
-    }
-
-    onRemoveCollect = _ => {  
-        const {uuid,collectedimage} = this.state;
-        fetch(`https://designerspendroplet.getdpsvapi.com/removecollectpost?uuid=${uuid}&post_id=${collectedimage}`)
-        .then(console.log("this worked stuff REMOVED"))
-        .catch (err => console.err(err))
-    }
     openModal() {
     this.setState({ open: true });
     }
@@ -142,35 +100,40 @@ class VizcomLearnmore extends Component {
     
     
      
-      loadmore = (event) => {
-        const {limit} = this.state;
-        fetch(`https://designerspendroplet.getdpsvapi.com/Discovermore?limit=${limit}`)
-        .then((res1) => Promise.all([res1.json()]))
-        .then(([data1]) => this.setState({ 
-            userphotos:data1,
-            limit:limit + 50
-           
-        }));
-        console.log(this.state)
-     } 
+      
 
      toggleImage = () => {
         this.setState(state => ({ selectedImage: !state.open }))
       }
+      handleChange = (e) => {
+        this.setState({
+            [e.target.id] : e.target.value
+        })
+    
+    }
+    handleSubmit = (e) => {
+        // event to submit the email data to the api server dawg
+         e.preventDefault();
+        console.log(e)
+        const { email} = this.state;
 
+        let formData = new FormData();;
+        formData.append('email', email);
+            
+        fetch(`https://designerspendroplet.getdpsvapi.com/submitemail?email=${email}`)
+            .then((result) => {
+            // access results...
+            console.log(result)
+            })
+            .then(() => {
+        })
+    }
      
 
 
     render(){
         var { isLoaded,items} = this.state;
-        const {items} = this.state
-        const loadPost = this.state
-        const {users,product} = this.state 
-        const { description, selectedFile,postTag,id } = this.state;
-        const {uuid,displayName,userPhotoUrl,userphotos} = this.state;
-        const {auth} = this.props; 
-        const {data} = this.state.userphotos
-        const { scaleDown } = transitions;
+        
 
         
        
@@ -180,15 +143,10 @@ class VizcomLearnmore extends Component {
 
 
           
-        if (!isLoaded)    {return <div style = {{paddingTop:'50%'}}><h1 >Loading...</h1></div>
-        }
+        if (!isLoaded)    {return <div style = {{paddingTop:'50%'}}><h1 >Loading...</h1></div>}
         
         else{
           
-             
-
-
-
         return(   
             
         <div >
@@ -208,13 +166,19 @@ class VizcomLearnmore extends Component {
                             }}>
                         <source src={video2} type="video/mp4"/>
                     </video>
-                    <p style = {{paddingTop:'80%',fontSize:'2rem'}}>Project Vizcom <br/>
-                    <span style = {{fontSize:'1.8rem'}}>By / <a href= "https://www.instagram.com/designerspen/">@Designerspen</a></span></p>
-                    <p style = {{fontSize:'1.8rem'}}>Vizcom is an Ai driven design tool that is being trained on the collected consciousness of the car design world to help accelerate and inspire the creative process.</p>
+                    <p style = {{paddingTop:'50%',fontSize:'2rem'}}>Project Vizcom <br/>
+                    <span style = {{fontSize:'1.2rem'}}>By / <a href= "https://www.instagram.com/designerspen/">@Designerspen</a></span></p>
+                    <p style = {{fontSize:'1.8rem'}}>Vizcom is an Ai driven design tool that is being trained on the collected consciousness of the car design world to help accelerate and inspire designer's creative process.</p>
                     <div className = 'input-field'>
-                    <p style = {{fontSize:'1.8rem'}}>Get updates</p>
-                        <input style = {{height:'70px',fontSize:'2rem'}} type ='email' id='email' placeholder="Youremail@email.com" onChange={this.handleChange}/>
-                        <button className = ' updatesbtn2 lighten-1 z-depth-0'>Sign up </button>
+                        
+                    <p style = {{fontSize:'1.8rem',visibility: this.state.submitted != true? 'hidden': 'visible'}}>Get updates
+                        <span style = {{fontSize:'1.8rem',visibility: this.state.submitted != true? 'visible': 'hidden', 'display':'block'}}>Stay tuned 👌😊👌</span>
+                    </p>
+                        <form onSubmit={this.handleSubmit} style ={{visibility: this.state.submitted != true? 'hidden': 'visible'}}>
+                            <input style = {{height:'70px',fontSize:'2rem'}} type ='email' id='email' placeholder="Youremail@email.com" onChange={this.handleChange}/>
+                            <button className = ' updatesbtn2 lighten-1 z-depth-0' onClick={e => this.setState({submitted: false})}>Sign up </button>
+                
+                        </form>
                     </div>
                     <p style = {{fontSize:'1.8rem'}}>By / Vizcom 🧠</p>
                     <div className = "row">
@@ -272,7 +236,7 @@ class VizcomLearnmore extends Component {
                     </video>
                     <p style = {{paddingTop:'80%'}}>Project Vizcom <br/>
                     <span style = {{fontSize:'1.8rem'}}>By / <a href= "https://www.instagram.com/designerspen/">@Designerspen</a></span></p>
-                    <p style = {{fontSize:'2.2rem'}}>Vizcom is an Ai driven design tool that is being trained on the collected consciousness of the car design world to help accelerate and inspire the creative process.</p>
+                    <p style = {{fontSize:'2.2rem'}}>Vizcom is an Ai driven design tool that is being trained on the collected consciousness of the car design world to help accelerate and inspire designer's creative process.</p>
                     <div className = 'input-field'>
                     <p style = {{fontSize:'1.8rem'}}>Get updates</p>
                         <input  type ='email' id='email' placeholder="Youremail@email.com" onChange={this.handleChange}/>
@@ -323,7 +287,7 @@ class VizcomLearnmore extends Component {
                     </video>
                    <p style = {{paddingTop:'120%'}}>Project Vizcom <br/>
                    <span style = {{fontSize:'1rem'}}>By / <a href= "https://www.instagram.com/designerspen/">@Designerspen</a></span></p>
-                   <p>Vizcom is an Ai driven design tool that is being trained on the collected consciousness of the car design world to help accelerate and inspire the creative process.</p>
+                   <p>Vizcom is an Ai driven design tool that is being trained on the collected consciousness of the car design world to help accelerate and inspire designer's creative process.</p>
                    <div className = 'input-field'>
                    <p style = {{fontSize:'1rem'}}>Get updates</p>
                         <input  type ='email' id='email' placeholder="Youremail@email.com" onChange={this.handleChange}/>
