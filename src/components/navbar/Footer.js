@@ -15,9 +15,9 @@ const Footer = () => { // 2.) brings in all the inspect properties
                 </p>
                 </div>
                 <div className = 'col s12 m6 l6 contact'>
-                    <p className = 'contactheader'>contact</p>
+                    <p className = 'contactheader'>contact@designerspen.com</p>
                     <p className = 'about'>
-                    Designerspenmail@gmail.com
+                        
                     </p>
                 </div>
             </div>

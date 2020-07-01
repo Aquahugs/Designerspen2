@@ -95,7 +95,7 @@ const App = (props) => {
                 <Route path ='/signup' component = {SignUp} />
                 <Route path ='/CurratorSignup' component = {CurratorSignup} />
                 <Route path ='/Vizcom' component = {Vizcom} />
-                <Route path ='/learnmore' component = {VizcomLearnmore} />
+                <Route path ='/AboutVizcom' component = {VizcomLearnmore} />
                 <Route path ='/Generate' component = {Generate} />
 
             </Switch>
