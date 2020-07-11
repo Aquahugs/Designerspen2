@@ -10,6 +10,7 @@ import Kojima  from '../../assets/images/Articles/2019/Cover2.jpg'
 import airpod  from '../../assets/images/Articles/2019/Cover3.jpg'
 import donut  from '../../assets/images/Articles/2019/Cover4.jpg'
 import house  from '../../assets/images/Articles/2019/Cover5.jpg'
+import vizcom  from '../vizcom/assets/vid2.gif'
 import { Desktop, Tablet, Mobile, Phone } from '../shared';
 
 
@@ -21,10 +22,18 @@ const Articles = () => {
     <div>
         <Desktop>
             <div className = 'row' style = {{margin:'0'}}>
+            
             <div style = {{padding:'0'}}className = 'col s8 m8 l8 module'>
                 <div className = 'row squares' >
                     
                     <div style = {{padding:'0'}} className='col s12 m12 l12 squares'>
+                            <div className = 'row squares'>
+                                <Link to="/AboutVizcom"><img style = {{width:'100%',height:'auto'}} src = {vizcom}/>
+                                    <div class = 'right '>
+                                        <p>Introducing project Vizcom<br/><span className = 'posttag'>Automotive Design</span></p>
+                                    </div>
+                                </Link>
+                            </div>
                             <div className = 'row squares'>
                                 <Link to="/sahmtesla"><img style = {{width:'100%',height:'auto'}} src = {sahm}/>
                                     <div class = 'right '>

@@ -147,13 +147,7 @@ class Generate extends Component {
     render(){
         var { isLoaded,items} = this.state;
         const {items} = this.state
-        const loadPost = this.state
-        const {users,product} = this.state 
-        const { description, selectedFile,postTag,id } = this.state;
-        const {uuid,displayName,userPhotoUrl,userphotos} = this.state;
-        const {auth} = this.props; 
-        const {data} = this.state.userphotos
-        const { scaleDown } = transitions;
+      
 
         
        
@@ -175,9 +169,24 @@ class Generate extends Component {
         return(   
             
             <div style = {{padding:"5%"}}>
-                <Desktop>
-                 
-            </Desktop>  
+            <Desktop>
+                
+                <div style = {{paddingTop:'5%'}}></div>     
+                <div      className = 'row'>    
+                <h2 style = {{fontSize:'15px',textAlign:'center'}}>Generated Result</h2>
+                <div>
+                <img className = 'generated-image'  src = {'https://via.placeholder.com/150'}  />
+                </div>
+                <div className = "vertical-center">
+                    <p style = {{textAlign:'center',color:'#878787'}}>Tap to generate images</p>
+                    <button style = {{bottom:'25px',zIndex:'99999',borderRadius:'50px'}}className = 'generatebtn lighten-1 z-depth-0'  onClick={this.loadmore}>Generate </button>
+                    <p style = {{textAlign:'center',paddingTop:'5%'}}>Learn More</p>
+                </div>                
+                
+                    
+                </div>
+               
+            </Desktop> 
             <Tablet>
                
             </Tablet>    
@@ -188,7 +197,6 @@ class Generate extends Component {
                 <h2 style = {{fontSize:'15px',textAlign:'center'}}>Generated Result</h2>
                 <div>
                 <img style = {{ borderRadius:'20%',backgroundcolor:'white',padding:'2%'}} src = {seed}/>
-
                 </div>
                 <div className = "vertical-center">
                     <p style = {{textAlign:'center',color:'#878787',paddingTop:'50%'}}>Tap to generate images</p>
@@ -197,32 +205,7 @@ class Generate extends Component {
                 </div>                
                 <img style = {{position:"fixed",zIndex:'99999'}} src = {this.state.selectedImage}  onClick={e => this.setState({selectedImage: ''})}/> 
                     <div style = {{display: this.state.isLoaded ? 'none' : 'inline-block'}}><h1>loading</h1></div>
-                    {this.state.userphotos.data.reverse(0).map((n,index) => { 
-                    // return (
-                    // <div style ={{paddingTop:'25.75%'}} className = 'col s4 m4 l4'  key={n}>
-                    //     <div className = 'col s12 m12 l12' style = {{paddingTop:'20%',zIndex:'-9999'}}>
-                    //     <StackGrid
-                    //         columnWidth={140}
-                    //         appear={scaleDown.appear}
-                    //         appeared={scaleDown.appeared}
-                    //         enter={scaleDown.enter}
-                    //         entered={scaleDown.entered}
-                    //         leaved={scaleDown.leaved}
-                    //     >
-                    //         <img style = {{maxWidth:"100%",paddingTop:'40%'}}src = {n.imageUrl}  onClick={e => this.setState({selectedImage: n.imageUrl})} /> 
-                    //         </StackGrid>
-                    //     </div>
                     
-                
-                        
-                    //     <div className = "row dis"> 
-                    //         <div  style = {{display: n.displayname === "undefined" ? "none": "inline-block"}} className = "col s6 m6 l6">
-                    //             <div style = {{float:'left'}}><img  style = {{maxWidth:"25px"}} src = {n.userphotourl}/></div> 
-                    //         </div>
-                    //     </div>
-                    // </div>
-                    // );
-                    })}
                 </div>
                
             </Mobile>
