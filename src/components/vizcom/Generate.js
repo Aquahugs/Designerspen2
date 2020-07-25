@@ -26,19 +26,18 @@ class Generate extends Component {
         this.state= {
             items :[],
             users:[],
-            description: '',
-            postTag: '',
-            collection:[],
+
             uuid: props.match.params.uuid,
             displayName: props.auth.displayName,
             userPhotoUrl: props.auth.photoURL,
             userphotos:[],
-            tags:[],
-            bio:[],
             id:[],
             isLoaded: false,
             selectedImage:'',
-            limit:50
+            limit:50,
+            GeneratePreview:'',
+            index : 0
+            
            
 
             // product: {
@@ -73,24 +72,14 @@ class Generate extends Component {
     componentDidMount() {
         document.addEventListener('scroll', this.trackScrolling);
         const {uuid} = this.state
-         Promise.all([
-             fetch('https://designerspendroplet.getdpsvapi.com/Discover'), 
-             fetch('https://designerspendroplet.getdpsvapi.com/tags'),
-                fetch(`https://designerspendroplet.getdpsvapi.com/bio/:uuid?uuid=${(uuid)}`,
-             
-              {
-                method: "GET",
-                headers: {'Content-Type':'application/json'}  
-            }),
-            fetch(`https://designerspendroplet.getdpsvapi.com/collection/:uuid?uuid=${(uuid)}`)
-         ])
-         .then(([res1, res2,res3,res4]) => Promise.all([res1.json(), res2.json(),res3.json(),res4.json()]))
-         .then(([data1,data2,data3,data4]) => this.setState({
+         
+            fetch('https://designerspendroplet.getdpsvapi.com/Generate')
+    
+         .then((res1) => (res1.json()))
+         .then((data1) => this.setState({
              isLoaded:true,
-             userphotos:data1,
-             tags:data2,
-             bio:data3,
-             collection:data4
+             userphotos:data1
+            
          }))      
     }
     
@@ -124,21 +113,13 @@ class Generate extends Component {
 
     
     
-     
-      loadmore = (event) => {
-        const {limit} = this.state;
-        fetch(`https://designerspendroplet.getdpsvapi.com/Discovermore?limit=${limit}`)
-        .then((res1) => Promise.all([res1.json()]))
-        .then(([data1]) => this.setState({ 
-            userphotos:data1,
-            limit:limit + 50
-           
-        }));
-        console.log(this.state)
-     } 
+    handleClick(e) { if (e) {e.preventDefault()}; }
+
+
+  
 
      toggleImage = () => {
-        this.setState(state => ({ selectedImage: !state.open }))
+        this.setState({ index : this.state.index + 1 });
       }
 
      
@@ -147,13 +128,18 @@ class Generate extends Component {
     render(){
         var { isLoaded,items} = this.state;
         const {items} = this.state
+        
+        // const random = this.state.userphotos.data[Math.floor(Math.random() * this.state.userphotos.data.length)];
+
       
 
         
        
           console.log(this.state)
-          console.log(this.state.userphotos.data)
-          console.log(this.state.collection.data)
+          console.log(this.state.userphotos.data && this.state.userphotos.data.length)
+         
+
+
 
 
           
@@ -162,7 +148,7 @@ class Generate extends Component {
         
         else{
           
-             
+      
 
 
 
@@ -171,20 +157,29 @@ class Generate extends Component {
             <div style = {{padding:"5%"}}>
             <Desktop>
                 
-                <div style = {{paddingTop:'5%'}}></div>     
-                <div      className = 'row'>    
+           
+                <div      className = 'row'> 
+                <p style = {{textAlign:'center',color:'#878787',padding:'0'}}>Vizcom v1.0</p> 
                 <h2 style = {{fontSize:'15px',textAlign:'center'}}>Generated Result</h2>
-                <div>
-                <img className = 'generated-image'  src = {'https://via.placeholder.com/150'}  />
+               
+                {/* {this.state.userphotos.data.slice(299).map(function (n) {    
+                      return ( //post tags 
+                <div >
+                    <img className = 'generated-image'  src = {n.imageUrl}  />
                 </div>
-                <div className = "vertical-center">
-                    <p style = {{textAlign:'center',color:'#878787'}}>Tap to generate images</p>
-                    <button style = {{bottom:'25px',zIndex:'99999',borderRadius:'50px'}}className = 'generatebtn lighten-1 z-depth-0'  onClick={this.loadmore}>Generate </button>
-                    <p style = {{textAlign:'center',paddingTop:'5%'}}>Learn More</p>
-                </div>                
+                  );
+                })} */}
+                 <div >
+                    <img className = 'generated-image'  src = {this.state.userphotos.data[this.state.index].imageUrl}  />
+                </div>  
                 
-                    
+                <div className = "vertical-center">
+                    <p style = {{textAlign:'center',color:'#878787'}}>Click button to generate images</p>
+                    <button style = {{bottom:'25px',zIndex:'99999',borderRadius:'50px'}}className = 'generatebtn lighten-1 z-depth-0' onClick={this.toggleImage} onMouseDown={this.handleClick} onKeyUp={(e) => {if (e.keyCode === 13 || e.keyCode === 32) {this.handleClick()}}}>Generate </button>
+                    <p style = {{textAlign:'center',paddingTop:'5%'}}>Learn More</p>
+                </div>                 
                 </div>
+                
                
             </Desktop> 
             <Tablet>
@@ -193,14 +188,15 @@ class Generate extends Component {
             <Mobile>
                 
                 <div style = {{paddingTop:'5%'}}></div>     
-                <div      className = 'row'>    
+                <div      className = 'row'>   
+                 
                 <h2 style = {{fontSize:'15px',textAlign:'center'}}>Generated Result</h2>
                 <div>
                 <img style = {{ borderRadius:'20%',backgroundcolor:'white',padding:'2%'}} src = {seed}/>
                 </div>
                 <div className = "vertical-center">
                     <p style = {{textAlign:'center',color:'#878787',paddingTop:'50%'}}>Tap to generate images</p>
-                    <button style = {{bottom:'25px',zIndex:'99999',borderRadius:'50px'}}className = 'generatebtn lighten-1 z-depth-0'  onClick={this.loadmore}>Generate </button>
+                    <button style = {{bottom:'25px',borderRadius:'50px'}}className = 'generatebtn lighten-1 z-depth-0' onClick={this.toggleImage}  >Generate </button>
                     <p style = {{textAlign:'center',paddingTop:'5%'}}>Learn More</p>
                 </div>                
                 <img style = {{position:"fixed",zIndex:'99999'}} src = {this.state.selectedImage}  onClick={e => this.setState({selectedImage: ''})}/> 
@@ -214,6 +210,7 @@ class Generate extends Component {
         }
     }
 }
+
 
 const mapStateToProps = (state) => { // 1.) Gives acces to the authentication state 
     return {

@@ -16,6 +16,17 @@
     vertical-align: middle;
     -webkit-tap-highlight-color: transparent;
 }
+
+.generatebtn:focus {
+    background-color: none;
+    outline: none;
+    box-shadow: none;
+}
+.generatebtn:hover {
+    background-color: black;
+    color:white;
+    box-shadow: none;
+}
 .updatesbtn {
     width: 92% !important;
     display: block;
@@ -97,10 +108,13 @@ p{
   }
 
   .generated-image {
-      border-radius: 20%;
       background-color: white;
       padding: 2%;
       display: block;
       margin-left: auto;
       margin-right: auto;
+      width:50%;
+      max-height: 500px;
   }
+
+  
