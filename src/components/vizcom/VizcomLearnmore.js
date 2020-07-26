@@ -20,6 +20,8 @@ import seed9 from './assets/seed9.png'
 import seed10 from './assets/seed10.png'
 import seed11 from './assets/seed11.jpg'
 import seed12 from './assets/seed12.png'
+import story from './assets/Story.jpg'
+import colorpick from './assets/colorpick.jpg'
 import history from './assets/history.png'
 import insta from '../../assets/images/instagram.svg'
 import discord from '../../assets/images/discord.svg'
@@ -183,6 +185,7 @@ class VizcomLearnmore extends Component {
                     </div>
                     <p style = {{fontSize:'1.8rem'}}>Get inspired 🧠</p>
                     <div className = "row">
+                        <img src = {story}/>
                         <div className = 'col s3 m3 l3 pics '>
                             <img src = {seed1}/>
                             <img src = {seed2}/>
@@ -206,6 +209,7 @@ class VizcomLearnmore extends Component {
                             <img src = {seed12}/>
                             <img src = {seed9}/>
                         </div>
+                        <img src = {colorpick}/>
                         
                         
                     </div>
@@ -215,7 +219,7 @@ class VizcomLearnmore extends Component {
                         <img style = {{width:'600px',height:'auto'}}className = 'history' src = {history}/>
                         <a href ="https://www.instagram.com/designerspen/"><img  className = 'insta' src = {insta}/></a>
                         <a href = "https://discord.gg/RDwruDp"><img  className = 'discord' src = {discord}/></a>
-                        <p style = {{fontSize:'1.8rem',padding:'0'}}>designerpensmail@gmail.com</p>
+                        <p style = {{fontSize:'1.8rem',padding:'0'}}>contact@designerspen.com</p>
                     </div>
                </div> 
             </Desktop>  
@@ -250,6 +254,7 @@ class VizcomLearnmore extends Component {
                     </div>
                     <p style = {{fontSize:'1.8rem'}}>Get inspired 🧠</p>
                     <div className = "row">
+                    <img src = {story}/>
                         <div className = 'col s6 m6 l6 pics '>
                             <img src = {seed1}/>
                             <img src = {seed2}/>
@@ -266,6 +271,7 @@ class VizcomLearnmore extends Component {
                             <img src = {seed10}/>
                             <img src = {seed12}/>
                         </div>
+                        <img src = {colorpick}/>
                         <div className = 'row' style = {{paddingBottom:'200px'}}>
                             <img  style = {{visibility:'hidden'}}src = "https://via.placeholder.com/150"/>
                             <p style = {{fontSize:'1.8rem'}}> Coming soon 👨+💻</p>
@@ -309,6 +315,7 @@ class VizcomLearnmore extends Component {
                     </div>
                     <p style = {{fontSize:'1.6rem'}}>Get inspired 🧠</p>
                     <div className = "row">
+                        <img src = {story}/>
                         <div className = 'col s6 m6 l6 pics '>
                             <img src = {seed1}/>
                             <img src = {seed2}/>
@@ -325,6 +332,7 @@ class VizcomLearnmore extends Component {
                             <img src = {seed10}/>
                             <img src = {seed12}/>
                         </div>
+                        <img src = {colorpick}/>
                         <img  style = {{visibility:'hidden'}}src = "https://via.placeholder.com/50"/>
 
                         <p style = {{fontSize:'1.6rem'}}> Coming soon 👨+💻</p>

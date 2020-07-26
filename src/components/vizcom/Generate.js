@@ -3,7 +3,7 @@ import axios from 'axios';
 import StackGrid from "react-stack-grid";
 import seed from './assets/seed0655.png'
 import {connect} from 'react-redux'
-
+import Footer from '../navbar/Footer'
 import Flexbox from 'flexbox-react';
 
 import { Desktop, Tablet, Mobile, Phone } from '../shared';
@@ -154,13 +154,12 @@ class Generate extends Component {
 
         return(   
             
-            <div style = {{padding:"5%"}}>
+            <div style = {{paddingBottom:"5%",paddingTop:"5%"}}>
             <Desktop>
                 
-           
                 <div      className = 'row'> 
-                <p style = {{textAlign:'center',color:'#878787',padding:'0'}}>Vizcom v1.0</p> 
-                <h2 style = {{fontSize:'15px',textAlign:'center'}}>Generated Result</h2>
+                    <p style = {{textAlign:'center',color:'#878787',padding:'0'}}>Vizcom v1.0</p> 
+                    <h2 style = {{fontSize:'15px',textAlign:'center'}}>Generated Result</h2>
                
                 {/* {this.state.userphotos.data.slice(299).map(function (n) {    
                       return ( //post tags 
@@ -170,38 +169,72 @@ class Generate extends Component {
                   );
                 })} */}
                  <div >
-                    <img className = 'generated-image'  src = {this.state.userphotos.data[this.state.index].imageUrl}  />
+                    
+                  <img className = 'generated-image'  src = {this.state.userphotos.data[this.state.index].imageUrl}  />
+                    <a href={this.state.userphotos.data[this.state.index].imageUrl} download>
+                        <p style = {{textAlign:'left',paddingLeft:'30%',paddingTop:'0'}}>Download image</p>
+                    </a>
                 </div>  
                 
                 <div className = "vertical-center">
                     <p style = {{textAlign:'center',color:'#878787'}}>Click button to generate images</p>
                     <button style = {{bottom:'25px',zIndex:'99999',borderRadius:'50px'}}className = 'generatebtn lighten-1 z-depth-0' onClick={this.toggleImage} onMouseDown={this.handleClick} onKeyUp={(e) => {if (e.keyCode === 13 || e.keyCode === 32) {this.handleClick()}}}>Generate </button>
-                    <p style = {{textAlign:'center',paddingTop:'5%'}}>Learn More</p>
+                    <a href = 'https://designerspen.com/aboutvizcom'>
+                        <p style = {{textAlign:'center',paddingTop:'5%',marginBottom:'15%', color:'#272727'}}>Learn More</p>
+                    </a>
+                    
                 </div>                 
                 </div>
-                
+                <Footer/>
                
             </Desktop> 
             <Tablet>
+                
+            <div      className = 'row'> 
+                    <p style = {{textAlign:'center',color:'#878787',padding:'0'}}>Vizcom v1.0</p> 
+                    <h2 style = {{fontSize:'15px',textAlign:'center'}}>Generated Result</h2>
                
+                {/* {this.state.userphotos.data.slice(299).map(function (n) {    
+                      return ( //post tags 
+                <div >
+                    <img className = 'generated-image'  src = {n.imageUrl}  />
+                </div>
+                  );
+                })} */}
+                 <div >
+                    
+                  <img className = 'generated-image'  src = {this.state.userphotos.data[this.state.index].imageUrl}  />
+                    <a href={this.state.userphotos.data[this.state.index].imageUrl} download>
+                        <p style = {{textAlign:'left',paddingLeft:'30%',paddingTop:'0'}}>Download image</p>
+                    </a>
+                </div>  
+                
+                <div className = "vertical-center">
+                    <p style = {{textAlign:'center',color:'#878787'}}>Click button to generate images</p>
+                    <button style = {{bottom:'25px',zIndex:'99999',borderRadius:'50px'}}className = 'generatebtn lighten-1 z-depth-0' onClick={this.toggleImage} onMouseDown={this.handleClick} onKeyUp={(e) => {if (e.keyCode === 13 || e.keyCode === 32) {this.handleClick()}}}>Generate </button>
+                    <a href = 'https://designerspen.com/aboutvizcom'>
+                        <p style = {{textAlign:'center',paddingTop:'5%',marginBottom:'15%', color:'#272727'}}>Learn More</p>
+                    </a>
+                    
+                </div>                 
+                </div>
+                <Footer/>
             </Tablet>    
             <Mobile>
                 
                 <div style = {{paddingTop:'5%'}}></div>     
-                <div      className = 'row'>   
-                 
-                <h2 style = {{fontSize:'15px',textAlign:'center'}}>Generated Result</h2>
-                <div>
-                <img style = {{ borderRadius:'20%',backgroundcolor:'white',padding:'2%'}} src = {seed}/>
-                </div>
-                <div className = "vertical-center">
-                    <p style = {{textAlign:'center',color:'#878787',paddingTop:'50%'}}>Tap to generate images</p>
-                    <button style = {{bottom:'25px',borderRadius:'50px'}}className = 'generatebtn lighten-1 z-depth-0' onClick={this.toggleImage}  >Generate </button>
-                    <p style = {{textAlign:'center',paddingTop:'5%'}}>Learn More</p>
-                </div>                
-                <img style = {{position:"fixed",zIndex:'99999'}} src = {this.state.selectedImage}  onClick={e => this.setState({selectedImage: ''})}/> 
-                    <div style = {{display: this.state.isLoaded ? 'none' : 'inline-block'}}><h1>loading</h1></div>
-                    
+                <div      className = 'row'>    
+                    <h2 style = {{fontSize:'15px',textAlign:'center'}}>Generated Result</h2>
+                    <div>
+                    <img style = {{ borderRadius:'20%',backgroundcolor:'white',padding:'2%'}} src = {seed}/>
+                    </div>
+                    <div className = "vertical-center">
+                        <p style = {{textAlign:'center',color:'#878787',paddingTop:'50%'}}>Tap to generate images</p>
+                        <button style = {{bottom:'25px',borderRadius:'50px'}}className = 'generatebtn lighten-1 z-depth-0' onClick={this.toggleImage}  >Generate </button>
+                        <p style = {{textAlign:'center',paddingTop:'5%'}}>Learn More</p>
+                    </div>                
+                    <img style = {{position:"fixed",zIndex:'99999'}} src = {this.state.selectedImage}  onClick={e => this.setState({selectedImage: ''})}/> 
+                        <div style = {{display: this.state.isLoaded ? 'none' : 'inline-block'}}><h1>loading</h1></div>
                 </div>
                
             </Mobile>
