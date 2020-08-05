@@ -375,18 +375,12 @@ class Discover extends Component {
                         
                         <div style ={{padding:'0.75%'}} className = 'col s3 m3 l3'  key={n}>
                             
-                            <Popup modal trigger={<img  style = {{maxWidth:"100%"}}src = {n.imageUrl}/>} style = {{width:"100%"}}>
-                                <div className = 'col s12 m12 l12'>
-                                <StackGrid
-                                 columnWidth={250}
-                                 appear={scaleDown.appear}
-                                appeared={scaleDown.appeared}
-                                enter={scaleDown.enter}
-                                entered={scaleDown.entered}
-                                leaved={scaleDown.leaved}>
-                                    <img style = {{maxWidth:"100%",maxHeight:"800px"}}src = {n.imageUrl}/> 
-                                    </StackGrid>
-                                </div>
+                            <Popup closeOnDocumentClick modal trigger={<img src = {n.imageUrl}/>} style = {{width:"100%"}}>
+                                <div className = 'col s12 m12 l12'></div>
+
+                                    <img src = {n.imageUrl}/> 
+                            
+                            
                                 <div className = 'col s4 m4 l4'>
                                 <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
                                     <a href={"https://www.designerspen.com/users/" + n.uuid}> <p>{n.displayname}</p> </a>

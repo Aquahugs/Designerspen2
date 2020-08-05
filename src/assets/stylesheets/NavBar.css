@@ -9,10 +9,16 @@
     padding-right: 2%;
 }
 .navbar {
-    
     box-shadow: none;
-   
-   
+}
+
+.container { 
+    background-color: white;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 

@@ -14,7 +14,7 @@ const Navbar = (props) => { // 2.) brings in all the inspect properties
     const links = auth.uid ? <SignedInLinks auth={auth} profile={profile} /> : <SignedOutLinks/> // 4.) is there an auth uid? 
 
     const styles1 = {
-        backgroundColor: auth.uid ? "white" : "transparent",
+        backgroundColor: auth.uid ? "white" : "white",
         borderBottom: auth.uid ? "1px solid #c8c8c8" : "none"
     } 
     return (

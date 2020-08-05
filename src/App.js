@@ -48,14 +48,8 @@ const App = (props) => {
     // if(!auth.uid){
     //   return (
     //       <Switch>
-    //             <Route path ='/signup' component = {SignUp} />
-    //              <Route path ='/KojimaProductions' component = {KojimaProductions}/>
-    //              <Route path ='/sahmtesla' component = {SahmTesla}/>
-    //             <Route path ='/airpod2' component = {AirPod}/>
-    //             <Route path ='/Kyrkesund' component = {Kyrkesund}/>
-    //             <Route path ='/WorkFlows' component = {WorkFlows}/>
-    //             <Route path ='/News' component = {Home}/>'
-    //             <Route path ='/about' component = {About} />
+             
+    //             <Route path ='/Generate' component = {Generate} />
     //              <Redirect to={'/signup'} />
 
     //       </Switch>
@@ -97,6 +91,7 @@ const App = (props) => {
                 <Route path ='/Vizcom' component = {Vizcom} />
                 <Route path ='/AboutVizcom' component = {VizcomLearnmore} />
                 <Route path ='/Generate' component = {Generate} />
+        
 
             </Switch>
           </div>

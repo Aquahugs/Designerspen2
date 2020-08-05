@@ -21,7 +21,7 @@ const Articles = () => {
 
     <div>
         <Desktop>
-            <div className = 'row' style = {{margin:'0'}}>
+            <div className = 'row' style = {{margin:'0',paddingTop:'15%'}}>
             
             <div style = {{padding:'0'}}className = 'col s8 m8 l8 module'>
                 <div className = 'row squares' >

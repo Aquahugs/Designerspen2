@@ -10,7 +10,7 @@ const Footer = () => { // 2.) brings in all the inspect properties
         <div>
             <div className = 'row footer'>
                 <div className = 'col s12 m6 l6'>
-                <p className = 'about'>
+                <p className = 'about' style ={{color : '#323232'}}>
                     ©Designerspen is a discovery platform to inspire <br/>and empower all forms of creation.
                 </p>
                 </div>

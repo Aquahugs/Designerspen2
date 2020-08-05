@@ -156,21 +156,15 @@ class VizcomLearnmore extends Component {
         <div >
             <Desktop>
             <div style = {{paddingLeft:'15%',paddingRight:'15%'}}>
-                    <video autoPlay loop muted
+                    <video autoPlay loop muted 
                         style = {{
-                            position:"absolute",
-                            width:"100%",
-                            left:"40%",
-                            top:"40%",
-                            height:"auto",
-                            ObjectFit:"cover",
-                            transform: "translate(-40%,-40%)",
-                            zIndex:"-1",
-                            paddingBottom:"100%"
+                            margin:'auto',
+                            display: 'block',
+                            paddingTop:'5%'
                             }}>
-                        <source src={video2} type="video/mp4"/>
+                        <source src={video} type="video/mp4"/>
                     </video>
-                    <p style = {{paddingTop:'1000px',fontSize:'2rem'}}>Project Vizcom <br/>
+                    <p style = {{fontSize:'2rem'}}>Project Vizcom <br/>
                     <span style = {{fontSize:'1.2rem'}}>By / <a href= "https://www.instagram.com/designerspen/">@Designerspen</a></span></p>
                     <p style = {{fontSize:'1.8rem'}}>Vizcom is a Ai driven design tool that is being trained on the collected consciousness of the car design world to help accelerate and inspire your creative process.</p>
                     <div className = 'input-field'>
@@ -185,7 +179,8 @@ class VizcomLearnmore extends Component {
                     </div>
                     <p style = {{fontSize:'1.8rem'}}>Get inspired 🧠</p>
                     <div className = "row">
-                        <img src = {story}/>
+                        <img  className = 'pics' src = {story}/>
+                        <p style = {{fontSize:'1.6rem'}}>Images genereated by Vizcom</p>
                         <div className = 'col s3 m3 l3 pics '>
                             <img src = {seed1}/>
                             <img src = {seed2}/>
@@ -227,19 +222,13 @@ class VizcomLearnmore extends Component {
                 <div>
                     <video autoPlay loop muted 
                         style = {{
-                            position:"absolute",
-                            width:"100%",
-                            left:"50%",
-                            top:"50%",
-                            height:"auto",
-                            ObjectFit:"cover",
-                            transform: "translate(-50%,-50%)",
-                            zIndex:"-1",
-                            paddingBottom:"100%"
+                            margin:'auto',
+                            display: 'block',
+                            paddingTop:'5%'
                             }}>
                         <source src={video} type="video/mp4"/>
                     </video>
-                    <p style = {{paddingTop:'80%',fontSize:'2rem'}}>Project Vizcom <br/>
+                    <p style = {{fontSize:'2rem'}}>Project Vizcom <br/>
                     <span style = {{fontSize:'1rem'}}>By / <a href= "https://www.instagram.com/designerspen/">@Designerspen</a></span></p>
                     <p style = {{fontSize:'2rem'}}>Vizcom is a Ai driven design tool that is being trained on the collected consciousness of the car design world to help accelerate and inspire your creative process.</p>
                     <div className = 'input-field'>
@@ -255,7 +244,9 @@ class VizcomLearnmore extends Component {
                     <p style = {{fontSize:'1.8rem'}}>Get inspired 🧠</p>
                     <div className = "row">
                     <img src = {story}/>
+                    <p style = {{fontSize:'1.6rem'}}>Images genereated by Vizcom</p>
                         <div className = 'col s6 m6 l6 pics '>
+                  
                             <img src = {seed1}/>
                             <img src = {seed2}/>
                             <img src = {seed5}/>
@@ -300,7 +291,7 @@ class VizcomLearnmore extends Component {
                 
                         }}/>
                     
-                   <p style = {{paddingTop:'120%',fontSize:'1.6rem'}}>Project Vizcom <br/>
+                   <p style = {{paddingTop:'120%',fontSize:'1.6rem'}}>Project Vizcom <br/>np
                    <span style = {{fontSize:'1rem'}}>By / <a href= "https://www.instagram.com/designerspen/">@Designerspen</a></span></p>
                    <p style = {{fontSize:'1.6rem'}}>Vizcom is a Ai driven design tool that is being trained on the collected consciousness of the car design world to help accelerate and inspire your creative process.</p>
                    <div className = 'input-field'>
@@ -316,7 +307,9 @@ class VizcomLearnmore extends Component {
                     <p style = {{fontSize:'1.6rem'}}>Get inspired 🧠</p>
                     <div className = "row">
                         <img src = {story}/>
+                        <p style = {{fontSize:'1.6rem'}}>Images genereated by Vizcom</p>
                         <div className = 'col s6 m6 l6 pics '>
+                        
                             <img src = {seed1}/>
                             <img src = {seed2}/>
                             <img src = {seed5}/>
@@ -337,6 +330,16 @@ class VizcomLearnmore extends Component {
 
                         <p style = {{fontSize:'1.6rem'}}> Coming soon 👨+💻</p>
                         <img className = 'history' src = {history}/>
+                        <div className = 'input-field'>
+                        <p style = {{fontSize:'1rem',visibility: this.state.submitted != true? 'hidden': 'visible',fontSize:'1.2rem'}}>Early access and updates
+                            <span style = {{fontSize:'1rem',visibility: this.state.submitted != true? 'visible': 'hidden', 'display':'block'}}>Stay tuned 👌😊👌</span>
+                        </p>
+                        <form onSubmit={this.handleSubmit} style ={{visibility: this.state.submitted != true? 'hidden': 'visible'}}>
+                            <input style = {{height:'70px',fontSize:'1rem'}} type ='email' id='email' placeholder="Youremail@email.com" onChange={this.handleChange}/>
+                            <button className = ' updatesbtn2 lighten-1 z-depth-0' onClick={e => this.setState({submitted: false})}>Sign up </button>
+                
+                        </form>
+                    </div>
                         <a href ="https://www.instagram.com/designerspen/"><img  className = 'insta' src = {insta}/></a>
                         <a href = "https://discord.gg/RDwruDp"><img  className = 'discord' src = {discord}/></a>
                         <p style = {{fontSize:'1rem',paddingBottom:'150px'}}>designerpensmail@gmail.com</p>

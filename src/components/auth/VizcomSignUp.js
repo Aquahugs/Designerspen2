@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {signUp,signIn} from '../../store/actions/authActions'
-import Footer from '../navbar/Footer';
+
 import firebase from 'firebase'
 import Home from '../dashboard/Dashboard2';
 import './signup.scss'
@@ -14,7 +14,7 @@ import youtube  from '../../assets/images/youtube.svg'
 
 import { Desktop, Tablet, Mobile, Phone } from '../shared';
 
-class SignUp extends Component {
+class VizcomSignUp extends Component {
 
     constructor(props) {
         super(props);
@@ -76,28 +76,25 @@ class SignUp extends Component {
   render() {
     const {auth,authError} = this.props;
     console.log(this.state)
-    if(auth.uid) return <Redirect to='/generate'/>
+    if(auth.uid) return <Redirect to='/'/>
     return (
     
     <div>
-    <Desktop>
-    <div className = 'row ' style = {{marginBottom:'0'}}>
+        <Desktop>
+    <div className = 'row backgroundimage'>
         
-       <div className = 'col s6 m6 l6' style = {{backgroundColor:'#000000',height:'100%'}}>
-           <img src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/vizcom.jpg?alt=media&token=8d5fe237-72b2-4f97-947c-4afc03db7756' style = {{paddingTop:'50%',paddingBottom:'56%',display:'block',marginLeft:'auto',marginRight:'auto'}}/>
-
-       </div>
-        <div className = ' col s6 m6 l6'  >
+       
+        <div className = ' col s12 m12 l12 box' >
             <form
              style={{ 
                  visibility: this.state.isSignUp ? 'hidden': 'visible',
                  display: this.state.isSignUp ? 'none': 'inline-block'}} 
-                onSubmit={this.handleSubmit}
-                 
-               >
-               <div className = 'banner'>
-                    <h2 style = {{fontSize:'18px'}}>Welcome to Vizcom  </h2>
-                    <h1>Unlimited inspiration </h1>
+                onSubmit={this.handleSubmit}  
+                className = 'signinform'>
+                <div className = 'banner'>
+                     <img className = "logo" src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/logo.png?alt=media&token=e4875c11-d904-48bc-8271-cd3b5cfa8be1"/>
+                    <h2>Welcome to Designerspen</h2>
+                    <p>Find currated inspiration from around the web</p>
                 </div>
                 
                
@@ -126,15 +123,13 @@ class SignUp extends Component {
             <form 
             style={{ 
                 visibility: this.state.isSignUp ? 'visible': 'hidden',
-                display: this.state.isSignUp ? 'inline-block': 'none',
-                width:'100%',
-                padding:'5%'
-            }} 
-                onSubmit={this.handleSubmitSignin}
-               >
+                display: this.state.isSignUp ? 'inline-block': 'none'}} 
+                onSubmit={this.handleSubmitSignin} 
+                className = 'signinform' >
                 <div className = 'banner'>
-                    <h2 style = {{fontSize:'18px'}}>Welcome to Vizcom </h2>
-                    <h1>Unlimited inspiration</h1>
+                    <img className = "logo" src = "https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/logo.png?alt=media&token=e4875c11-d904-48bc-8271-cd3b5cfa8be1"/>
+                    <h2>Welcome to Designerspen</h2>
+                    <p>Find currated inspiration from around the web</p>
                 </div>
                     <div className = 'input-field'>
                         <input  type ='email' id='email' placeholder = "Email" onChange={this.handleChange}/>
@@ -148,19 +143,27 @@ class SignUp extends Component {
                             {authError ? <p>{authError}</p> : null }
                         </div>
                     </div>
-                <p style = {{textAlign:'center'}}>or</p>
+              
                 <StyledFirebaseAuth style ={{width:'100%'}}uiConfig = {this.uiConfig}
                 firebaseAuth={firebase.auth()}/>
-                <p >Don't have an account?<span style = {{color:'#1589ff'}}  onClick={e => this.setState({isSignUp:false})}> Regiester Here</span></p>
-            </form>
+                <p style = {{textAlign:'center'}}>or</p>
+                <p  style = {{color:'#1589ff',textAlign:'center'}}  onClick={e => this.setState({isSignUp:false})}>Create an account</p>
+
+                
+                    
+                    
+                </form>
                 
          
         </div>
-     
+       <a href = 'http://archvizual.com/'> <h1 className = 'credit'>By /Roman Vlasov</h1></a>
+        
     </div>
-    <Footer/>
-    
-    </Desktop>
+       
+      
+
+        <Home/>
+        </Desktop>
 
 
     <Tablet>
@@ -198,7 +201,7 @@ class SignUp extends Component {
                     </div>
                 </div>
                 <p style = {{textAlign:'center'}}>or</p>
-                <p style = {{color:'#1589ff', textAlign:'center'}}  onClick={e => this.setState({isSignUp:true})}>login to your account </p>
+                <p style = {{color:'#1589ff', textAlign:'center'}}  onClick={e => this.setState({isSignUp:true})}>or login to your account </p>
                 
             </form>
 
@@ -258,7 +261,7 @@ class SignUp extends Component {
             </div>
         </div> */}
 
-        
+        <Home/>
     </Tablet>
 
 
@@ -387,4 +390,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(SignUp)
+export default connect(mapStateToProps,mapDispatchToProps)(VizcomSignUp)
