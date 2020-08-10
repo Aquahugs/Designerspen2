@@ -4,7 +4,8 @@ import "materialize-css/dist/css/materialize.min.css";
 import Popup from "reactjs-popup";
 import './Profile.scss'
 
-
+import 'react-notifications/lib/notifications.css';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class Tabs extends Component {
     constructor(props){
@@ -23,6 +24,7 @@ class Tabs extends Component {
     onRemoveCollect = _ => {  
       
   }
+  
    render() {
     let deleteButton;
     
@@ -39,6 +41,7 @@ class Tabs extends Component {
     // if (this.state.props.uuid  === this.state.props.isLoggedIn)
     return (
       <>
+      <NotificationContainer /> 
         <ul
           ref={Tabs => {
             this.Tabs = Tabs;
@@ -46,9 +49,9 @@ class Tabs extends Component {
           id="tabs-swipe-demo"
           className="tabs"
         >
-          <li className="tab col s3">
+          {/* <li className="tab col s3">
             <a href="#test-swipe-1">Images</a>
-          </li>
+          </li> */}
           <li className="tab col s3">
             <a href="#test-swipe-2">Collection</a>
           </li>
@@ -75,24 +78,25 @@ class Tabs extends Component {
                 }
                     
             return (
+              <div></div>
               // Images
-              <div className = 'col s3 m3 l3'  key={n}  style ={{padding:'0.75%'}}>
-                <img style = {{maxWidth:"100%"}}src = {n.imageUrl}/>
-                <div  style = {{backgroundColor:'white',padding:'2%'}}> 
-                  <img style = {{maxWidth:"25px",float:'left'}} src = {n.userphotourl}/> 
-                  <a href={"https://designerspendroplet.getdpsvapi.com/users/" + n.uuid} > <p style = {{float:'left'}}>{n.displayname}:</p> </a>
-                  <p>{n.description}</p>
-                  <Popup
-                    trigger={<img style = {deleteButton} src = 'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/TDOT3.png?alt=media&token=551b1b80-55bc-4a14-906e-fb0bdc044615' className="button"/>}
-                    position="bottom center"
-                    on="hover"
-                  >
+              // <div className = 'col s3 m3 l3'  key={n}  style ={{padding:'0.75%'}}>
+              //   <img style = {{maxWidth:"100%"}}src = {n.imageUrl}/>
+              //   <div  style = {{backgroundColor:'white',padding:'2%'}}> 
+              //     <img style = {{maxWidth:"25px",float:'left'}} src = {n.userphotourl}/> 
+              //     <a href={"https://designerspendroplet.getdpsvapi.com/users/" + n.uuid} > <p style = {{float:'left'}}>{n.displayname}:</p> </a>
+              //     <p>{n.description}</p>
+              //     <Popup
+              //       trigger={<img style = {deleteButton} src = 'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/TDOT3.png?alt=media&token=551b1b80-55bc-4a14-906e-fb0bdc044615' className="button"/>}
+              //       position="bottom center"
+              //       on="hover"
+              //     >
                     
-                    <button class="remove-button waves-effect waves-teal btn-flat" style = {deleteButton} onClick={handleClick}>remove</button>
-                  </Popup>
-                </div>
-                {/* {button} */}
-              </div>
+              //       <button class="remove-button waves-effect waves-teal btn-flat" style = {deleteButton} onClick={handleClick}>remove</button>
+              //     </Popup>
+              //   </div>
+              //   {/* {button} */}
+              // </div>
               );
             })}
         </div>
@@ -104,9 +108,9 @@ class Tabs extends Component {
         {this.state.props.uuid.userCollection.data.map(function (n) { 
            
            function onRemoveCollect() {
-      
-            fetch(`https://designerspendroplet.getdpsvapi.com/removecollectpost?uuid=${n.uuid}&post_id=${n.post_id}`)
-            .then(console.log("this worked stuff REMOVED"),console.log(n))
+            
+            fetch(`https://designerspendroplet/removecollectpost?uuid=${n.uuid}&post_id=${n.post_id}`)
+            .then(NotificationManager.error('error ', 'Image was removed from your collection'))
             .catch (err => console.err(err))
             
           }
@@ -114,7 +118,7 @@ class Tabs extends Component {
             <div  className = 'col s3 m3 l3'  key={n}>
                 <img style = {{maxWidth:"100%"}}src = {n.post_id}/>
                 <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
-            <a href={"https://designerspendroplet.getdpsvapi.com/users/" + n.uuid} > <p>{n.displayname}</p> </a>
+            <a href={"https://designerspen.com/users/" + n.uuid} > <p>{n.displayname}</p> </a>
             <p>{n.description}</p> 
                 <Popup
                     trigger={<img style = {deleteButton} src = 'https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/TDOT3.png?alt=media&token=551b1b80-55bc-4a14-906e-fb0bdc044615' className="button"/>}

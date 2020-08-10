@@ -6,7 +6,8 @@ import axios from 'axios'
 import './Profile.scss'
 import Tabs from './Tabs'
 import { Button } from 'react-bootstrap';
-import Popup from "reactjs-popup";
+
+
 
 
 
@@ -64,6 +65,7 @@ class MyProfile extends Component {
         
     
     }
+    
 
     onSubmitBio = (e) => {
         // event to submit the data to the server

@@ -51,6 +51,24 @@ p{
     
 }
 
+.collectButton2 {
+    border-radius: 50%;
+    width:30px;
+    height:30px;
+    border: 1px solid #FF5065;
+    background-color: white;
+    color:red;
+   
+
+    &:hover{
+        background-color:rgb(248, 168, 177);
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+
+    }
+    
+}
 .uncollectButton:hover + .remove {
     display: inline-block;
     opacity: 1;
@@ -79,6 +97,20 @@ p{
 
 }
 
+.collectButton2:hover + .collect {
+   
+    opacity: 1;
+    transition:opacity 0.2s ease;
+    color: grey;
+    font-size: 0.7vw;
+}
+.collect { 
+    opacity:0;
+    float:left;
+    
+    
+
+}
 
 
 .dis { 

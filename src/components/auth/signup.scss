@@ -27,6 +27,20 @@
     display: block;
     margin : 0 auto;
 }
+.btn2{
+    width:100px !important;
+    display: block;
+    float:right;
+    height:40px;
+    margin-right:25px;
+    color:black;
+    background-color: white;
+    border-radius: 12px;
+}
+.btn2:hover {
+    background-color: black;
+    color:white;
+}
 .image2 {
     background-image:url(https://firebasestorage.googleapis.com/v0/b/designerspen2.appspot.com/o/image.jpg?alt=media&token=9f6f3f94-7411-4018-b2b1-093f497f22eb);
     height:1000px;
