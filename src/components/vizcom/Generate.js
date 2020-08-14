@@ -248,6 +248,7 @@ class Generate extends Component {
                 <div      className = 'row'> 
                     <p style = {{textAlign:'center',color:'#878787',padding:'0'}}>Vizcom v1.0</p> 
                     <h2 style = {{fontSize:'15px',textAlign:'center',color:'#323232'}}>Generated Result</h2>
+                    <p style = {{padding:'0', color:'#515151'}}>Every click uses Artifical Intellegence to generate an image </p>
                
                 {/* {this.state.userphotos.data.slice(299).map(function (n) {    
                       return ( //post tags 
@@ -268,7 +269,7 @@ class Generate extends Component {
                   />
                    <img //LOAD ANIMATION
                     className = 'generated-image' 
-                    src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/loadingsmaller.gif?alt=media&token=7f4e10e2-a592-40f2-9901-001e5fe7657a'
+                    src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/New%20LoadingGenereate%20.gif?alt=media&token=93ba0e96-24af-43a3-8463-650337660f01'
                     style ={{
                         visibility: this.state.isGenerating ? 'visible': 'hidden',
                         display: this.state.isGenerating ? 'block': 'none'
@@ -296,8 +297,7 @@ class Generate extends Component {
                 </div>  
                 
                 <div className = "vertical-center">
-                    <p style = {{textAlign:'center',color:'#878787'}}>Click button to generate images</p>
-
+            
                     <button style = {{bottom:'25px',zIndex:'99999',borderRadius:'50px'}}
                         className = 'generatebtn lighten-1 z-depth-0 animate '
                           
@@ -325,7 +325,7 @@ class Generate extends Component {
                     <h2>How it works </h2>
                     <div className = 'row'>
                         <div className = 's12 m12 l12'>
-                            <img  src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Boxes.jpg?alt=media&token=3b234b3b-0b83-48ff-b938-7dd2b6869751'/>    
+                            <img  src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/New%20LoadingGenereate%20.gif?alt=media&token=93ba0e96-24af-43a3-8463-650337660f01'/>    
                         </div>
                     </div>
                     
@@ -339,6 +339,7 @@ class Generate extends Component {
                 <div      className = 'row'> 
                     <p style = {{textAlign:'center',color:'#878787',padding:'0'}}>Vizcom v1.0</p> 
                     <h2 style = {{fontSize:'15px',textAlign:'center',color:'#323232'}}>Generated Result</h2>
+                    <p style = {{padding:'0', color:'#515151'}}>Every click uses Artifical Intellegence to generate an image </p>
                
                 {/* {this.state.userphotos.data.slice(299).map(function (n) {    
                       return ( //post tags 
@@ -359,7 +360,7 @@ class Generate extends Component {
                   />
                    <img //LOAD ANIMATION
                     className = 'generated-image' 
-                    src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/loadingsmaller.gif?alt=media&token=7f4e10e2-a592-40f2-9901-001e5fe7657a'
+                    src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/New%20LoadingGenereate%20.gif?alt=media&token=93ba0e96-24af-43a3-8463-650337660f01'
                     style ={{
                         visibility: this.state.isGenerating ? 'visible': 'hidden',
                         display: this.state.isGenerating ? 'block': 'none'
@@ -387,7 +388,7 @@ class Generate extends Component {
                 </div>  
                 
                 <div className = "vertical-center">
-                    <p style = {{textAlign:'center',color:'#878787'}}>Click button to generate images</p>
+               
 
                     <button style = {{bottom:'25px',zIndex:'99999',borderRadius:'50px'}}
                         className = 'generatebtn lighten-1 z-depth-0 animate '
@@ -408,6 +409,7 @@ class Generate extends Component {
             <div      className = 'row'> 
                     <p style = {{textAlign:'center',color:'#878787',padding:'0'}}>Vizcom v1.0</p> 
                     <h2 style = {{fontSize:'15px',textAlign:'center',color:'#323232'}}>Generated Result</h2>
+                    <p style = {{padding:'0', color:'#515151'}}>Every click uses Artifical Intellegence <br/>to generate an image </p>
                
                 {/* {this.state.userphotos.data.slice(299).map(function (n) {    
                       return ( //post tags 
