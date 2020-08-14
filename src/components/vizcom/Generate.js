@@ -40,7 +40,8 @@ class Generate extends Component {
             index : 0,
             isLoggedIn:false,
             setIsOpen:true,
-            modalIsOpen:true
+            modalIsOpen:true,
+            isGenerating:false
             
            
 
@@ -151,7 +152,12 @@ class Generate extends Component {
   
 
      toggleImage = () => {
+        this.setState({ isGenerating :true });
         this.setState({ index : this.state.index + 1 });
+        setTimeout(() => {
+            this.setState({ isGenerating :false });
+          }, 800);
+       
       }
 
      closeModal = () => {
@@ -217,24 +223,24 @@ class Generate extends Component {
             
             <div style = {{paddingBottom:"5%",paddingTop:"5%"}}>
             <Desktop>
-            <Modal
-                isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
-                onRequestClose={this.closeModal}
-                style={customStyles}
-                contentLabel="Example Modal"
+                <Modal
+                    isOpen={modalIsOpen}
+                    onAfterOpen={afterOpenModal}
+                    onRequestClose={this.closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
                 >
-        
-                <h2>How it works </h2>
-                <div className = 'row'>
-                    <div className = 's12 m12 l12'>
-                        <img src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Boxes.jpg?alt=media&token=3b234b3b-0b83-48ff-b938-7dd2b6869751'/>    
+            
+                    <h2>How it works </h2>
+                    <div className = 'row'>
+                        <div className = 's12 m12 l12'>
+                            <img  src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Boxes.jpg?alt=media&token=3b234b3b-0b83-48ff-b938-7dd2b6869751'/>    
+                        </div>
                     </div>
-                </div>
-                
-                <button className="btn2 waves-effect waves-light" style = {{width:'40% !important !important'}}   onClick={this.closeModal}>Continue</button>
+                    
+                    <button className="btn2 waves-effect waves-light" style = {{width:'40% !important !important'}}   onClick={this.closeModal}>Continue</button>
 
-            </Modal>
+                </Modal>
                 <a href ={"https://designerspen.com/profile/" + this.props.auth.uid} >
                     <NotificationContainer />        
                 </a>
@@ -252,9 +258,26 @@ class Generate extends Component {
                 })} */}
                  <div div className = 'row'>
                     
-                  <img className = 'generated-image'  src = {this.state.userphotos.data[this.state.index].imageUrl}  />
+                  <img 
+                    className = 'generated-image'  
+                    src = {this.state.userphotos.data[this.state.index].imageUrl}
+                    style = {{
+                        visibility: this.state.isGenerating ? 'hidden': 'visible',
+                        display: this.state.isGenerating ? 'none': 'block'
+                    }}  
+                  />
+                   <img //LOAD ANIMATION
+                    className = 'generated-image' 
+                    src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/loadingsmaller.gif?alt=media&token=7f4e10e2-a592-40f2-9901-001e5fe7657a'
+                    style ={{
+                        visibility: this.state.isGenerating ? 'visible': 'hidden',
+                        display: this.state.isGenerating ? 'block': 'none'
+                       
+                    }}
+                    />
                     <div div className = 'row'>
                         <div  className = 'col s6 m6 l6'>
+                           
                             <a href={this.state.userphotos.data[this.state.index].imageUrl} download>
                                 <p style = {{textAlign:'left',paddingTop:'0',marginLeft:'60%'}}>Download image</p>
                             </a>
@@ -274,7 +297,13 @@ class Generate extends Component {
                 
                 <div className = "vertical-center">
                     <p style = {{textAlign:'center',color:'#878787'}}>Click button to generate images</p>
-                    <button style = {{bottom:'25px',zIndex:'99999',borderRadius:'50px'}}className = 'generatebtn lighten-1 z-depth-0' onClick={this.toggleImage} onMouseDown={this.handleClick} onKeyUp={(e) => {if (e.keyCode === 13 || e.keyCode === 32) {this.handleClick()}}}>Generate </button>
+
+                    <button style = {{bottom:'25px',zIndex:'99999',borderRadius:'50px'}}
+                        className = 'generatebtn lighten-1 z-depth-0 animate '
+                          
+                        onClick={this.toggleImage} onMouseDown={this.handleClick} 
+                        onKeyUp={(e) => {if (e.keyCode === 13 || e.keyCode === 32) {this.handleClick()}}}>Generate 
+                    </button>
                     <a href = 'https://designerspen.com/aboutvizcom'>
                         <p style = {{textAlign:'center',marginTop:'5%',marginBottom:'15%', color:'#272727'}}>Learn More</p>
                     </a>
@@ -286,28 +315,28 @@ class Generate extends Component {
             </Desktop> 
             <Tablet>
             <Modal
-                isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
-                onRequestClose={this.closeModal}
-                style={customStyles}
-                contentLabel="Example Modal"
+                    isOpen={modalIsOpen}
+                    onAfterOpen={afterOpenModal}
+                    onRequestClose={this.closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
                 >
-        
-                <h2>How it works </h2>
-                <div className = 'row'>
-                    <div className = 's12 m12 l12'>
-                        <img src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Boxes.jpg?alt=media&token=3b234b3b-0b83-48ff-b938-7dd2b6869751'/>    
+            
+                    <h2>How it works </h2>
+                    <div className = 'row'>
+                        <div className = 's12 m12 l12'>
+                            <img  src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Boxes.jpg?alt=media&token=3b234b3b-0b83-48ff-b938-7dd2b6869751'/>    
+                        </div>
                     </div>
-                </div>
-                
-                <button className="btn2 waves-effect waves-light" style = {{width:'40% !important !important'}}   onClick={this.closeModal}>Continue</button>
+                    
+                    <button className="btn2 waves-effect waves-light" style = {{width:'40% !important !important'}}   onClick={this.closeModal}>Continue</button>
 
-            </Modal>
+                </Modal>
                 <a href ={"https://designerspen.com/profile/" + this.props.auth.uid} >
                     <NotificationContainer />        
                 </a>
-                
-            <div      className = 'row'> 
+            
+                <div      className = 'row'> 
                     <p style = {{textAlign:'center',color:'#878787',padding:'0'}}>Vizcom v1.0</p> 
                     <h2 style = {{fontSize:'15px',textAlign:'center',color:'#323232'}}>Generated Result</h2>
                
@@ -318,17 +347,54 @@ class Generate extends Component {
                 </div>
                   );
                 })} */}
-                 <div >
-                    s
-                  <img className = 'generated-image'  src = {this.state.userphotos.data[this.state.index].imageUrl}  />
-                    <a href={this.state.userphotos.data[this.state.index].imageUrl} download>
-                        <p style = {{textAlign:'left',paddingLeft:'30%',paddingTop:'0'}}>Download image</p>
-                    </a>
+                 <div div className = 'row'>
+                    
+                  <img 
+                    className = 'generated-image'  
+                    src = {this.state.userphotos.data[this.state.index].imageUrl}
+                    style = {{
+                        visibility: this.state.isGenerating ? 'hidden': 'visible',
+                        display: this.state.isGenerating ? 'none': 'block'
+                    }}  
+                  />
+                   <img //LOAD ANIMATION
+                    className = 'generated-image' 
+                    src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/loadingsmaller.gif?alt=media&token=7f4e10e2-a592-40f2-9901-001e5fe7657a'
+                    style ={{
+                        visibility: this.state.isGenerating ? 'visible': 'hidden',
+                        display: this.state.isGenerating ? 'block': 'none'
+                       
+                    }}
+                    />
+                    <div div className = 'row'>
+                        <div  className = 'col s6 m6 l6'>
+                           
+                            <a href={this.state.userphotos.data[this.state.index].imageUrl} download>
+                                <p style = {{textAlign:'left',paddingTop:'0',marginLeft:'60%'}}>Download image</p>
+                            </a>
+                        </div>
+                        <div className = 'col s6 m6 l6'   style = {{paddingLeft:'10%'}} >
+                            <button
+                              
+                                className = 'collectButton2 ' 
+                                onClick={e => this.setState({collectedimage:this.state.userphotos.data[this.state.index].imageUrl},this.createNotification('success'))}  type="button">
+                                    
+                            </button>
+                            <p className = 'collect'>Collect</p>
+                           
+                        </div>
+                    </div>
                 </div>  
                 
                 <div className = "vertical-center">
                     <p style = {{textAlign:'center',color:'#878787'}}>Click button to generate images</p>
-                    <button style = {{bottom:'25px',zIndex:'99999',borderRadius:'50px'}}className = 'generatebtn lighten-1 z-depth-0' onClick={this.toggleImage} onMouseDown={this.handleClick} onKeyUp={(e) => {if (e.keyCode === 13 || e.keyCode === 32) {this.handleClick()}}}>Generate </button>
+
+                    <button style = {{bottom:'25px',zIndex:'99999',borderRadius:'50px'}}
+                        className = 'generatebtn lighten-1 z-depth-0 animate '
+                          
+                        onClick={this.toggleImage} onMouseDown={this.handleClick} 
+                        onKeyUp={(e) => {if (e.keyCode === 13 || e.keyCode === 32) {this.handleClick()}}}>Generate 
+                    </button>
                     <a href = 'https://designerspen.com/aboutvizcom'>
                         <p style = {{textAlign:'center',marginTop:'5%',marginBottom:'15%', color:'#272727'}}>Learn More</p>
                     </a>
@@ -352,9 +418,22 @@ class Generate extends Component {
                 })} */}
                  <div >
                     
-                  <img className = 'generated-image-mobile'  src = {this.state.userphotos.data[this.state.index].imageUrl}  />
-                    <a href={this.state.userphotos.data[this.state.index].imageUrl} download>
-                    </a>
+                   <img 
+                    className = 'generated-image-mobile'  
+                    src = {this.state.userphotos.data[this.state.index].imageUrl}
+                    style = {{
+                        visibility: this.state.isGenerating ? 'hidden': 'visible',
+                        display: this.state.isGenerating ? 'none': 'block'
+                    }}  
+                  />
+                   <img //LOAD ANIMATION
+                    className = 'generated-image-mobile' 
+                    src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/loadingsmaller.gif?alt=media&token=7f4e10e2-a592-40f2-9901-001e5fe7657a'
+                    style ={{
+                        visibility: this.state.isGenerating ? 'visible': 'hidden',
+                        display: this.state.isGenerating ? 'block': 'none' 
+                    }}
+                    />
                 </div>  
                 
                 <div className = "vertical-center">
