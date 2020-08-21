@@ -314,24 +314,7 @@ class Generate extends Component {
                
             </Desktop> 
             <Tablet>
-            <Modal
-                    isOpen={modalIsOpen}
-                    onAfterOpen={afterOpenModal}
-                    onRequestClose={this.closeModal}
-                    style={customStyles}
-                    contentLabel="Example Modal"
-                >
             
-                    <h2>How it works </h2>
-                    <div className = 'row'>
-                        <div className = 's12 m12 l12'>
-                            <img  src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/New%20LoadingGenereate%20.gif?alt=media&token=93ba0e96-24af-43a3-8463-650337660f01'/>    
-                        </div>
-                    </div>
-                    
-                    <button className="btn2 waves-effect waves-light" style = {{width:'40% !important !important'}}   onClick={this.closeModal}>Continue</button>
-
-                </Modal>
                 <a href ={"https://designerspen.com/profile/" + this.props.auth.uid} >
                     <NotificationContainer />        
                 </a>
