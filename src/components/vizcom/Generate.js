@@ -248,7 +248,7 @@ class Generate extends Component {
                 <div      className = 'row'> 
                     <p style = {{textAlign:'center',color:'#878787',padding:'0'}}>Vizcom v1.0</p> 
                     <h2 style = {{fontSize:'15px',textAlign:'center',color:'#323232'}}>Generated Result</h2>
-                    <p style = {{padding:'0', color:'#515151'}}>Every click uses Artifical Intellegence to generate an image </p>
+                    <p style = {{padding:'0', color:'#515151'}}>Every click uses Artifical Intellegence to generate a unique image </p>
                
                 {/* {this.state.userphotos.data.slice(299).map(function (n) {    
                       return ( //post tags 
@@ -322,7 +322,7 @@ class Generate extends Component {
                 <div      className = 'row'> 
                     <p style = {{textAlign:'center',color:'#878787',padding:'0'}}>Vizcom v1.0</p> 
                     <h2 style = {{fontSize:'15px',textAlign:'center',color:'#323232'}}>Generated Result</h2>
-                    <p style = {{padding:'0', color:'#515151'}}>Every click uses Artifical Intellegence to generate an image </p>
+                    <p style = {{padding:'0', color:'#515151'}}>Every click uses Artifical Intellegence to generate a unique image </p>
                
                 {/* {this.state.userphotos.data.slice(299).map(function (n) {    
                       return ( //post tags 
@@ -392,7 +392,7 @@ class Generate extends Component {
             <div      className = 'row'> 
                     <p style = {{textAlign:'center',color:'#878787',padding:'0'}}>Vizcom v1.0</p> 
                     <h2 style = {{fontSize:'15px',textAlign:'center',color:'#323232'}}>Generated Result</h2>
-                    <p style = {{padding:'0', color:'#515151'}}>Every click uses Artifical Intellegence <br/>to generate an image </p>
+                    <p style = {{padding:'0', color:'#515151'}}>Every click uses Artifical Intellegence <br/>to generate a unique image </p>
                
                 {/* {this.state.userphotos.data.slice(299).map(function (n) {    
                       return ( //post tags 
@@ -428,7 +428,9 @@ class Generate extends Component {
                         <p style = {{textAlign:'center',marginTop:'5%',marginBottom:'15%', color:'#272727'}}>Learn More</p>
                     </a>
                     
-                </div>                 
+                </div> 
+                <img  style = {{display:'block',marginLeft:'auto',marginRight:'auto',width:'70px',height:'auto'}} src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/desktop.png?alt=media&token=ec8bc604-4168-4946-a4c9-4dbba24860d9'/>
+                    <p >Open on Desktop or ipad to access all features</p>                
                 </div>
                 
             </Mobile>

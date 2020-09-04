@@ -32,6 +32,21 @@ class SignUp extends Component {
         callbacks: {
             signInSuccessWithAuthResult: (e) => {
                 console.log(e)
+                e.preventDefault();
+                fetch(`https://designerspendroplet.getdpsvapi.com/adduser?uuid=${e.user.uid}&username=${e.user.displayName}&photourl=''&bio=''&email=${e.user.email}`)
+            }
+        },
+        signInSuccessUrl: '/Generate'
+      }
+    mobileUiConfig = {
+        signInOptions: [
+            // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID
+        ],
+        callbacks: {
+            signInSuccessWithAuthResult: (e) => {
+                console.log(e)
+                e.preventDefault();
                 fetch(`https://designerspendroplet.getdpsvapi.com/adduser?uuid=${e.user.uid}&username=${e.user.displayName}&photourl=''&bio=''&email=${e.user.email}`)
             }
         },
@@ -258,7 +273,7 @@ class SignUp extends Component {
 
                >
                <div>
-                    <h2 style = {{fontSize:'18px'}}>Welcome to Vizcom  </h2>
+                    <h2 style = {{fontSize:'18px',paddingTop:'100px'}}>Welcome to Vizcom  </h2>
                     {/* <h1>Unlimited inspiration </h1> */}
                 </div>
 
@@ -295,7 +310,7 @@ class SignUp extends Component {
                 onSubmit={this.handleSubmitSignin}
                >
                 <div >
-                    <h2 style = {{fontSize:'18px'}}>Welcome to Vizcom </h2>
+                    <h2 style = {{fontSize:'18px',paddingTop:'100px'}}>Welcome to Vizcom </h2>
                     <h1>Unlimited inspiration</h1>
                 </div>
                     <div className = 'input-field'>
@@ -311,7 +326,7 @@ class SignUp extends Component {
                         </div>
                     </div>
                 <p style = {{textAlign:'center'}}>or</p>
-                <StyledFirebaseAuth style ={{width:'100%'}}uiConfig = {this.uiConfig}
+                <StyledFirebaseAuth style ={{width:'100%'}} uiConfig = {this.mobileUiConfig}
                 firebaseAuth={firebase.auth()}/>
                 <p >Don't have an account?<span style = {{color:'#1589ff'}}  onClick={e => this.setState({isSignUp:false})}> Regiester Here</span></p>
             </form>

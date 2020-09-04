@@ -167,6 +167,8 @@ class VizcomLearnmore extends Component {
                     <p style = {{fontSize:'2rem'}}>Project Vizcom <br/>
                     <span style = {{fontSize:'1.2rem'}}>By / <a href= "https://www.instagram.com/designerspen/">@Designerspen</a></span></p>
                     <p style = {{fontSize:'1.8rem'}}>Vizcom is a Ai driven design tool that is being trained on the collected consciousness of the car design world to help accelerate and inspire your creative process.</p>
+                    <a href = "https://designerspen.com/signup"><button className = ' tryitbtn lighten-1 z-depth-0' >Try Vizcom </button></a>
+
                     <div className = 'input-field'>
                         <p style = {{fontSize:'1.8rem',visibility: this.state.submitted != true? 'hidden': 'visible'}}>Receive updates
                             <span style = {{fontSize:'1.8rem',visibility: this.state.submitted != true? 'visible': 'hidden', 'display':'block'}}>Stay tuned 👌😊👌</span>
@@ -231,6 +233,8 @@ class VizcomLearnmore extends Component {
                     <p style = {{fontSize:'2rem'}}>Project Vizcom <br/>
                     <span style = {{fontSize:'1rem'}}>By / <a href= "https://www.instagram.com/designerspen/">@Designerspen</a></span></p>
                     <p style = {{fontSize:'2rem'}}>Vizcom is a Ai driven design tool that is being trained on the collected consciousness of the car design world to help accelerate and inspire your creative process.</p>
+                    <a href = "https://designerspen.com/signup"><button className = ' tryitbtn lighten-1 z-depth-0' >Try Vizcom </button></a>
+
                     <div className = 'input-field'>
                     <p style = {{fontSize:'1.8rem',visibility: this.state.submitted != true? 'hidden': 'visible'}}>Receive updates
                             <span style = {{fontSize:'1.8rem',visibility: this.state.submitted != true? 'visible': 'hidden', 'display':'block'}}>Stay tuned 👌😊👌</span>
@@ -291,9 +295,11 @@ class VizcomLearnmore extends Component {
                 
                         }}/>
                     
-                   <p style = {{paddingTop:'120%',fontSize:'1.6rem'}}>Project Vizcom <br/>np
+                   <p style = {{paddingTop:'120%',fontSize:'1.6rem'}}>Project Vizcom <br/>
                    <span style = {{fontSize:'1rem'}}>By / <a href= "https://www.instagram.com/designerspen/">@Designerspen</a></span></p>
-                   <p style = {{fontSize:'1.6rem'}}>Vizcom is a Ai driven design tool that is being trained on the collected consciousness of the car design world to help accelerate and inspire your creative process.</p>
+                   <p style = {{fontSize:'1rem'}}>Vizcom is a Ai driven design tool that is being trained on the collected consciousness of the car design world to help accelerate and inspire your creative process.</p>
+                   <a href = "https://designerspen.com/signup"><button className = ' mobiletryitbtn lighten-1 z-depth-0' >Try Vizcom </button></a>
+
                    <div className = 'input-field'>
                         <p style = {{fontSize:'1rem',visibility: this.state.submitted != true? 'hidden': 'visible',fontSize:'1.2rem'}}>Early access and updates
                             <span style = {{fontSize:'1rem',visibility: this.state.submitted != true? 'visible': 'hidden', 'display':'block'}}>Stay tuned 👌😊👌</span>

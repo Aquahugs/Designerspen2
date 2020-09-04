@@ -28,7 +28,7 @@ const Navbar = (props) => { // 2.) brings in all the inspect properties
         </nav>
      
     
-    >
+    
     </div>
     )
 }
