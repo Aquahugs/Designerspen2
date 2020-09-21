@@ -8,6 +8,7 @@ import Discover from './components/Discover';
 import CurratorSignup from './components/CurratorSignup';
 import Vizcom from './components/vizcom/Vizcom';
 import VizcomLearnmore from './components/vizcom/VizcomLearnmore';
+import VizcomChallenge from './components/vizcom/VizcomChallenge';
 import Generate from './components/vizcom/Generate';
 import PostDetail from './components/PostDetail';
 import About from './components/dashboard/About';
@@ -90,6 +91,7 @@ const App = (props) => {
                 <Route path ='/CurratorSignup' component = {CurratorSignup} />
                 <Route path ='/Vizcom' component = {Vizcom} />
                 <Route path ='/AboutVizcom' component = {VizcomLearnmore} />
+                <Route path ='/VizcomChallenge' component = {VizcomChallenge} />
                 <Route path ='/Generate' component = {Generate} />
         
 

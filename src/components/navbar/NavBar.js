@@ -7,6 +7,7 @@ import  '../../assets/stylesheets/NavBar.css'
 
 
 
+
 import { Desktop, Tablet, Mobile, Phone } from '../shared';
 const Navbar = (props) => { // 2.) brings in all the inspect properties 
     console.log(props)
@@ -19,13 +20,36 @@ const Navbar = (props) => { // 2.) brings in all the inspect properties
     } 
     return (
     <div>
-    
+        <Desktop>
         <nav className = 'navbar' style={styles1}>
             <div className = "container">
-                
+            <Link to ='/' className = "Logo ">
+                {/* <img  style = {{paddingTop:'0.5%'}}src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Black%20logofont.png?alt=media&token=16f2a7b6-eef4-418a-b8b9-9a6cbf1e7f94'/> */}
+                </Link>
                 {links} 
             </div>
-        </nav>
+        </nav> 
+        </Desktop>
+        <Tablet>
+        <nav className = 'navbar' style={styles1}>
+            <div className = "container">
+            <Link to ='/' className = "Logo ">
+                {/* <img  style = {{paddingTop:'0.5%'}}src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Black%20logofont.png?alt=media&token=16f2a7b6-eef4-418a-b8b9-9a6cbf1e7f94'/> */}
+                </Link>
+                {links} 
+            </div>
+        </nav> 
+        </Tablet>
+        <Mobile>
+        <nav className = 'navbar' style={styles1}>
+            <div className = "container">
+            <Link to ='/' className = "Logo ">
+                </Link>
+                {links} 
+            </div>
+        </nav> 
+        </Mobile>
+    
      
     
     

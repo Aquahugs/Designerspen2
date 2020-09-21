@@ -21,6 +21,14 @@ import seed10 from './assets/seed10.png'
 import seed11 from './assets/seed11.jpg'
 import seed12 from './assets/seed12.png'
 import story from './assets/Story.jpg'
+import demo1 from './assets/demo1.jpg'
+import demo2 from './assets/demo2.jpg'
+import demo3 from './assets/demo3.jpg'
+import demo4 from './assets/demo4.jpg'
+import mobiledemo1 from './assets/mobiledemo1.jpg'
+import mobiledemo2 from './assets/mobiledemo2.jpg'
+import mobiledemo3 from './assets/mobiledemo3.jpg'
+import mobiledemo4 from './assets/mobiledemo4.jpg'
 import colorpick from './assets/colorpick.jpg'
 import history from './assets/history.png'
 import insta from '../../assets/images/instagram.svg'
@@ -179,9 +187,15 @@ class VizcomLearnmore extends Component {
                 
                         </form>
                     </div>
-                    <p style = {{fontSize:'1.8rem'}}>Get inspired 🧠</p>
+                    <p style = {{fontSize:'1.8rem'}}>Vizcom Demos 🧠</p>
                     <div className = "row">
-                        <img  className = 'pics' src = {story}/>
+                    <img style = {{paddingTop:'5%'}} src = {demo1}/>
+                    <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / Shawn Zhang <a href = 'https://www.instagram.com/xiaoyu_cheung/'>(@xiaoyu_cheung)</a></p>
+                    <img style = {{paddingTop:'5%'}} src = {demo2}/>
+                    <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / Scott Guan <a href = 'https://www.instagram.com/scottguan/'>(@scottguan)</a></p>
+                    <img style = {{paddingTop:'5%'}} src = {demo3}/>
+                    <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / Chris Lah <a href = 'https://www.instagram.com/chris__lah/'>(@chris__lah)</a></p>
+                    <img style = {{paddingTop:'5%'}} src = {demo4}/>
                         <p style = {{fontSize:'1.6rem'}}>Images genereated by Vizcom</p>
                         <div className = 'col s3 m3 l3 pics '>
                             <img src = {seed1}/>
@@ -245,9 +259,15 @@ class VizcomLearnmore extends Component {
                 
                         </form>
                     </div>
-                    <p style = {{fontSize:'1.8rem'}}>Get inspired 🧠</p>
+                    <p style = {{fontSize:'1.8rem'}}>Vizcom Demos 🧠</p>
                     <div className = "row">
-                    <img src = {story}/>
+                    <img style = {{paddingTop:'5%'}} src = {demo1}/>
+                    <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / Shawn Zhang <a href = 'https://www.instagram.com/xiaoyu_cheung/'>(@xiaoyu_cheung)</a></p>
+                    <img style = {{paddingTop:'5%'}} src = {demo2}/>
+                    <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / Scott Guan <a href = 'https://www.instagram.com/scottguan/'>(@scottguan)</a></p>
+                    <img style = {{paddingTop:'5%'}} src = {demo3}/>
+                    <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / Chris Lah <a href = 'https://www.instagram.com/chris__lah/'>(@chris__lah)</a></p>
+                    <img style = {{paddingTop:'5%'}} src = {demo4}/>
                     <p style = {{fontSize:'1.6rem'}}>Images genereated by Vizcom</p>
                         <div className = 'col s6 m6 l6 pics '>
                   
@@ -310,9 +330,15 @@ class VizcomLearnmore extends Component {
                 
                         </form>
                     </div>
-                    <p style = {{fontSize:'1.6rem'}}>Get inspired 🧠</p>
+                    <p style = {{fontSize:'1.8rem'}}>Vizcom Demos 🧠</p>
                     <div className = "row">
-                        <img src = {story}/>
+                    <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / Shawn Zhang <a href = 'https://www.instagram.com/xiaoyu_cheung/'>(@xiaoyu_cheung)</a></p>
+                    <img style = {{paddingTop:'5%'}} src = {mobiledemo1}/>
+                    <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / Scott Guan <a href = 'https://www.instagram.com/scottguan/'>(@scottguan)</a></p>
+                    <img style = {{paddingTop:'5%'}} src = {mobiledemo2}/>
+                    <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / Chris Lah <a href = 'https://www.instagram.com/chris__lah/'>(@chris__lah)</a></p>
+                    <img style = {{paddingTop:'5%'}} src = {mobiledemo3}/>
+                    <img style = {{paddingTop:'5%'}} src = {mobiledemo4}/>    
                         <p style = {{fontSize:'1.6rem'}}>Images genereated by Vizcom</p>
                         <div className = 'col s6 m6 l6 pics '>
                         

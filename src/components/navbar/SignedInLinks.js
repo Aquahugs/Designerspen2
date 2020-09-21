@@ -79,7 +79,6 @@ const SignedInLinks = (props) => {
             
             <Tablet>
             <Link to ='/' className = "Logo ">
-                <img  style = {{paddingTop:'0.5%'}}src = 'https://firebasestorage.googleapis.com/v0/b/designerspen-95f24.appspot.com/o/Black%20logofont.png?alt=media&token=16f2a7b6-eef4-418a-b8b9-9a6cbf1e7f94'/>
             </Link>
             
              <ul className = 'right'>

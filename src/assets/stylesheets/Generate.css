@@ -95,6 +95,26 @@
     border:none;
 
 }
+.learnmore {
+    width: 22% !important;
+    display: block;
+    margin: 0 auto;
+    text-decoration: none;
+    color: #FFFFFF;
+    background-color: #000000;
+    text-align: center;
+    letter-spacing: .5px;
+    transition: background-color .2s ease-out;
+    cursor: pointer;
+    font-size: 1.2rem;
+    height: 52px;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    margin-top: 2%;
+    margin-bottom: 10%;
+    border:none;
+
+}
 .mobiletryitbtn {
     width: 32% !important;
     display: block;
