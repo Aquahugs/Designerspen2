@@ -1,8 +1,11 @@
 p {
 padding-top: 2%;
 padding-bottom: 2%;
+font-size: 16px;
 }
 
 .mobile p {
     font-size: 16px !important;
 }
+
+h2{float: left;}

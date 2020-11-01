@@ -237,7 +237,7 @@ class VizcomChallenge extends Component {
                 <Footer/>
             </Tablet>
             <Mobile>
-                <div style = {{maxWidth:'100%'}}>
+                <div >
 
                
                 <h1 style = {{paddingTop:'30%',fontSize:'25px',textAlign:'center'}}>#VizcomChallenge</h1>

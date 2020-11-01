@@ -25,6 +25,8 @@ import demo1 from './assets/demo1.jpg'
 import demo2 from './assets/demo2.jpg'
 import demo3 from './assets/demo3.jpg'
 import demo4 from './assets/demo4.jpg'
+import demo5 from './assets/demo5.jpg'
+import demo6 from './assets/demo6.jpg'
 import mobiledemo1 from './assets/mobiledemo1.jpg'
 import mobiledemo2 from './assets/mobiledemo2.jpg'
 import mobiledemo3 from './assets/mobiledemo3.jpg'
@@ -38,6 +40,8 @@ import discord from '../../assets/images/discord.svg'
 import { Desktop, Tablet, Mobile, Phone } from '../shared';
 import  { transitions } from "react-stack-grid";
 import '../../assets/stylesheets/Generate.css'
+import '../vizcom/assets/stylesheets/vizcomchallenge.css'
+
 import Logo from '../../assets/images/Asset 1.svg'
 
 
@@ -187,16 +191,23 @@ class VizcomLearnmore extends Component {
                 
                         </form>
                     </div>
-                    <p style = {{fontSize:'1.8rem'}}>Vizcom Demos 🧠</p>
+                    <p style = {{fontSize:'1.8rem'}}>Demos</p>
                     <div className = "row">
                     <img style = {{paddingTop:'5%'}} src = {demo1}/>
                     <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / Shawn Zhang <a href = 'https://www.instagram.com/xiaoyu_cheung/'>(@xiaoyu_cheung)</a></p>
                     <img style = {{paddingTop:'5%'}} src = {demo2}/>
                     <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / Scott Guan <a href = 'https://www.instagram.com/scottguan/'>(@scottguan)</a></p>
-                    <img style = {{paddingTop:'5%'}} src = {demo3}/>
-                    <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / Chris Lah <a href = 'https://www.instagram.com/chris__lah/'>(@chris__lah)</a></p>
-                    <img style = {{paddingTop:'5%'}} src = {demo4}/>
-                        <p style = {{fontSize:'1.6rem'}}>Images genereated by Vizcom</p>
+                    <div className = 'row centerdiv'>
+                    <div className = 'col s6 m6 l6 '>
+                        <img  style = {{paddingTop:'5%'}} src = {demo6}/>
+                        <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / SungKwon Go <a href = 'https://www.instagram.com/sgo_design/'>(@sgo_design)</a></p>
+                    </div>
+                        <div className = 'col s6 m6 l6 '>
+                            <img style = {{paddingTop:'5%'}} src = {demo5}/>
+                            <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / Scott Guan <a href = 'https://www.instagram.com/scottguan/'>(@scottguan)</a></p>
+                        </div>
+                    </div>
+
                         <div className = 'col s3 m3 l3 pics '>
                             <img src = {seed1}/>
                             <img src = {seed2}/>
@@ -219,10 +230,7 @@ class VizcomLearnmore extends Component {
                             <img src = {seed10}/>
                             <img src = {seed12}/>
                             <img src = {seed9}/>
-                        </div>
-                        <img src = {colorpick}/>
-                        
-                        
+                        </div> 
                     </div>
                     
                     <div className = 'row' style = {{paddingBottom:'200px'}}>
@@ -340,8 +348,8 @@ class VizcomLearnmore extends Component {
                     <img style = {{paddingTop:'5%'}} src = {mobiledemo3}/>
                     <img style = {{paddingTop:'5%'}} src = {mobiledemo4}/>    
                         <p style = {{fontSize:'1.6rem'}}>Images genereated by Vizcom</p>
+                       
                         <div className = 'col s6 m6 l6 pics '>
-                        
                             <img src = {seed1}/>
                             <img src = {seed2}/>
                             <img src = {seed5}/>
