@@ -169,7 +169,7 @@ class MyProfile extends Component {
         <div className = "row ">
             <div className = 'col s12 m12 l12 profile-info'>
                
-                <img className = "profilepicture" src = {this.state.bio.data[0].photourl} style={{ opacity: this.state.isEdit ? '0.5': '1'}}/>
+                {/* <img className = "profilepicture" src = {this.state.bio.data[0].photoURL} style={{ opacity: this.state.isEdit ? '0.5': '1'}}/> */}
                   <p  style={visibleStyle}>Change Photo</p>
                   <form onSubmit={this.onSubmit}>
                     <input 
@@ -245,8 +245,8 @@ else{
       //somewhere in here project.selectedFile
       //OTHER USERS PROFILE
       <div className = 'container  ' style = {{paddingTop:'10%'}}>
-          <img style = {{maxWidth:"55px"}} src = {this.state.bio.data[0].photourl}/>
-          <h1>{this.state.bio.data[0].username}</h1>   
+          {/* <img style = {{maxWidth:"55px"}} src = {this.state.bio.data[0].photourl}/> */}
+          {/* <h1>{this.state.bio.data[0].username}</h1>    */}
         <Tabs uuid = {this.state}/>
      </div>
      ) 

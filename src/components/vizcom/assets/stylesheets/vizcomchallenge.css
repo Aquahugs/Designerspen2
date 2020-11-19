@@ -1,0 +1,25 @@
+.bg {
+      
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  .centerimage {
+    margin: auto;
+    width: 50%;
+   
+    padding: 10px;
+  }
+
+
+  p{
+      font-family: 'Montserrat';
+  }
+
+
+  .centerdiv{
+    
+   
+    
+}

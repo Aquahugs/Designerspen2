@@ -21,6 +21,16 @@ import seed10 from './assets/seed10.png'
 import seed11 from './assets/seed11.jpg'
 import seed12 from './assets/seed12.png'
 import story from './assets/Story.jpg'
+import demo1 from './assets/demo1.jpg'
+import demo2 from './assets/demo2.jpg'
+import demo3 from './assets/demo3.jpg'
+import demo4 from './assets/demo4.jpg'
+import demo5 from './assets/demo5.jpg'
+import demo6 from './assets/demo6.jpg'
+import mobiledemo1 from './assets/mobiledemo1.jpg'
+import mobiledemo2 from './assets/mobiledemo2.jpg'
+import mobiledemo3 from './assets/mobiledemo3.jpg'
+import mobiledemo4 from './assets/mobiledemo4.jpg'
 import colorpick from './assets/colorpick.jpg'
 import history from './assets/history.png'
 import insta from '../../assets/images/instagram.svg'
@@ -30,6 +40,8 @@ import discord from '../../assets/images/discord.svg'
 import { Desktop, Tablet, Mobile, Phone } from '../shared';
 import  { transitions } from "react-stack-grid";
 import '../../assets/stylesheets/Generate.css'
+import '../vizcom/assets/stylesheets/vizcomchallenge.css'
+
 import Logo from '../../assets/images/Asset 1.svg'
 
 
@@ -207,10 +219,7 @@ class VizcomLearnmore extends Component {
                             <img src = {seed10}/>
                             <img src = {seed12}/>
                             <img src = {seed9}/>
-                        </div>
-                        <img src = {colorpick}/>
-                        
-                        
+                        </div> 
                     </div>
                     
                     <div className = 'row' style = {{paddingBottom:'200px'}}>
@@ -235,6 +244,8 @@ class VizcomLearnmore extends Component {
                     <p style = {{fontSize:'2rem'}}>Project Vizcom <br/>
                     <span style = {{fontSize:'1rem'}}>By / <a href= "https://www.instagram.com/designerspen/">@Designerspen</a></span></p>
                     <p style = {{fontSize:'2rem'}}>Vizcom is a Ai driven design tool that is being trained on the collected consciousness of the car design world to help accelerate and inspire your creative process.</p>
+                    <a href = "https://designerspen.com/signup"><button className = ' tryitbtn lighten-1 z-depth-0' >Try Vizcom </button></a>
+
                     <div className = 'input-field'>
                     <p style = {{fontSize:'1.8rem',visibility: this.state.submitted != true? 'hidden': 'visible'}}>Receive updates
                             <span style = {{fontSize:'1.8rem',visibility: this.state.submitted != true? 'visible': 'hidden', 'display':'block'}}>Stay tuned 👌😊👌</span>
@@ -245,9 +256,15 @@ class VizcomLearnmore extends Component {
                 
                         </form>
                     </div>
-                    <p style = {{fontSize:'1.8rem'}}>Get inspired 🧠</p>
+                    <p style = {{fontSize:'1.8rem'}}>Vizcom Demos 🧠</p>
                     <div className = "row">
-                    <img src = {story}/>
+                    <img style = {{paddingTop:'5%'}} src = {demo1}/>
+                    <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / Shawn Zhang <a href = 'https://www.instagram.com/xiaoyu_cheung/'>(@xiaoyu_cheung)</a></p>
+                    <img style = {{paddingTop:'5%'}} src = {demo2}/>
+                    <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / Scott Guan <a href = 'https://www.instagram.com/scottguan/'>(@scottguan)</a></p>
+                    <img style = {{paddingTop:'5%'}} src = {demo3}/>
+                    <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / Chris Lah <a href = 'https://www.instagram.com/chris__lah/'>(@chris__lah)</a></p>
+                    <img style = {{paddingTop:'5%'}} src = {demo4}/>
                     <p style = {{fontSize:'1.6rem'}}>Images genereated by Vizcom</p>
                         <div className = 'col s6 m6 l6 pics '>
                   
@@ -295,9 +312,11 @@ class VizcomLearnmore extends Component {
                 
                         }}/>
                     
-                   <p style = {{paddingTop:'120%',fontSize:'1.6rem'}}>Project Vizcom <br/>np
+                   <p style = {{paddingTop:'120%',fontSize:'1.6rem'}}>Project Vizcom <br/>
                    <span style = {{fontSize:'1rem'}}>By / <a href= "https://www.instagram.com/designerspen/">@Designerspen</a></span></p>
-                   <p style = {{fontSize:'1.6rem'}}>Vizcom is a Ai driven design tool that is being trained on the collected consciousness of the car design world to help accelerate and inspire your creative process.</p>
+                   <p style = {{fontSize:'1rem'}}>Vizcom is a Ai driven design tool that is being trained on the collected consciousness of the car design world to help accelerate and inspire your creative process.</p>
+                   <a href = "https://designerspen.com/signup"><button className = ' mobiletryitbtn lighten-1 z-depth-0' >Try Vizcom </button></a>
+
                    <div className = 'input-field'>
                         <p style = {{fontSize:'1rem',visibility: this.state.submitted != true? 'hidden': 'visible',fontSize:'1.2rem'}}>Early access and updates
                             <span style = {{fontSize:'1rem',visibility: this.state.submitted != true? 'visible': 'hidden', 'display':'block'}}>Stay tuned 👌😊👌</span>
@@ -308,12 +327,18 @@ class VizcomLearnmore extends Component {
                 
                         </form>
                     </div>
-                    <p style = {{fontSize:'1.6rem'}}>Get inspired 🧠</p>
+                    <p style = {{fontSize:'1.8rem'}}>Vizcom Demos 🧠</p>
                     <div className = "row">
-                        <img src = {story}/>
+                    <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / Shawn Zhang <a href = 'https://www.instagram.com/xiaoyu_cheung/'>(@xiaoyu_cheung)</a></p>
+                    <img style = {{paddingTop:'5%'}} src = {mobiledemo1}/>
+                    <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / Scott Guan <a href = 'https://www.instagram.com/scottguan/'>(@scottguan)</a></p>
+                    <img style = {{paddingTop:'5%'}} src = {mobiledemo2}/>
+                    <p style = {{textAlign:'left', paddingLeft:'5%'}}> Demo By / Chris Lah <a href = 'https://www.instagram.com/chris__lah/'>(@chris__lah)</a></p>
+                    <img style = {{paddingTop:'5%'}} src = {mobiledemo3}/>
+                    <img style = {{paddingTop:'5%'}} src = {mobiledemo4}/>    
                         <p style = {{fontSize:'1.6rem'}}>Images genereated by Vizcom</p>
+                       
                         <div className = 'col s6 m6 l6 pics '>
-                        
                             <img src = {seed1}/>
                             <img src = {seed2}/>
                             <img src = {seed5}/>

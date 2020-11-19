@@ -116,7 +116,9 @@ class Tabs extends Component {
           }
           return (
             <div  className = 'col s3 m3 l3'  key={n}>
-                <img style = {{maxWidth:"100%"}}src = {n.post_id}/>
+            <Popup modal trigger={<img  style = {{maxWidth:"100%"}}src = {n.post_id}/>} style = {{width:"100%"}}>
+              <img style = {{maxWidth:"100%"}}src = {n.post_id}/>
+            </Popup>
                 <img style = {{maxWidth:"25px"}} src = {n.userphotourl}/> 
             <a href={"https://designerspen.com/users/" + n.uuid} > <p>{n.displayname}</p> </a>
             <p>{n.description}</p> 
