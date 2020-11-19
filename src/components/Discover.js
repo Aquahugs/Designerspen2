@@ -21,7 +21,7 @@ import StackGrid from "react-stack-grid";
 
 
 
-class Discover extends Component {
+class Discover2 extends Component {
 
     
     createNotification = (type) => {
@@ -635,4 +635,4 @@ const mapStateToProps = (state) => { // 1.) Gives acces to the authentication st
     }
 }
 
-export default   connect(mapStateToProps) (Discover);
+export default   connect(mapStateToProps) (Discover2);

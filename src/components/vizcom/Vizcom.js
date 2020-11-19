@@ -53,8 +53,6 @@ class Vizcom extends Component {
                  </video>
                 
                 <div className = "row" style = {{marginTop:"130%"}}>
-                   
-                        
                 </div>
                 <img src = {create}/>
                 <Link to ='/Generate' className = "Logo "><button className = 'btn  lighten-1 z-depth-0'>Try it now</button></Link>

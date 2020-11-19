@@ -41,7 +41,8 @@ class Generate extends Component {
             isLoggedIn:false,
             setIsOpen:true,
             modalIsOpen:true,
-            isGenerating:false
+            isGenerating:false,
+            imageDownload:''
             
            
 
@@ -157,6 +158,12 @@ class Generate extends Component {
         setTimeout(() => {
             this.setState({ isGenerating :false });
           }, 800);
+       
+      }
+     logDownload = (e) => {
+       const {imagedownload} = this.state.userphotos.data[this.state.index].imageUrl;
+       this.setState({ imageDownload : this.state.userphotos.data[this.state.index].imageUrl});
+       console.log(this.state.userphotos.data[this.state.index].imageUrl)
        
       }
 
@@ -279,8 +286,11 @@ class Generate extends Component {
                     <div div className = 'row'>
                         <div  className = 'col s6 m6 l6'>
                            
-                            <a href={this.state.userphotos.data[this.state.index].imageUrl} download>
-                                <p style = {{textAlign:'left',paddingTop:'0',marginLeft:'60%'}}>Download image</p>
+                            <a   href={this.state.userphotos.data[this.state.index].imageUrl} download>
+                                <p 
+                                    style = {{textAlign:'left',paddingTop:'0',marginLeft:'60%'}}
+                                    onClick={this.logDownload} 
+                                    >Download image</p>
                             </a>
                         </div>
                         <div className = 'col s6 m6 l6'   style = {{paddingLeft:'10%'}} >

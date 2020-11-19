@@ -32,6 +32,7 @@ import {connect} from 'react-redux'
 
 import Loading from "./components/Loading";
 import './assets/stylesheets/SignIn.css';
+import MassUploadDiscover from './components/MassUploadDiscover';
 
 
 
@@ -83,7 +84,7 @@ const App = (props) => {
                 <Route path ='/AiDesign' component = {AiDesign}/>
                 <Route path ='/Wall' component = {Wall}/>
                 <Route path ='/Feed' component = {Feed}/>
-                <Route  path ='/Discover' component = {Discover}/>
+                <Route  path ='/Discover' component = {MassUploadDiscover}/>
                 <Route path ='/News' component = {Home}/>
                 <Route exact path ='/'  component = {Discover} />
                 <Route path ='/signup' component = {SignUp} />

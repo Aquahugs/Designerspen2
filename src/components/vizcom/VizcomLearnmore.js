@@ -167,6 +167,10 @@ class VizcomLearnmore extends Component {
                     <p style = {{fontSize:'2rem'}}>Project Vizcom <br/>
                     <span style = {{fontSize:'1.2rem'}}>By / <a href= "https://www.instagram.com/designerspen/">@Designerspen</a></span></p>
                     <p style = {{fontSize:'1.8rem'}}>Vizcom is a Ai driven design tool that is being trained on the collected consciousness of the car design world to help accelerate and inspire your creative process.</p>
+                    
+                    <img style = {{display: 'block', marginLeft:'auto',margin:'auto',padding :'5%'}} src = {story}/>
+                    <a href = "https://designerspen.com/signup"><button className = ' tryitbtn lighten-1 z-depth-0' >Try Vizcom </button></a>
+
                     <div className = 'input-field'>
                         <p style = {{fontSize:'1.8rem',visibility: this.state.submitted != true? 'hidden': 'visible'}}>Receive updates
                             <span style = {{fontSize:'1.8rem',visibility: this.state.submitted != true? 'visible': 'hidden', 'display':'block'}}>Stay tuned 👌😊👌</span>
@@ -177,9 +181,9 @@ class VizcomLearnmore extends Component {
                 
                         </form>
                     </div>
-                    <p style = {{fontSize:'1.8rem'}}>Get inspired 🧠</p>
+                
                     <div className = "row">
-                        <img  className = 'pics' src = {story}/>
+                        {/* <img  className = 'pics' src = {story}/> */}
                         <p style = {{fontSize:'1.6rem'}}>Images genereated by Vizcom</p>
                         <div className = 'col s3 m3 l3 pics '>
                             <img src = {seed1}/>
