@@ -389,10 +389,11 @@ class Generate extends Component {
             </Tablet>    
             <Mobile>
                 
-            <div      className = 'row'> 
-                    <p style = {{textAlign:'center',color:'#878787',padding:'0'}}>Vizcom v1.0</p> 
-                    <h2 style = {{fontSize:'15px',textAlign:'center',color:'#323232'}}>Generated Result</h2>
-                    <p style = {{padding:'0', color:'#515151'}}>Every click uses Artifical Intellegence <br/>to generate a unique image </p>
+            <div className = 'row'> 
+                    <div className = 'col s12 m12 l12'>
+                    
+                    </div>
+                   
                
                 {/* {this.state.userphotos.data.slice(299).map(function (n) {    
                       return ( //post tags 
