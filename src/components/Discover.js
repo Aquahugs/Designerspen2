@@ -361,7 +361,7 @@ class Discover2 extends Component {
                     );
                     })}    
                 
-                <div      className = 'row' style = {{float:'left'}}> 
+                <div className = 'row' style = {{paddingTop:'5%'}}> 
                 {/* Upload Zone */}
                      
                     {/* //mapping through all the usernames in the new_tabel tabel */}
@@ -373,7 +373,7 @@ class Discover2 extends Component {
                     
                     return (
                         
-                        <div style ={{padding:'0.75%'}} className = 'col s3 m3 l3'  key={n}>
+                        <div  className = 'col s3 m3 l3 discoverimages'  key={n}>
                             
                             <Popup closeOnDocumentClick modal trigger={<img src = {n.imageUrl}/>} style = {{width:"100%"}}>
                                 <div className = 'col s12 m12 l12'></div>
@@ -388,7 +388,7 @@ class Discover2 extends Component {
                                 </div>
                             </Popup>
                         
-                            <div   style = {{backgroundColor:'white',paddingTop:'2%'}} className = "row dis"> 
+                            <div   style = {{backgroundColor:'white',paddingTop:'2%'}}> 
                                 <div  style = {{display: n.displayname === "undefined" ? "none": "inline-block"}} className = "col s6 m6 l6">
                                     <div style = {{float:'left'}}><img  style = {{maxWidth:"25px"}} src = {n.userphotourl}/></div> 
                                     <div style = {{float:'left'}}><a  href={"https://www.designerspen.com/profile/" + n.uuid} > <p >{n.displayname}</p> </a></div>
@@ -407,13 +407,13 @@ class Discover2 extends Component {
                                         )
                                     })}
                                     {/* COLLECT BUTTON */}
-                                    <button 
+                                    {/* <button 
                                         style = {{float: n.displayname === "undefined" ? "right": ""}}
                                         className = 'collectButton  btn-success' 
                                         onClick={e => this.setState({collectedimage: n.imageUrl},this.createNotification('success'),this.onCollect)}  type="button">
                                     </button>
                                     
-                                    <p className = 'collect'>Collect</p>
+                                    <p className = 'collect'>Collect</p> */}
                                 </div>
                                 {/* POST TAG */}
                                 <div  className = "row">
@@ -423,7 +423,7 @@ class Discover2 extends Component {
                                     <div className = 'tag' style = {{float:'left'}}><a  href={"https://www.designerspen.com/Discover/" + n.posttag} >  <p >{n.posttag}</p> </a></div>
                                     </div>
                                 </div>
-                        </div>
+                            </div>
                         </div>
                         
                     );
