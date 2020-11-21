@@ -220,6 +220,8 @@ class VizcomLearnmore extends Component {
                             <img src = {seed12}/>
                             <img src = {seed9}/>
                         </div> 
+                        <a href = "https://designerspen.com/VizcomGallery"><button className = ' tryitbtn lighten-1 z-depth-0' >View More </button></a>
+
                     </div>
                     
                     <div className = 'row' style = {{paddingBottom:'200px'}}>
@@ -284,7 +286,9 @@ class VizcomLearnmore extends Component {
                             <img src = {seed10}/>
                             <img src = {seed12}/>
                             <img src = {seed9}/>
-                        </div> 
+                        </div>
+                        <a href = "https://designerspen.com/VizcomGallery"><button className = ' tryitbtn lighten-1 z-depth-0' >View More </button></a>
+ 
                     </div>
                     
                     <div className = 'row' style = {{paddingBottom:'200px'}}>
@@ -350,6 +354,8 @@ class VizcomLearnmore extends Component {
                             <img src = {seed12}/>
                         </div>
                         <img src = {colorpick}/>
+                        <a href = "https://designerspen.com/VizcomGallery"><button className = ' mobiletryitbtn lighten-1 z-depth-0' >View More </button></a>
+
                         <img  style = {{visibility:'hidden'}}src = "https://via.placeholder.com/50"/>
 
                         <p style = {{fontSize:'1.6rem'}}> Coming soon 👨+💻</p>
