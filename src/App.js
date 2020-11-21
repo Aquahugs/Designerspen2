@@ -86,7 +86,7 @@ const App = (props) => {
                 <Route path ='/AiDesign' component = {AiDesign}/>
                 <Route path ='/Wall' component = {Wall}/>
                 <Route path ='/Feed' component = {Feed}/>
-                <Route  path ='/Discover' component = {MassUploadDiscover}/>
+                <Route  path ='/Discover' component = {Discover}/>
                 <Route path ='/News' component = {Home}/>
                 <Route exact path ='/'  component = {Discover} />
                 <Route path ='/signup' component = {SignUp} />
