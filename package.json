@@ -10,7 +10,7 @@
     "firebase": "^5.5.9",
     "firebase-functions": "^2.1.0",
     "moment": "^2.22.2",
-    "node-sass": "^4.11.0",
+    "node-sass": "^7.0.0",
     "react": "^16.7.0",
     "react-custom-share": "^0.4.8",
     "react-document-meta": "^3.0.0-beta.2",
